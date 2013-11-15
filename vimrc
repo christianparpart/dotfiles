@@ -54,12 +54,12 @@ au BufNewFile,BufRead *.coffee		set syntax=coffee
 
 colorscheme trapni
 
-set noet
 set nowrap
 
 " indention/tabstop/shiftwidth
 set tabstop=4
 set shiftwidth=4
+set expandtab
 "set ai
 "set smartindent
 
