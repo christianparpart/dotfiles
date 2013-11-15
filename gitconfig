@@ -51,3 +51,5 @@
 	untracked = bold blue
 	branch = green
 	nobranch = bold red
+[include]
+	path = .gitconfig-github
