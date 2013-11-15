@@ -1,0 +1,27 @@
+caption always "%{+b bk}$USER@%{wk}%H | %{yk}load: %l %{wk}|%{Gk}%1` %-21=%{wk}%D %d.%m.%Y %0c"
+backtick 1 30 30 /home/trapni/bin/battery.sh
+#backtick 1 5 5 /home/trapni/bin/uptime-1.sh
+
+####### http://blog.siyelo.com/remote-pair-programming-with-screen
+
+hardstatus on  
+hardstatus alwayslastline  
+hardstatus string "%{= kB}%-w%{.wB}%n %t%{-}%+w %=%{..G}"
+startup_message off
+#termcapinfo xterm ti@:te@  
+
+# multiuser setup
+multiuser on
+acladd root
+#aclchg guest -wx "#,?"
+#aclchg guest +x "colon,wall,detach"
+
+# bind F11 and F12 (not F1/F2) to prev/next-window action
+bindkey -k F1 prev
+bindkey -k F2 next
+
+defmonitor on
+#activity "Activity @ %n"
+
+#screen -t bash1 1
+#screen -t bash2 2

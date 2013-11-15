@@ -1,0 +1,6 @@
+set tabstop=4
+
+map n :next<CR>
+map s :step<CR>
+map f :finish<CR>
+map c :continue<CR>

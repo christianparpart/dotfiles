@@ -1,0 +1,53 @@
+[user]
+	name = Christian Parpart
+	email = trapni@gmail.com
+	signingkey = 5CC3ECB8
+[i18n]
+	logOutputEncoding = utf-8 
+[pack]
+	threads = 4
+[core]
+	whitespace = tabwidth=4
+	pager = less -x4 -FRSX
+[github]
+	user = trapni
+	token = d5dc8236dedd38923fe26a019496127e
+[grep]
+	lineNumber = true
+[push]
+	default = current
+[alias]
+	st = status
+	sm = submodule
+	ci = commit -S
+	co = checkout
+	di = diff
+	dis = diff --staged
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph
+	nuke = clean -d -f -x
+	logp = log --pretty=oneline --abbrev-commit
+	logm = log --stat --patch
+	sync = !"git pull --rebase && git push"
+	sy = !"git pull --rebase && git push"
+	pullover = !"git pull --rebase && git push"
+	cat = !"cat"
+	tag = "--sign"
+[color]
+	ui = auto
+[color "decorate"]
+	branch = bold green
+	remoteBranch = bold yellow
+	tag = bold blue
+	stash = bold yellow
+	HEAD = bold cyan
+[color "diff"]
+	meta = bold white
+	old = bold red
+	new = bold green
+[color "status"]
+	added = bold white
+	updated = bold yellow
+	changed = bold red
+	untracked = bold blue
+	branch = green
+	nobranch = bold red
