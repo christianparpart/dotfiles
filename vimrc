@@ -7,10 +7,6 @@ call pathogen#infect()
 
 set encoding=utf-8
 
-" QPascal syntax hilighting
-au BufNewFile,BufRead *.qps			setf qpascal
-au BufNewFile,BufRead *.qpunit		setf qpascal
-
 " flow and x0
 let flow_x0 = 1
 au BufNewFile,BufRead *.flow		setf flow
