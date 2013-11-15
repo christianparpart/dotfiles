@@ -28,7 +28,8 @@ alias pbpaste='xsel --clipboard --output'
 [[ -d ~/bin ]] && export PATH="$HOME/bin:$PATH"
 [[ -d ~/local/bin ]] && export PATH="$HOME/local/bin:$PATH"
 [[ -d ~/local/sbin ]] && export PATH="$HOME/local/sbin:$PATH"
-[[ -f /opt/clang/bin/clang++ ]] && export PATH="/opt/clang/bin:$PATH"
+[[ -d /opt/clang/bin ]] && export PATH="/opt/clang/bin:$PATH"
+[[ -d ~/local/share/man ]] && export MANPATH="$HOME/local/share/man:$MANPATH"
 
 [[ -f ~/projects/x0/contrib/x0d.bash-completion.sh ]] && . ~/projects/x0/contrib/x0d.bash-completion.sh
 [[ -f ~/.bash_aliases-private ]] && . ~/.bash_aliases-private
