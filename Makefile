@@ -11,6 +11,7 @@ backup:
 	test -f ~/.screenrc.bak || mv ~/.screenrc ~/.screenrc.bak
 	test -f ~/.vimrc.bak || mv ~/.vimrc ~/.vimrc.bak
 	test -f ~/.tmux.conf.bak || mv ~/.tmux.conf ~/.tmux.conf.bak
+	test -f ~/.irbrc.bak || mv ~/.irbrc ~/.irbrc.bak
 	test -f ~/.vim.bak || mv ~/.vim ~/.vim.bak
 	test -f ~/.cgdb.bak || mv ~/.cgdb ~/.cgdb.bak
 
@@ -21,6 +22,7 @@ reset: backup
 	rm -f ~/.screenrc
 	rm -f ~/.vimrc
 	rm -f ~/.tmux.conf
+	rm -f ~/.irbrc
 	rm -f ~/.vim
 	rm -f ~/.cgdb
 
@@ -31,5 +33,6 @@ install: backup reset
 	ln -sf `pwd`/screenrc ~/.screenrc
 	ln -sf `pwd`/vimrc ~/.vimrc
 	ln -sf `pwd`/tmux.conf ~/.tmux.conf
+	ln -s `pwd`/irbrc ~/.irbrc
 	ln -s `pwd`/.vim ~/.vim
 	ln -s `pwd`/.cgdb ~/.cgdb
