@@ -11,9 +11,12 @@ set encoding=utf-8
 let flow_x0 = 1
 au BufNewFile,BufRead *.flow		setf flow
 
-" LLVM IR
-au BufNewFile,BufRead *.bc			setf llvm
-au BufNewFile,BufRead *.ll			setf llvm
+augroup filetype
+  " LLVM IR
+  au BufNewFile,BufRead *.bc        set filetype=llvm
+  au BufNewFile,BufRead *.ll        set filetype=llvm
+augroup END
+
 
 " CMake 
 au BufNewFile,BufRead CMakeLists.txt set et
