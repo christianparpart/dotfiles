@@ -23,6 +23,11 @@ au BufNewFile,BufRead CMakeLists.txt set et
 au BufNewFile,BufRead CMakeLists.txt set ts=2
 au BufNewFile,BufRead CMakeLists.txt set sw=2
 
+" Scala
+au BufNewFile,BufRead *.scala		set et
+au BufNewFile,BufRead *.scala		set ts=2
+au BufNewFile,BufRead *.scala		set sw=2
+
 " POD documentation
 au BufNewFile,BufRead *.pod			set et
 au BufNewFile,BufRead *.pod			set ts=2
@@ -54,6 +59,10 @@ au BufNewFile,BufRead *.coffee		set et
 au BufNewFile,BufRead *.coffee		set ts=2
 au BufNewFile,BufRead *.coffee		set sw=2
 au BufNewFile,BufRead *.coffee		set syntax=coffee
+
+au BufNewFile,BufRead *.rs		    set et
+au BufNewFile,BufRead *.rs		    set ts=2
+au BufNewFile,BufRead *.rs		    set sw=2
 
 colorscheme trapni
 
