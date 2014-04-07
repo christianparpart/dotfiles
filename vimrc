@@ -11,14 +11,22 @@ set encoding=utf-8
 let flow_x0 = 1
 au BufNewFile,BufRead *.flow		setf flow
 
-" LLVM IR
-au BufNewFile,BufRead *.bc			setf llvm
-au BufNewFile,BufRead *.ll			setf llvm
+augroup filetype
+  " LLVM IR
+  au BufNewFile,BufRead *.bc        set filetype=llvm
+  au BufNewFile,BufRead *.ll        set filetype=llvm
+augroup END
+
 
 " CMake 
 au BufNewFile,BufRead CMakeLists.txt set et
 au BufNewFile,BufRead CMakeLists.txt set ts=2
 au BufNewFile,BufRead CMakeLists.txt set sw=2
+
+" Scala
+au BufNewFile,BufRead *.scala		set et
+au BufNewFile,BufRead *.scala		set ts=2
+au BufNewFile,BufRead *.scala		set sw=2
 
 " POD documentation
 au BufNewFile,BufRead *.pod			set et
@@ -51,6 +59,10 @@ au BufNewFile,BufRead *.coffee		set et
 au BufNewFile,BufRead *.coffee		set ts=2
 au BufNewFile,BufRead *.coffee		set sw=2
 au BufNewFile,BufRead *.coffee		set syntax=coffee
+
+au BufNewFile,BufRead *.rs		    set et
+au BufNewFile,BufRead *.rs		    set ts=2
+au BufNewFile,BufRead *.rs		    set sw=2
 
 colorscheme trapni
 
