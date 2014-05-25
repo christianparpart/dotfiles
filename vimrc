@@ -23,6 +23,16 @@ au BufNewFile,BufRead CMakeLists.txt set et
 au BufNewFile,BufRead CMakeLists.txt set ts=2
 au BufNewFile,BufRead CMakeLists.txt set sw=2
 
+" JS
+au BufNewFile,BufRead *.js		set et
+au BufNewFile,BufRead *.js		set ts=2
+au BufNewFile,BufRead *.js		set sw=2
+
+" PHP
+au BufNewFile,BufRead *.php		set et
+au BufNewFile,BufRead *.php		set ts=2
+au BufNewFile,BufRead *.php		set sw=2
+
 " Scala
 au BufNewFile,BufRead *.scala		set et
 au BufNewFile,BufRead *.scala		set ts=2
@@ -32,6 +42,11 @@ au BufNewFile,BufRead *.scala		set sw=2
 au BufNewFile,BufRead *.pod			set et
 au BufNewFile,BufRead *.pod			set ts=2
 au BufNewFile,BufRead *.pod			set sw=2
+
+" HTML
+au BufNewFile,BufRead *.html		set et
+au BufNewFile,BufRead *.html		set ts=2
+au BufNewFile,BufRead *.html		set sw=2
 
 " ruby and rails
 au BufNewFile,BufRead *.yml			set et

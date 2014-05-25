@@ -32,6 +32,8 @@ alias pbpaste='xsel --clipboard --output'
 [[ -d ~/local/share/man ]] && export MANPATH="$HOME/local/share/man:$MANPATH"
 [[ -d /opt/scala/bin ]] && export PATH="/opt/scala/bin:$PATH"
 
+[[ -d /opt/java/bin ]] && export JAVA_HOME="/opt/java"
+
 [[ -f ~/projects/x0/contrib/x0d.bash-completion.sh ]] && . ~/projects/x0/contrib/x0d.bash-completion.sh
 [[ -f ~/.bash_aliases-private ]] && . ~/.bash_aliases-private
 
