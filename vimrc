@@ -10,6 +10,8 @@ set encoding=utf-8
 " flow and x0
 let flow_x0 = 1
 au BufNewFile,BufRead *.flow		setf flow
+au BufNewFile,BufRead *.flow		set ts=2
+au BufNewFile,BufRead *.flow		set sw=2
 
 augroup filetype
   " LLVM IR
