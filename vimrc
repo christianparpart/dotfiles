@@ -3,6 +3,8 @@ set nocompatible
 set laststatus=2
 set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
 
+set colorcolumn=80
+
 call pathogen#infect() 
 
 set encoding=utf-8
