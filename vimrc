@@ -159,9 +159,6 @@ set sidescroll=1
 set nu
 set numberwidth=5
 
-" enable current cursor line highlighting
-"set cursorline
-
 " spelling (en)
 "set spell
 "set spelllang=en
@@ -174,7 +171,9 @@ set ai
 set si
 set cindent
 
+" enable current cursor line/column highlighting
 set cursorline
+set cursorcolumn
 
 set hlsearch
 
