@@ -13,5 +13,5 @@ begin
 	Wirble::Colorize.colors = colors
 	Wirble.init
 	Wirble.colorize
-#rescue LoadError => e
+rescue LoadError => e
 end
