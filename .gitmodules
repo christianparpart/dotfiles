@@ -43,3 +43,6 @@
 [submodule ".vim/bundle/vim-sbt"]
 	path = .vim/bundle/vim-sbt
 	url = https://github.com/derekwyatt/vim-sbt.git
+[submodule ".vim/bundle/vim-clang-format"]
+	path = .vim/bundle/vim-clang-format
+	url = https://github.com/rhysd/vim-clang-format.git
