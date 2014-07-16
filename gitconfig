@@ -9,9 +9,6 @@
 [core]
 	whitespace = tabwidth=4
 	pager = less -x4 -FRSX
-[github]
-	user = trapni
-	token = d5dc8236dedd38923fe26a019496127e
 [grep]
 	lineNumber = true
 [push]
