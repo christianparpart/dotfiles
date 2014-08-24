@@ -25,11 +25,13 @@ match ExtraWhitespace /^\t*\zs \+/
 match
 " }}}
 
-
 set laststatus=2
 set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
 
 set colorcolumn=80
+set textwidth=80
+set wrapmargin=0
+set formatoptions=cqt "tcron
 
 " map to <Leader>cf in C++ code
 autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
@@ -52,7 +54,6 @@ augroup filetype
   au BufNewFile,BufRead *.bc        set filetype=llvm
   au BufNewFile,BufRead *.ll        set filetype=llvm
 augroup END
-
 
 " CMake 
 au BufNewFile,BufRead CMakeLists.txt set et
