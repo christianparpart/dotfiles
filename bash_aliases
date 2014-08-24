@@ -38,3 +38,5 @@ alias pbpaste='xsel --clipboard --output'
 [[ -f ~/.bash_aliases-private ]] && . ~/.bash_aliases-private
 
 [[ -s "$HOME/bin/gitprompt.sh" ]] && . "$HOME/bin/gitprompt.sh"
+
+export JAVA_HOME=/opt/java
