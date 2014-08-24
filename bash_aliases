@@ -31,6 +31,7 @@ alias pbpaste='xsel --clipboard --output'
 [[ -d /opt/clang/bin ]] && export PATH="/opt/clang/bin:$PATH"
 [[ -d ~/local/share/man ]] && export MANPATH="$HOME/local/share/man:$MANPATH"
 [[ -d /opt/scala/bin ]] && export PATH="/opt/scala/bin:$PATH"
+[[ -d /opt/sbt/bin ]] && export PATH="/opt/sbt/bin:$PATH"
 
 [[ -d /opt/java/bin ]] && export JAVA_HOME="/opt/java"
 
