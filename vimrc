@@ -28,7 +28,7 @@ match
 set laststatus=2
 set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
 
-set colorcolumn=80
+set colorcolumn=81
 set textwidth=80
 set wrapmargin=0
 set formatoptions=cqt "tcron
@@ -361,3 +361,7 @@ augroup END
 "  n... :  where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
+let NERDTreeIgnore = [ '\.o$', '\.so.*', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*' ]
+
+set list
+set listchars=tab:――,trail:·
