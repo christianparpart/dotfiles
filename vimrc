@@ -2,29 +2,6 @@ set nocompatible
 
 set noswapfile
 
-" {{{ unwanted spaces highlighting
-highlight ExtraWhitespace ctermbg=red guibg=red
-" The following alternative may be less obtrusive.
-highlight ExtraWhitespace ctermbg=darkgreen guibg=lightgreen
-" Try the following if your GUI uses a dark background.
-highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
-
-" Show trailing whitespace:
-match ExtraWhitespace /\s\+$/
-
-" Show trailing whitespace and spaces before a tab:
-match ExtraWhitespace /\s\+$\| \+\ze\t/
-
-" Show tabs that are not at the start of a line:
-match ExtraWhitespace /[^\t]\zs\t\+/
-
-" Show spaces used for indenting (so you use only tabs for indenting).
-match ExtraWhitespace /^\t*\zs \+/
-
-" Switch off :match highlighting.
-match
-" }}}
-
 set laststatus=2
 set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
 
@@ -365,3 +342,5 @@ let NERDTreeIgnore = [ '\.o$', '\.so.*', 'cmake_install.*', 'CMakeFiles', 'CMake
 
 set list
 set listchars=tab:――,trail:·
+highlight NonText ctermbg=red ctermfg=white
+highlight SpecialKey ctermbg=red ctermfg=white
