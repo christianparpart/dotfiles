@@ -16,7 +16,7 @@
 [alias]
 	st = status
 	sm = submodule
-	ci = commit --gpg-sign=5CC3ECB8
+	ci = commit -v #--gpg-sign=5CC3ECB8
 	co = checkout
 	di = diff
 	dis = diff --staged
