@@ -42,6 +42,7 @@ alias vg='valgrind --num-callers=32 --db-attach=yes'
     . "$HOME/work/loveos-puppet/scripts/dwn-completion.bash"
 
 export PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
+export GEM_HOME=$HOME/.gem/ruby/2.3.0/
 
 export XZERO_LOGLEVEL=trace
 export CORTEX_LOGLEVEL=trace
