@@ -128,6 +128,7 @@ let NERDTreeIgnore = [ '\.o$', '\.so.*', 'cmake_install.*', 'CMakeFiles', 'CMake
 nmap <C-T> :FufFile<CR>
 
 au BufNewFile,BufRead Jenkinsfile set filetype=groovy
+au BufNewFile,BufRead Makefile set ts=4 sw=4
 
 " {{{ realtime auto completion (neocomplete)
 let g:neocomplete#enable_at_startup = 1
