@@ -49,3 +49,7 @@ export CORTEX_LOGLEVEL=trace
 
 export GOPATH=$HOME/gocode
 export PATH=$GOPATH/bin:$PATH
+
+for dir in /opt/*/bin; do
+  export PATH=${dir}:$PATH
+done
