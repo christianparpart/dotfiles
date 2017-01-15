@@ -53,3 +53,9 @@ export PATH=$GOPATH/bin:$PATH
 for dir in /opt/*/bin; do
   export PATH=${dir}:$PATH
 done
+
+# on OS/X we have that installation for latex editing
+TEXBINDIR="/Library/TeX/Distributions/TeXLive-2016.texdist/Contents/Programs/x86_64"
+if [[ -d ${TEXBINDIR} ]]; then
+  export PATH=${PATH}:${TEXBINDIR}
+fi
