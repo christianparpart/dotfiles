@@ -11,8 +11,10 @@
 	pager = less -x4 -FRSX
 [grep]
 	lineNumber = true
+[pull]
+	default = simple
 [push]
-	default = current
+	default = simple
 [alias]
 	st = status
 	sm = submodule
