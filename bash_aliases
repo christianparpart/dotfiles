@@ -41,6 +41,10 @@ alias vg='valgrind --num-callers=32 --db-attach=yes'
 [[ -f "$HOME/work/loveos-puppet/scripts/dwn-completion.bash" ]] && \
     . "$HOME/work/loveos-puppet/scripts/dwn-completion.bash"
 
+export HISTSIZE=16384
+export HISTFILESIZE=16384
+export HISTCONTROL=${HISTCONTROL:-ignorespace:ignoredups}
+
 export PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 export GEM_HOME=$HOME/.gem/ruby/2.3.0/
 
@@ -59,3 +63,12 @@ TEXBINDIR="/Library/TeX/Distributions/TeXLive-2016.texdist/Contents/Programs/x86
 if [[ -d ${TEXBINDIR} ]]; then
   export PATH=${PATH}:${TEXBINDIR}
 fi
+
+GCSDK="/opt/google-cloud-sdk"
+if [[ -d "${GCSDK}" ]]; then
+  export PATH=${PATH}:${GCSDK}
+fi
+if [[ -f "${GCSDK}/completion.bash.inc" ]]; then
+  source "${GCSDK}/completion.bash.inc"
+fi
+
