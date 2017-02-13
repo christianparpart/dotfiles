@@ -41,6 +41,10 @@ alias vg='valgrind --num-callers=32 --db-attach=yes'
 [[ -f "$HOME/work/loveos-puppet/scripts/dwn-completion.bash" ]] && \
     . "$HOME/work/loveos-puppet/scripts/dwn-completion.bash"
 
+export HISTSIZE=16384
+export HISTFILESIZE=16384
+export HISTCONTROL=${HISTCONTROL:-ignorespace:ignoredups}
+
 export PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 export GEM_HOME=$HOME/.gem/ruby/2.3.0/
 
@@ -60,12 +64,20 @@ if [[ -d ${TEXBINDIR} ]]; then
   export PATH=${PATH}:${TEXBINDIR}
 fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f /home/christian/google-cloud-sdk/path.bash.inc ]; then
-  source '/home/christian/google-cloud-sdk/path.bash.inc'
-fi
+for dir in ${HOME} /opt; do
+  if [[ -d ${dir}/google-cloud-sdk ]]; then
+    GCSDK="${dir}/google-cloud-sdk"
 
-# The next line enables shell command completion for gcloud.
-if [ -f /home/christian/google-cloud-sdk/completion.bash.inc ]; then
-  source '/home/christian/google-cloud-sdk/completion.bash.inc'
-fi
+    # The next line updates PATH for the Google Cloud SDK.
+    if [ -f ${GCSDK}/path.bash.inc ]; then
+      source "${GCSDK}/path.bash.inc"
+    fi
+
+    # The next line enables shell command completion for gcloud.
+    if [ -f ${GCSDK}/completion.bash.inc ]; then
+      source "${GCSDK}/completion.bash.inc"
+    fi
+
+    break
+  fi
+done
