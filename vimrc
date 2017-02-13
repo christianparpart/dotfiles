@@ -17,6 +17,7 @@ set encoding=utf-8
 
 au BufNewFile,BufRead *.md set syntax=markdown
 au BufNewFile,BufRead *.coffee set syntax=coffee
+au BufNewFile,BufRead nginx.conf set syntax=nginx
 
 "colorscheme trapni
 "colorscheme CodeFactoryv3
@@ -167,6 +168,20 @@ au BufNewFile,BufRead *.flow setf flow
 " {{{ C/C++
 au FileType c,cpp,objc set ts=2
 au FileType c,cpp,objc set sw=2
+
+" let g:clang_format#style_options = {
+"             \ "AccessModifierOffset": -4,
+"             \ "AllowShortIfStatementsOnASingleLine": "false",
+"             \ "AlwaysBreakTemplateDeclarations": "true",
+"             \ "Standard": "C++11" }
+
+" map to <Leader>cf in C++ code
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+" if you install vim-operator-user
+autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
+" Toggle auto formatting:
+nmap <Leader>C :ClangFormatAutoToggle<CR>
 " }}}
 " {{{ Go language (vim-go)
 let g:go_highlight_functions = 1
@@ -190,3 +205,4 @@ au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 " }}}
+au BufNewFile,BufRead *.sls setf jinja
