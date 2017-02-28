@@ -1,10 +1,10 @@
 # vim:syntax=sh
 
-case "${TERM}" in
-  *-256color) ;;
-  linux) ;;
-  *) export TERM="${TERM}-256color" ;;
-esac
+# case "${TERM}" in
+#   *-256color) ;;
+#   linux) ;;
+#   *) export TERM="${TERM}-256color" ;;
+# esac
 
 export EDITOR="/usr/bin/vim"
 
@@ -26,36 +26,43 @@ alias o='chromium'
 alias po='ps -o pid,comm,wchan:21,cmd'
 alias vg='valgrind --num-callers=32 --db-attach=yes'
 
-#[[ -d ~/bin ]] && export PATH="$HOME/bin:$PATH"
-[[ -d ~/local/share/man ]] && export MANPATH="$HOME/local/share/man:$MANPATH"
-# [[ -d /opt/scala/bin ]] && export PATH="/opt/scala/bin:$PATH"
-# [[ -d /opt/sbt/bin ]] && export PATH="/opt/sbt/bin:$PATH"
+MANDIRS=( "/usr/share/man" "${HOME}/local/share/man" "$HOME/usr/share/man" )
+for mandir in ${MANDIRS[*]}; do
+  [[ -d ${mandir} ]] && export MANPATH="${mandir}${MANPATH:+:}${MANPATH}"
+done
+
+BINDIRS=( $HOME/bin /opt/scala/bin /opt/sbt/bin )
+for bindirs in ${BINDIRS[*]}; do
+  [[ -d ${bindir} ]] && export PATH="${bindir}${PATH:+:}${PATH}"
+done
 
 [[ -d /opt/java/bin ]] && export JAVA_HOME="/opt/java"
+
+[[ -d "$HOME/usr/lib/pkgconfig" ]] && export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
 
 [[ -f ~/projects/x0/contrib/x0d.bash-completion.sh ]] && . ~/projects/x0/contrib/x0d.bash-completion.sh
 [[ -f ~/.bash_aliases-private ]] && . ~/.bash_aliases-private
 [[ -f ~/work/loveos-puppet/scripts/dwn-completion.bash ]] && . ~/work/loveos-puppet/scripts/dwn-completion.bash
 
 [[ -s "$HOME/bin/gitprompt.sh" ]] && . "$HOME/bin/gitprompt.sh"
-[[ -f "$HOME/work/loveos-puppet/scripts/dwn-completion.bash" ]] && \
-    . "$HOME/work/loveos-puppet/scripts/dwn-completion.bash"
 
 export HISTSIZE=16384
 export HISTFILESIZE=16384
 export HISTCONTROL=${HISTCONTROL:-ignorespace:ignoredups}
 
-export PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
-export GEM_HOME=$HOME/.gem/ruby/2.3.0/
+[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH
+[[ -d "$HOME/.gem/ruby/2.3.0" ]] && export GEM_HOME=$HOME/.gem/ruby/2.3.0/
 
 export XZERO_LOGLEVEL=trace
 export CORTEX_LOGLEVEL=trace
 
 export GOPATH=$HOME/gocode
-export PATH=$GOPATH/bin:$PATH
+export GOROOT=$HOME/usr/opt/go
 
-for dir in /opt/*/bin; do
-  export PATH=${dir}:$PATH
+for dir in /opt/*/bin ${HOME}/usr/opt/*/bin ${GOPATH}/bin; do
+  if [[ -d ${dir} ]]; then
+    export PATH=${dir}:$PATH
+  fi
 done
 
 # on OS/X we have that installation for latex editing
@@ -81,3 +88,5 @@ for dir in ${HOME} /opt; do
     break
   fi
 done
+
+export GPG_TTY=$(tty)

@@ -21,7 +21,9 @@ au BufNewFile,BufRead nginx.conf set syntax=nginx
 
 "colorscheme trapni
 "colorscheme CodeFactoryv3
-colorscheme 256-jungle
+" colorscheme 256-jungle
+"colorscheme 3dglasses
+colorscheme Monokai
 
 set nowrap
 
