@@ -31,11 +31,6 @@ for mandir in ${MANDIRS[*]}; do
   [[ -d ${mandir} ]] && export MANPATH="${mandir}${MANPATH:+:}${MANPATH}"
 done
 
-BINDIRS=( $HOME/bin /opt/scala/bin /opt/sbt/bin )
-for bindirs in ${BINDIRS[*]}; do
-  [[ -d ${bindir} ]] && export PATH="${bindir}${PATH:+:}${PATH}"
-done
-
 [[ -d /opt/java/bin ]] && export JAVA_HOME="/opt/java"
 
 [[ -d "$HOME/usr/lib/pkgconfig" ]] && export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
@@ -58,6 +53,19 @@ export CORTEX_LOGLEVEL=trace
 
 export GOPATH=$HOME/gocode
 export GOROOT=$HOME/usr/opt/go
+
+BINDIRS=( ${HOME}/bin
+          ${HOME}/usr/bin
+          ${HOME}/usr/opt/*/bin
+          /opt/*/bin
+          ${GOPATH}/bin )
+for bindir in ${BINDIRS[*]}; do
+  if [[ -d "${bindir}" ]]; then
+    if echo $PATH | grep -q -v ${bindir}; then
+      export PATH="${bindir}${PATH:+:}${PATH}"
+    fi
+  fi
+done
 
 for dir in /opt/*/bin ${HOME}/usr/opt/*/bin ${GOPATH}/bin; do
   if [[ -d ${dir} ]]; then
@@ -90,3 +98,9 @@ for dir in ${HOME} /opt; do
 done
 
 export GPG_TTY=$(tty)
+
+if uname -r | grep -q Microsoft; then
+  export DOCKER_HOST="tcp://127.0.0.1:2375"
+  export DISPLAY=":0"
+fi
+
