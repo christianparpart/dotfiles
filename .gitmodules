@@ -55,3 +55,6 @@
 [submodule ".vim/bundle/vim-jinja"]
 	path = .vim/bundle/vim-jinja
 	url = git@github.com:lepture/vim-jinja.git
+[submodule ".vim/bundle/FuzzyFinder"]
+	path = .vim/bundle/FuzzyFinder
+	url = git@github.com:vim-scripts/FuzzyFinder.git
