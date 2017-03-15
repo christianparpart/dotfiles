@@ -49,3 +49,9 @@
 [submodule "vim-clang-format"]
 	path = .vim/bundle/vim-clang-format
 	url = git@github.com:rhysd/vim-clang-format.git
+[submodule ".vim/bundle/salt-vim"]
+	path = .vim/bundle/salt-vim
+	url = git@github.com:saltstack/salt-vim.git
+[submodule ".vim/bundle/vim-jinja"]
+	path = .vim/bundle/vim-jinja
+	url = git@github.com:lepture/vim-jinja.git
