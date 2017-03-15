@@ -129,10 +129,10 @@ let NERDTreeIgnore = [ '\.o$', '\.so.*', 'cmake_install.*', 'CMakeFiles', 'CMake
 
 " fuzzyfinder shortcuts (command mode)
 "(buggy)nmap <C-L> :FufCoverageFile<CR>
-nmap <C-T> :FufFile<CR>
 
 au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 au BufNewFile,BufRead Makefile set ts=4 sw=4
+au BufNewFile,BufRead *.sls setf jinja
 
 " {{{ realtime auto completion (neocomplete)
 let g:neocomplete#enable_at_startup = 1
@@ -207,4 +207,8 @@ au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>i <Plug>(go-info)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 " }}}
-au BufNewFile,BufRead *.sls setf jinja
+" {{{ FuzzyFinder
+"nmap <silent> <C-O> :FufFile<CR>
+nmap <silent> <C-T> {:call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', ['**/*.h', '**/*.cc', '**/*.cpp', '**/.md', '**/*.ac', '**/*.am', '**/*.pc.in', '**/*.conf', '**/*.jinja', '**/*.sls']]) \| FufCoverageFile<CR>}
+nmap <Leader>fr :FufRenewCache<CR>
+" }}}
