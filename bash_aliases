@@ -45,8 +45,8 @@ export HISTSIZE=16384
 export HISTFILESIZE=16384
 export HISTCONTROL=${HISTCONTROL:-ignorespace:ignoredups}
 
-[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH
-[[ -d "$HOME/.gem/ruby/2.3.0" ]] && export GEM_HOME=$HOME/.gem/ruby/2.3.0/
+#[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH
+#[[ -d "$HOME/.gem/ruby/2.3.0" ]] && export GEM_HOME=$HOME/.gem/ruby/2.3.0/
 
 export XZERO_LOGLEVEL=trace
 export CORTEX_LOGLEVEL=trace
@@ -57,6 +57,7 @@ export GOROOT=$HOME/usr/opt/go
 BINDIRS=( ${HOME}/bin
           ${HOME}/usr/bin
           ${HOME}/usr/opt/*/bin
+          ${HOME}/.rvm/bin
           /opt/*/bin
           ${GOPATH}/bin )
 for bindir in ${BINDIRS[*]}; do
@@ -67,11 +68,8 @@ for bindir in ${BINDIRS[*]}; do
   fi
 done
 
-for dir in /opt/*/bin ${HOME}/usr/opt/*/bin ${GOPATH}/bin; do
-  if [[ -d ${dir} ]]; then
-    export PATH=${dir}:$PATH
-  fi
-done
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 # on OS/X we have that installation for latex editing
 TEXBINDIR="/Library/TeX/Distributions/TeXLive-2016.texdist/Contents/Programs/x86_64"
@@ -104,3 +102,6 @@ if uname -r | grep -q Microsoft; then
   export DISPLAY=":0"
 fi
 
+# if which kubectl &>/dev/null; then
+#   source <(kubectl completion bash)
+# fi

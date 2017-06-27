@@ -47,16 +47,16 @@ hi Search     ctermfg=Black   ctermbg=Yellow  guifg=Black guibg=Yellow
 hi IncSearch  cterm=reverse     gui=reverse
 
 " Programming Syntax Highlighting
-hi Comment        cterm=NONE ctermfg=151        gui=NONE guifg=red2
+hi Comment        cterm=NONE ctermfg=Cyan        gui=NONE guifg=red2
 hi SpecialComment cterm=NONE ctermfg=202        gui=NONE guifg=red2
 hi Constant       cterm=NONE ctermfg=Green      gui=NONE guifg=LightCyan
 hi Identifier     cterm=NONE ctermfg=DarkCyan   gui=NONE guifg=cyan4
 hi PreProc        cterm=bold ctermfg=69         gui=bold guifg=magenta3
 hi Special        cterm=NONE ctermfg=LightRed   gui=NONE guifg=deeppink
-hi Statement      cterm=bold ctermfg=63         gui=bold guifg=blue
-hi Type           cterm=NONE ctermfg=228        gui=bold guifg=Yellow
+hi Statement      cterm=bold ctermfg=Red        gui=bold guifg=blue
+hi Type           cterm=bold ctermfg=LightMagenta gui=bold guifg=Yellow
 hi StorageClass   cterm=bold ctermfg=220 
-hi Operator       cterm=bold ctermfg=220
+hi Operator       cterm=bold ctermfg=Yellow
 hi Todo           cterm=bold ctermfg=196        ctermbg=White
 
 " code folding
