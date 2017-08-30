@@ -52,7 +52,10 @@ export XZERO_LOGLEVEL=trace
 export CORTEX_LOGLEVEL=trace
 
 export GOPATH=$HOME/gocode
-export GOROOT=$HOME/usr/opt/go
+
+if [[ -d $HOME/usr/opt/go ]]; then
+  export GOROOT=$HOME/usr/opt/go
+fi
 
 BINDIRS=( ${HOME}/bin
           ${HOME}/usr/bin
