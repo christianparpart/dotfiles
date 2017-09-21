@@ -58,6 +58,7 @@ BINDIRS=( ${HOME}/bin
           ${HOME}/usr/bin
           ${HOME}/usr/opt/*/bin
           ${HOME}/.rvm/bin
+          ${HOME}/.local/bin
           /opt/*/bin
           ${GOPATH}/bin )
 for bindir in ${BINDIRS[*]}; do
