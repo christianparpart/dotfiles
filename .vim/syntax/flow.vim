@@ -1,1 +1,1 @@
-/home/trapni/projects/x0/contrib/flow.vim
+../../../x0/contrib/flow.vim
