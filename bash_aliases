@@ -45,9 +45,6 @@ export HISTSIZE=16384
 export HISTFILESIZE=16384
 export HISTCONTROL=${HISTCONTROL:-ignorespace:ignoredups}
 
-#[[ -d "$HOME/.rvm/bin" ]] && export PATH=$HOME/.rvm/bin:$PATH
-#[[ -d "$HOME/.gem/ruby/2.3.0" ]] && export GEM_HOME=$HOME/.gem/ruby/2.3.0/
-
 export XZERO_LOGLEVEL=trace
 export CORTEX_LOGLEVEL=trace
 
@@ -64,10 +61,14 @@ BINDIRS=( ${HOME}/bin
           ${HOME}/.local/bin
           /opt/*/bin
           ${GOPATH}/bin )
+
 for bindir in ${BINDIRS[*]}; do
   if [[ -d "${bindir}" ]]; then
     if echo $PATH | grep -q -v ${bindir}; then
       export PATH="${bindir}${PATH:+:}${PATH}"
+    else
+      #echo "Path already in \$PATH: ${bindir}"
+      true
     fi
   fi
 done
@@ -110,4 +111,10 @@ fi
 [[ -s "$HOME/work/ops-tools/ops-completion.bash" ]] && source work/ops-tools/ops-completion.bash
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+if echo $PATH | grep -q -v "${HOME}/.rvm/bin"; then
+  #echo "sourcing RVM"
+  [[ -s "$HOME/.rvm/scripts/rvm" ]] && \
+      source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+else
+  true #echo "skip sourcing RVM"
+fi
