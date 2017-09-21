@@ -52,7 +52,10 @@ export XZERO_LOGLEVEL=trace
 export CORTEX_LOGLEVEL=trace
 
 export GOPATH=$HOME/gocode
-export GOROOT=$HOME/usr/opt/go
+
+if [[ -d $HOME/usr/opt/go ]]; then
+  export GOROOT=$HOME/usr/opt/go
+fi
 
 BINDIRS=( ${HOME}/bin
           ${HOME}/usr/bin
@@ -69,16 +72,13 @@ for bindir in ${BINDIRS[*]}; do
   fi
 done
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # on OS/X we have that installation for latex editing
 TEXBINDIR="/Library/TeX/Distributions/TeXLive-2016.texdist/Contents/Programs/x86_64"
 if [[ -d ${TEXBINDIR} ]]; then
   export PATH=${PATH}:${TEXBINDIR}
 fi
 
-for dir in ${HOME} /opt; do
+for dir in ${HOME} ${HOME}/opt /opt; do
   if [[ -d ${dir}/google-cloud-sdk ]]; then
     GCSDK="${dir}/google-cloud-sdk"
 
@@ -106,3 +106,8 @@ fi
 # if which kubectl &>/dev/null; then
 #   source <(kubectl completion bash)
 # fi
+
+[[ -s "$HOME/work/ops-tools/ops-completion.bash" ]] && source work/ops-tools/ops-completion.bash
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*

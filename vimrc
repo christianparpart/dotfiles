@@ -3,6 +3,8 @@ set noswapfile
 
 syntax on
 
+set backspace=indent,eol,start
+
 set laststatus=2
 set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
 
