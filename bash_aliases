@@ -60,6 +60,7 @@ BINDIRS=( ${HOME}/bin
           ${HOME}/.rvm/bin
           ${HOME}/.local/bin
           /opt/*/bin
+          /usr/local/opt/llvm/bin
           ${GOPATH}/bin )
 
 for bindir in ${BINDIRS[*]}; do
@@ -107,6 +108,24 @@ fi
 # if which kubectl &>/dev/null; then
 #   source <(kubectl completion bash)
 # fi
+
+man() {
+  # mb = blinking
+  # md = double-bright
+  # me = disable all modes (mb, md, so, us)
+  # so = stand-out enter
+  # se = stand-out leave
+  # us = underline begin
+  # ue = underline leave
+	LESS_TERMCAP_mb=$'\e[01;34m' \
+	LESS_TERMCAP_md=$'\e[01;31m' \
+	LESS_TERMCAP_so=$'\e[01;44;33m' \
+	LESS_TERMCAP_us=$'\e[38;5;27m' \
+	LESS_TERMCAP_se=$'\e[0m' \
+	LESS_TERMCAP_ue=$'\e[0m' \
+	LESS_TERMCAP_me=$'\e[0m' \
+	command man "$@"
+}
 
 [[ -s "$HOME/work/ops-tools/ops-completion.bash" ]] && source work/ops-tools/ops-completion.bash
 
