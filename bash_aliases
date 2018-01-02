@@ -141,3 +141,8 @@ if echo $PATH | grep -q -v "${HOME}/.rvm/bin"; then
 else
   true #echo "skip sourcing RVM"
 fi
+
+SSH_KEYFILES=$(cd ~/.ssh; for file in $(/bin/ls -1 *.pub); do echo $(basename $file .pub); done)
+if which keychain &>/dev/null; then
+  eval `keychain --quiet --eval ${SSH_KEYFILES}`
+fi
