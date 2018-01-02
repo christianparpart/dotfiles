@@ -140,5 +140,5 @@ fi
 
 SSH_KEYFILES=$(cd ~/.ssh; for file in $(/bin/ls -1 *.pub); do echo $(basename $file .pub); done)
 if which keychain &>/dev/null; then
-  eval `keychain --eval ${SSH_KEYFILES}`
+  eval `keychain --quiet --eval ${SSH_KEYFILES}`
 fi
