@@ -1,14 +1,13 @@
 # vim:syntax=sh
 
-# case "${TERM}" in
-#   *-256color) ;;
-#   linux) ;;
-#   *) export TERM="${TERM}-256color" ;;
-# esac
-
+# {{{ BASH dailies
 export EDITOR="/usr/bin/vim"
 
-alias dos2unix="perl -pi -e 's/\r\n/\n/g'"
+export HISTSIZE=16384
+export HISTFILESIZE=16384
+export HISTCONTROL=${HISTCONTROL:-ignorespace:ignoredups}
+
+export GPG_TTY=$(tty)
 
 if [[ $(uname) = "Darwin" ]]; then
   alias ls='ls -G -F'
@@ -16,42 +15,64 @@ else
   alias ls='ls --color -F'
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
-  alias pm-suspend='sync; sudo pm-suspend'
-  alias pm-hibernate='sync; sudo pm-hibernate'
 fi
+
 alias l='ls -lish'
 alias ll='ls -lisah'
 alias grep='grep --color=auto'
 alias o='chromium'
 alias po='ps -o pid,comm,wchan:21,cmd'
-alias vg='valgrind --num-callers=32 --db-attach=yes'
 
-MANDIRS=( "/usr/share/man" "${HOME}/local/share/man" "$HOME/usr/share/man" )
+alias dos2unix="perl -pi -e 's/\r\n/\n/g'"
+# }}}
+# {{{ man-pages
+MANDIRS=( "/usr/share/man" "${HOME}/local/share/man" "${HOME}/usr/share/man" )
 for mandir in ${MANDIRS[*]}; do
   [[ -d ${mandir} ]] && export MANPATH="${mandir}${MANPATH:+:}${MANPATH}"
 done
 
+man() {
+  # mb = blinking
+  # md = double-bright
+  # me = disable all modes (mb, md, so, us)
+  # so = stand-out enter
+  # se = stand-out leave
+  # us = underline begin
+  # ue = underline leave
+	LESS_TERMCAP_mb=$'\e[01;34m' \
+	LESS_TERMCAP_md=$'\e[01;31m' \
+	LESS_TERMCAP_so=$'\e[01;44;33m' \
+	LESS_TERMCAP_us=$'\e[38;5;27m' \
+	LESS_TERMCAP_se=$'\e[0m' \
+	LESS_TERMCAP_ue=$'\e[0m' \
+	LESS_TERMCAP_me=$'\e[0m' \
+	command man "$@"
+}
+# }}}
+# {{{ Java
 [[ -d /opt/java/bin ]] && export JAVA_HOME="/opt/java"
-
-[[ -d "$HOME/usr/lib/pkgconfig" ]] && export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
-
-[[ -f ~/projects/x0/contrib/x0d.bash-completion.sh ]] && . ~/projects/x0/contrib/x0d.bash-completion.sh
-[[ -f ~/.bash_aliases-private ]] && . ~/.bash_aliases-private
-[[ -f ~/work/loveos-puppet/scripts/dwn-completion.bash ]] && . ~/work/loveos-puppet/scripts/dwn-completion.bash
-
-export HISTSIZE=16384
-export HISTFILESIZE=16384
-export HISTCONTROL=${HISTCONTROL:-ignorespace:ignoredups}
-
-export XZERO_LOGLEVEL=trace
-export CORTEX_LOGLEVEL=trace
-
+# }}}
+# {{{ C++ development
+alias vg='valgrind --num-callers=32 --db-attach=yes'
+if [[ -d "$HOME/usr/lib/pkgconfig" ]]; then
+  export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
+fi
+# }}}
+# {{{ terminal settings (256-color)
+# case "${TERM}" in
+#   *-256color) ;;
+#   linux) ;;
+#   *) export TERM="${TERM}-256color" ;;
+# esac
+# }}}
+# {{{ Go/Golang development environment
 export GOPATH=$HOME/gocode
 
 if [[ -d $HOME/usr/opt/go ]]; then
   export GOROOT=$HOME/usr/opt/go
 fi
-
+# }}}
+# {{{ bin PATH directories
 BINDIRS=( ${HOME}/bin
           ${HOME}/usr/bin
           ${HOME}/usr/opt/*/bin
@@ -71,13 +92,15 @@ for bindir in ${BINDIRS[*]}; do
     fi
   fi
 done
-
+# }}}
+# {{{ LaTeX environment
 # on OS/X we have that installation for latex editing
 TEXBINDIR="/Library/TeX/Distributions/TeXLive-2016.texdist/Contents/Programs/x86_64"
 if [[ -d ${TEXBINDIR} ]]; then
   export PATH=${PATH}:${TEXBINDIR}
 fi
-
+# }}}
+# {{{ Google Cloud SDK
 for dir in ${HOME} ${HOME}/usr/opt ${HOME}/opt /opt; do
   if [[ -d ${dir}/google-cloud-sdk ]]; then
     GCSDK="${dir}/google-cloud-sdk"
@@ -95,14 +118,13 @@ for dir in ${HOME} ${HOME}/usr/opt ${HOME}/opt /opt; do
     break
   fi
 done
-
-export GPG_TTY=$(tty)
-
+# }}}
+# {{{ WSL / Windows Subsystem for Linux
 if uname -r | grep -q Microsoft; then
   export DOCKER_HOST="tcp://127.0.0.1:2375"
   export DISPLAY=":0"
 fi
-
+# }}}
 # {{{ GIT-compatible shell prompt
         RED="\[\033[0;31m\]"
      YELLOW="\[\033[0;33m\]"
@@ -166,35 +188,12 @@ function prompt_func() {
 
 PROMPT_COMMAND=prompt_func
 # }}}
-
+# {{{ Kubernetes
 # if which kubectl &>/dev/null; then
 #   source <(kubectl completion bash)
 # fi
-
-man() {
-  # mb = blinking
-  # md = double-bright
-  # me = disable all modes (mb, md, so, us)
-  # so = stand-out enter
-  # se = stand-out leave
-  # us = underline begin
-  # ue = underline leave
-	LESS_TERMCAP_mb=$'\e[01;34m' \
-	LESS_TERMCAP_md=$'\e[01;31m' \
-	LESS_TERMCAP_so=$'\e[01;44;33m' \
-	LESS_TERMCAP_us=$'\e[38;5;27m' \
-	LESS_TERMCAP_se=$'\e[0m' \
-	LESS_TERMCAP_ue=$'\e[0m' \
-	LESS_TERMCAP_me=$'\e[0m' \
-	command man "$@"
-}
-
-if [[ -s "$HOME/work/ops/ops-tools/ops-completion.bash" ]]; then
-  source $HOME/work/ops/ops-tools/ops-completion.bash
-elif [[ -s "$HOME/work/ops-tools/ops-completion.bash" ]]; then
-  source $HOME/work/ops-tools/ops-completion.bash
-fi
-
+# }}}
+# {{{ RVM
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 if echo $PATH | grep -q -v "${HOME}/.rvm/bin"; then
   #echo "sourcing RVM"
@@ -203,8 +202,21 @@ if echo $PATH | grep -q -v "${HOME}/.rvm/bin"; then
 else
   true #echo "skip sourcing RVM"
 fi
-
+# }}}
+# {{{ key chain (SSH, GnuPG)
 SSH_KEYFILES=$(cd ~/.ssh; for file in $(/bin/ls -1 *.pub); do echo $(basename $file .pub); done)
 if which keychain &>/dev/null; then
   eval `keychain --quiet --eval ${SSH_KEYFILES}`
 fi
+# }}}
+# {{{ custom sourced files
+SOURCES=(
+    ~/projects/x0/contrib/x0d.bash-completion.sh
+    ~/work/ops/ops-tools/ops-completion.bash
+    ~/work/ops-tools/ops-completion.bash
+    ~/.bash_aliases-private
+)
+for SOURCE in ${SOURCES[*]}; do
+  [[ -f "${SOURCE}" ]] && source ${SOURCE}
+done
+# }}}
