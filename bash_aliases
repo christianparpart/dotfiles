@@ -80,7 +80,7 @@ if [[ -d ${TEXBINDIR} ]]; then
   export PATH=${PATH}:${TEXBINDIR}
 fi
 
-for dir in ${HOME} ${HOME}/opt /opt; do
+for dir in ${HOME} ${HOME}/usr/opt ${HOME}/opt /opt; do
   if [[ -d ${dir}/google-cloud-sdk ]]; then
     GCSDK="${dir}/google-cloud-sdk"
 
@@ -127,7 +127,11 @@ man() {
 	command man "$@"
 }
 
-[[ -s "$HOME/work/ops-tools/ops-completion.bash" ]] && source work/ops-tools/ops-completion.bash
+if [[ -s "$HOME/work/ops/ops-tools/ops-completion.bash" ]]; then
+  source $HOME/work/ops/ops-tools/ops-completion.bash
+elif [[ -s "$HOME/work/ops-tools/ops-completion.bash" ]]; then
+  source $HOME/work/ops-tools/ops-completion.bash
+fi
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 if echo $PATH | grep -q -v "${HOME}/.rvm/bin"; then
