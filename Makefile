@@ -3,6 +3,9 @@
 update:
 	git submodule init
 	git submodule update
+	git submodule status
+	cd .vim/bundle/jedi-vim && git submodule init && git submodule update
+	cd .vim/bundle/jedi-vim && git submodule status
 
 backup:
 	test -f ~/.bash_aliases || mv -f ~/.bash_aliases ~/.bash_aliases.bak
