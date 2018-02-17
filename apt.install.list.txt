@@ -1,0 +1,24 @@
+aptitude
+apache2-utils bc gnupg htop mc keychain pv jq lsof
+traceroute
+python-pip
+
+make autoconf automake libtool pkg-config 
+git cgdb cmake gdb clang++-5.0 clang-format libc++-dev
+libmysqlclient-dev zlib1g-dev libbz2-dev pkg-config libssl-dev
+libpcre3-dev libfcgi-dev libgoogle-perftools-dev libpam-dev
+libyaml-dev libsqlite3-dev libgmp-dev libgdbm-dev libncurses5-dev libgmp-dev libreadline6-dev
+libeditline-dev libedit-dev librdkafka-dev
+
+mysql-client-core-5.7
+ltrace strace tcpdump ngrep tmux vim-nox whois 
+sqlite3
+
+nodejs
+
+texlive-latex-recommended
+texlive-luatex
+texlive-science
+texlive-xetex
+texlive-latex-extra
+openjdk-8-jre-headless
