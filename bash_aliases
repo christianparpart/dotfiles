@@ -204,9 +204,11 @@ else
 fi
 # }}}
 # {{{ key chain (SSH, GnuPG)
-SSH_KEYFILES=$(cd ~/.ssh; for file in $(/bin/ls -1 *.pub); do echo $(basename $file .pub); done)
-if which keychain &>/dev/null; then
-  eval `keychain --quiet --eval ${SSH_KEYFILES}`
+if [[ -z "${SUDO_USER}" ]]; then
+  if which keychain &>/dev/null; then
+    SSH_KEYFILES=$(cd ~/.ssh; for file in $(/bin/ls -1 *.pub); do echo $(basename $file .pub); done)
+    eval `keychain --quiet --eval ${SSH_KEYFILES}`
+  fi
 fi
 # }}}
 # {{{ custom sourced files

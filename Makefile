@@ -39,3 +39,4 @@ install: backup reset
 	ln -s `pwd`/irbrc ~/.irbrc || true
 	ln -s `pwd`/.vim ~/.vim || true
 	ln -s `pwd`/.cgdb ~/.cgdb || true
+	install -m 0640 sudoers.d.trapni /etc/sudoers.d/00-trapni
