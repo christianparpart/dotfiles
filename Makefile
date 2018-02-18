@@ -29,14 +29,22 @@ reset: backup
 	rm -f ~/.vim
 	rm -f ~/.cgdb
 
-install: backup reset
-	ln -sf `pwd`/bash_aliases ~/.bash_aliases || true
-	ln -sf `pwd`/gitconfig ~/.gitconfig || true
-	ln -sf `pwd`/inputrc ~/.inputrc || true
-	ln -sf `pwd`/screenrc ~/.screenrc || true
-	ln -sf `pwd`/vimrc ~/.vimrc || true
-	ln -sf `pwd`/tmux.conf ~/.tmux.conf || true
-	ln -s `pwd`/irbrc ~/.irbrc || true
+install-symlinks-files:
+	ln -sf `pwd`/bash_aliases ~/.bash_aliases
+	ln -sf `pwd`/gitconfig ~/.gitconfig
+	ln -sf `pwd`/inputrc ~/.inputrc
+	ln -sf `pwd`/screenrc ~/.screenrc
+	ln -sf `pwd`/vimrc ~/.vimrc
+	ln -sf `pwd`/tmux.conf ~/.tmux.conf
+
+install-symlinks-dirs:
+	ln -s `pwd`/irbrc ~/.irbrc
 	ln -s `pwd`/.vim ~/.vim || true
 	ln -s `pwd`/.cgdb ~/.cgdb || true
-	install -m 0640 sudoers.d.trapni /etc/sudoers.d/00-trapni
+
+install-os-tweaks: /etc/sudoers.d/00-trapni
+
+/etc/sudoers.d/00-trapni: sudoers.d.trapni
+	sudo install -m 0640 sudoers.d.trapni /etc/sudoers.d/00-trapni
+
+install: install-symlinks-files install-symlinks-dirs install-os-tweaks
