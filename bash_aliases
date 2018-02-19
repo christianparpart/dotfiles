@@ -204,9 +204,9 @@ else
 fi
 # }}}
 # {{{ key chain (SSH, GnuPG)
-if [[ -z "${SUDO_USER}" ]]; then
+if [[ -z "${SUDO_USER}" && -z "${SSH_AUTH_SOCK}" ]]; then
   if which keychain &>/dev/null; then
-    SSH_KEYFILES=$(cd ~/.ssh; for file in $(/bin/ls -1 *.pub); do echo $(basename $file .pub); done)
+    SSH_KEYFILES=$(cd ~/.ssh; for file in $(/bin/ls -1 *.pub 2>/dev/null); do echo $(basename $file .pub); done)
     eval `keychain --quiet --eval ${SSH_KEYFILES}`
   fi
 fi
