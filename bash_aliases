@@ -24,6 +24,24 @@ alias o='chromium'
 alias po='ps -o pid,comm,wchan:21,cmd'
 
 alias dos2unix="perl -pi -e 's/\r\n/\n/g'"
+
+alias ni='ninja'
+
+cf() {
+  src="${1}"
+  dst="${2}"
+
+  if ! which pv &>/dev/null; then
+    echo "No pv tool installed" 1>&2
+    return 1
+  fi
+
+  # TODO: verify $src is a file and readable
+  # TODO: verify $dst is a file, or a directory (if latter, mimmic cp)
+
+  pv -s $(stat -c %s "${src}") <"${src}" >"${dst}"
+}
+
 # }}}
 # {{{ man-pages
 MANDIRS=( "/usr/share/man" "${HOME}/local/share/man" "${HOME}/usr/share/man" )
