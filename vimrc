@@ -24,11 +24,11 @@ au BufNewFile,BufRead nginx.conf set syntax=nginx
 "colorscheme trapni
 "colorscheme CodeFactoryv3
 "colorscheme 256-jungle
-"colorscheme 256-grayvim
+colorscheme 256-grayvim
 "colorscheme 3dglasses
 
-colorscheme Monokai
-colorscheme Benokai " overrides some stuff (types!)
+" colorscheme Monokai
+" colorscheme Benokai " overrides some stuff (types!)
 
 set nowrap
 
@@ -169,8 +169,7 @@ au BufNewFile,BufRead *.bc set filetype=llvm
 au BufNewFile,BufRead *.ll set filetype=llvm
 " }}}
 " {{{ x0 / Flow
-let flow_x0 = 1
-au BufNewFile,BufRead *.flow setf flow
+au BufNewFile,BufRead *.flow setf x0dconf
 " }}}
 " {{{ C/C++
 au FileType c,cpp,objc set ts=2

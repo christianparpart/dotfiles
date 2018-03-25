@@ -1,0 +1,1 @@
+../../../x0/contrib/x0dconf.vim

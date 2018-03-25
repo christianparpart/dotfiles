@@ -3,8 +3,8 @@ apache2-utils bc gnupg htop mc keychain pv jq lsof
 traceroute
 python-pip
 
-make autoconf automake libtool pkg-config valgrind
-git cgdb cmake gdb clang++-5.0 clang-format libc++-dev
+make autoconf automake libtool pkg-config ninja-build cmake cmake-curses-gui
+valgrind git cgdb gdb clang++-5.0 clang-format libc++-dev
 libmysqlclient-dev zlib1g-dev libbz2-dev pkg-config libssl-dev
 libpcre3-dev libfcgi-dev libgoogle-perftools-dev libpam-dev
 libyaml-dev libsqlite3-dev libgmp-dev libgdbm-dev libncurses5-dev libgmp-dev libreadline6-dev
