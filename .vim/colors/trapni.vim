@@ -43,7 +43,8 @@ hi WarningMsg ctermfg=DarkRed     guifg=Red
 hi WildMenu   ctermfg=Black     ctermbg=Yellow    guibg=Yellow guifg=Black
 
 " Text Search
-hi Search     ctermfg=Black   ctermbg=Yellow  guifg=Black guibg=Yellow
+hi Search     cterm=bold ctermfg=Black   ctermbg=Yellow  guifg=Black guibg=Yellow
+"hi Search     ctermfg=reverse   ctermbg=reverse  guifg=Black guibg=Yellow
 hi IncSearch  cterm=reverse     gui=reverse
 
 " Programming Syntax Highlighting
