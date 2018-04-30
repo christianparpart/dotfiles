@@ -3,6 +3,8 @@ set noswapfile
 
 syntax on
 
+set mouse=a
+
 set backspace=indent,eol,start
 
 set laststatus=2

@@ -1,4 +1,5 @@
 aptitude
+keychain
 apache2-utils bc gnupg htop mc keychain pv jq lsof
 traceroute
 python-pip
