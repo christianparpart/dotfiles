@@ -45,7 +45,12 @@ cf() {
 
 # }}}
 # {{{ man-pages
-MANDIRS=( "/usr/share/man" "${HOME}/local/share/man" "${HOME}/usr/share/man" )
+MANDIRS=(
+    /usr/share/man
+    ~/local/share/man
+    ~/usr/share/man
+    ~/usr/opt/*/man
+    ~/usr/opt/*/share/man)
 for mandir in ${MANDIRS[*]}; do
   [[ -d ${mandir} ]] && export MANPATH="${mandir}${MANPATH:+:}${MANPATH}"
 done
@@ -72,7 +77,7 @@ man() {
 [[ -d /opt/java/bin ]] && export JAVA_HOME="/opt/java"
 # }}}
 # {{{ C++ development
-alias vg='valgrind --num-callers=32 --db-attach=yes'
+alias vg='valgrind --num-callers=32 --vgdb=full'
 if [[ -d "$HOME/usr/lib/pkgconfig" ]]; then
   export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
 fi
@@ -94,6 +99,7 @@ fi
 # {{{ bin PATH directories
 BINDIRS=( ${HOME}/bin
           ${HOME}/usr/bin
+          ${HOME}/usr/sbin
           ${HOME}/usr/opt/*/bin
           ${HOME}/.rvm/bin
           ${HOME}/.local/bin
