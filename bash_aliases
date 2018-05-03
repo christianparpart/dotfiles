@@ -1,6 +1,7 @@
 # vim:syntax=sh
 
 # {{{ BASH dailies
+set +o ignoreeof
 export EDITOR="/usr/bin/vim"
 
 export HISTSIZE=16384
