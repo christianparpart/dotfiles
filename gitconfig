@@ -40,6 +40,9 @@
 	tag = bold blue
 	stash = bold yellow
 	HEAD = bold cyan
+[color "branch"]
+  remote = bold cyan
+  local = white
 [color "diff"]
 	meta = bold white
 	old = bold red
