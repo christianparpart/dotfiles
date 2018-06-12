@@ -16,6 +16,7 @@
 [push]
 	default = simple
 [alias]
+  rebase = rebase --verbose
 	st = status
 	sm = submodule
 	ci = commit -v #--gpg-sign=5CC3ECB8
@@ -52,3 +53,5 @@
 	nobranch = bold red
 [include]
 	path = .gitconfig-github
+[includeIf "gitdir:~/ethereum/"]
+	path = ethereum/gitconfig

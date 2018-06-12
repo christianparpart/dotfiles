@@ -26,11 +26,11 @@ au BufNewFile,BufRead nginx.conf set syntax=nginx
 "colorscheme trapni
 "colorscheme CodeFactoryv3
 "colorscheme 256-jungle
-colorscheme 256-grayvim
+"colorscheme 256-grayvim
 "colorscheme 3dglasses
 
-" colorscheme Monokai
-" colorscheme Benokai " overrides some stuff (types!)
+colorscheme Monokai
+"colorscheme Benokai " overrides some stuff (types!)
 
 set nowrap
 
@@ -38,6 +38,7 @@ set nowrap
 set tabstop=2
 set shiftwidth=2
 set expandtab
+set smarttab
 "set ai
 "set smartindent
 
@@ -218,3 +219,18 @@ au FileType go nmap <Leader>e <Plug>(go-rename)
 nmap <silent> <C-T> {:call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', ['**/*.h', '**/*.cc', '**/*.cpp', '**/.md', '**/*.ac', '**/*.am', '**/*.pc.in', '**/*.conf', '**/*.jinja', '**/*.sls']]) \| FufCoverageFile<CR>}
 nmap <Leader>fr :FufRenewCache<CR>
 " }}}
+
+function! SetupEnvironment()
+  let l:path = expand('%:p')
+  if l:path =~ '.sol'
+    setlocal expandtab
+		setlocal tabstop=4 shiftwidth=4
+  elseif l:path =~ '/home/trapni/ethereum'
+    setlocal noexpandtab
+		setlocal tabstop=4 shiftwidth=4
+    setlocal colorcolumn=99
+  " elseif l:path =~ '/home/user/projects'
+  "   setlocal tabstop=4 shiftwidth=4 noexpandtab
+  endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
