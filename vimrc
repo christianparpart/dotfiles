@@ -222,10 +222,12 @@ nmap <Leader>fr :FufRenewCache<CR>
 
 function! SetupEnvironment()
   let l:path = expand('%:p')
-  if l:path =~ '.sol'
+  if l:path =~ '.sol$'
     setlocal expandtab
 		setlocal tabstop=4 shiftwidth=4
-  elseif l:path =~ '/home/trapni/ethereum'
+    " echo "Solidity part"
+  elseif l:path =~ '/home/trapni/ethereum/'
+    " echo "Ethereum part"
     setlocal noexpandtab
 		setlocal tabstop=4 shiftwidth=4
     setlocal colorcolumn=99
