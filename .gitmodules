@@ -61,3 +61,6 @@
 [submodule ".vim/bundle/jedi-vim"]
 	path = .vim/bundle/jedi-vim
 	url = https://github.com/davidhalter/jedi-vim.git
+[submodule ".vim/bundle/vim-solidity"]
+	path = .vim/bundle/vim-solidity
+	url = https://github.com/tomlion/vim-solidity.git
