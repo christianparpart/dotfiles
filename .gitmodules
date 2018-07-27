@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/vim-solidity"]
 	path = .vim/bundle/vim-solidity
 	url = https://github.com/tomlion/vim-solidity.git
+[submodule ".vim/bundle/flex-bison-syntax"]
+	path = .vim/bundle/flex-bison-syntax
+	url = git@github.com:calincru/flex-bison-syntax.git

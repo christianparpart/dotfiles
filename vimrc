@@ -236,3 +236,5 @@ function! SetupEnvironment()
   endif
 endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
+
+au BufNewFile,BufRead *.c1 setf c
