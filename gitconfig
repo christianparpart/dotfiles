@@ -1,7 +1,7 @@
 [user]
 	name = Christian Parpart
 	email = christian@parpart.family
-	signingkey = 5CC3ECB8
+	signingkey = 34E7C3B743937C64C7675F1619BC8DD20312C929
 [i18n]
 	logOutputEncoding = utf-8 
 [pack]
@@ -19,7 +19,7 @@
   rebase = rebase --verbose
 	st = status
 	sm = submodule
-	ci = commit -v #--gpg-sign=5CC3ECB8
+	ci = commit -v -S
 	co = checkout
 	di = diff
 	dis = diff --staged
