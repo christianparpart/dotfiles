@@ -225,14 +225,13 @@ function! SetupEnvironment()
   if l:path =~ '.sol$'
     setlocal expandtab
 		setlocal tabstop=4 shiftwidth=4
-    " echo "Solidity part"
-  elseif l:path =~ '/home/trapni/ethereum/'
-    " echo "Ethereum part"
+  elseif l:path =~ '/home/trapni/ethereum/solidity'
     setlocal noexpandtab
 		setlocal tabstop=4 shiftwidth=4
     setlocal colorcolumn=99
-  " elseif l:path =~ '/home/user/projects'
-  "   setlocal tabstop=4 shiftwidth=4 noexpandtab
+  elseif l:path =~ '/home/trapni/ethereum/cpp-ethereum'
+    setlocal tabstop=4 shiftwidth=4 expandtab
+    setlocal colorcolumn=99
   endif
 endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
