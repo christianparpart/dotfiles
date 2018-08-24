@@ -27,6 +27,8 @@
 	nuke = clean -d -f -x
 	logp = log --pretty=oneline --abbrev-commit
 	logm = log --stat --patch
+  dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
+  br = branch
 	sync = !"git pull --rebase && git push"
 	sy = !"git pull --rebase && git push"
 	pullover = !"git pull --rebase && git push"
