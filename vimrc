@@ -225,6 +225,9 @@ function! SetupEnvironment()
   if l:path =~ '.sol$'
     setlocal expandtab
 		setlocal tabstop=4 shiftwidth=4
+  elseif l:path =~ '/home/trapni/projects/klex'
+    setlocal noexpandtab
+		setlocal tabstop=4 shiftwidth=4
   elseif l:path =~ '/home/trapni/ethereum/solidity'
     setlocal noexpandtab
 		setlocal tabstop=4 shiftwidth=4
