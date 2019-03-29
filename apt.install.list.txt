@@ -12,6 +12,8 @@ libpcre3-dev libfcgi-dev libgoogle-perftools-dev libpam-dev
 libyaml-dev libsqlite3-dev libgmp-dev libgdbm-dev libncurses5-dev libgmp-dev libreadline6-dev
 libeditline-dev libedit-dev librdkafka-dev
 
+libleveldb-dev
+
 mysql-client-core-5.7
 ltrace strace tcpdump ngrep tmux vim-nox whois 
 sqlite3
