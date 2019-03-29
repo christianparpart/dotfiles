@@ -16,24 +16,26 @@
 [push]
 	default = simple
 [alias]
-  rebase = rebase --verbose
 	st = status
 	sm = submodule
-	ci = commit -v -S
 	co = checkout
 	di = diff
+	ci = commit -v --gpg-sign
+	commit = commit -v --gpg-sign
+    rebase = rebase --verbose --gpg-sign
 	dis = diff --staged
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph
 	nuke = clean -d -f -x
 	logp = log --pretty=oneline --abbrev-commit
 	logm = log --stat --patch
-  dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  br = branch
+	dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	br = branch
 	sync = !"git pull --rebase && git push"
 	sy = !"git pull --rebase && git push"
 	pullover = !"git pull --rebase && git push"
 	cat = !"cat"
 	tag = "--sign"
+	cherry-pick = "--gpg-sign"
 [color]
 	ui = auto
 [color "decorate"]
