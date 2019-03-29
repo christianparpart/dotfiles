@@ -35,9 +35,9 @@ colorscheme Monokai
 set nowrap
 
 " indention/tabstop/shiftwidth
-set tabstop=2
-set shiftwidth=2
-set expandtab
+set tabstop=4
+set shiftwidth=4
+set noexpandtab
 set smarttab
 "set ai
 "set smartindent
@@ -175,8 +175,8 @@ au BufNewFile,BufRead *.ll set filetype=llvm
 au BufNewFile,BufRead *.flow setf x0dconf
 " }}}
 " {{{ C/C++
-au FileType c,cpp,objc set ts=2
-au FileType c,cpp,objc set sw=2
+au FileType c,cpp,objc set ts=4
+au FileType c,cpp,objc set sw=4
 
 " let g:clang_format#style_options = {
 "             \ "AccessModifierOffset": -4,
@@ -235,8 +235,12 @@ function! SetupEnvironment()
   elseif l:path =~ '/home/trapni/ethereum/cpp-ethereum'
     setlocal tabstop=4 shiftwidth=4 expandtab
     setlocal colorcolumn=99
+  elseif l:path =~ '/home/trapni/projects/x0'
+    setlocal expandtab
+	setlocal tabstop=2 shiftwidth=2
   endif
 endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
 
+au FileType fsharp set et ts=4 sw=4
 au BufNewFile,BufRead *.c1 setf c
