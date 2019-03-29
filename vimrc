@@ -23,13 +23,13 @@ au BufNewFile,BufRead *.md set syntax=markdown
 au BufNewFile,BufRead *.coffee set syntax=coffee
 au BufNewFile,BufRead nginx.conf set syntax=nginx
 
-"colorscheme trapni
+colorscheme trapni
 "colorscheme CodeFactoryv3
 "colorscheme 256-jungle
 "colorscheme 256-grayvim
 "colorscheme 3dglasses
 
-colorscheme Monokai
+"colorscheme Monokai
 "colorscheme Benokai " overrides some stuff (types!)
 
 set nowrap
