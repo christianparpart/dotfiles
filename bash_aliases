@@ -27,6 +27,7 @@ alias po='ps -o pid,comm,wchan:21,cmd'
 alias dos2unix="perl -pi -e 's/\r\n/\n/g'"
 
 alias ni='ninja'
+alias n='ninja'
 
 cf() {
   src="${1}"
