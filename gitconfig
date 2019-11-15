@@ -18,11 +18,12 @@
 [alias]
 	st = status
 	sm = submodule
+	ci = commit -v
 	co = checkout
 	di = diff
-	ci = commit -v --gpg-sign
-	commit = commit -v --gpg-sign
-    rebase = rebase --verbose --gpg-sign
+	ci = commit -v
+	commit = commit -v
+    rebase = rebase --verbose
 	dis = diff --staged
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph
 	nuke = clean -d -f -x
@@ -34,8 +35,6 @@
 	sy = !"git pull --rebase && git push"
 	pullover = !"git pull --rebase && git push"
 	cat = !"cat"
-	tag = "--sign"
-	cherry-pick = "--gpg-sign"
 [color]
 	ui = auto
 [color "decorate"]

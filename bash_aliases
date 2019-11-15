@@ -23,6 +23,7 @@ alias ll='ls -lisah'
 alias grep='grep --color=auto'
 alias o='chromium'
 alias po='ps -o pid,comm,wchan:21,cmd'
+alias less='less -R'
 
 alias dos2unix="perl -pi -e 's/\r\n/\n/g'"
 
@@ -82,6 +83,8 @@ alias vg='valgrind --num-callers=32 --vgdb=full'
 if [[ -d "$HOME/usr/lib/pkgconfig" ]]; then
   export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
 fi
+alias n='ninja'
+alias b='ninja'
 # }}}
 # {{{ terminal settings (256-color)
 # case "${TERM}" in
@@ -248,3 +251,5 @@ for SOURCE in ${SOURCES[*]}; do
   [[ -f "${SOURCE}" ]] && source ${SOURCE}
 done
 # }}}
+
+FIRAPATH="/usr/share/fonts/opentype/firacode/FiraCode-Regular.otf"

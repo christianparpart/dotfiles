@@ -20,8 +20,6 @@ call pathogen#infect()
 set encoding=utf-8
 
 au BufNewFile,BufRead *.md set syntax=markdown
-au BufNewFile,BufRead *.coffee set syntax=coffee
-au BufNewFile,BufRead nginx.conf set syntax=nginx
 
 colorscheme trapni
 "colorscheme CodeFactoryv3
@@ -73,13 +71,10 @@ nmap <S-L> :tabnext<enter>
 nmap <S-T> :tabnew<enter>
 nmap <S-C> :tabclose<enter>
 
-nmap <F12> :!make<enter>
-
-" function shortcuts (insert mode)
-imap <F2>  <ESC>:w<enter>a
-imap <F10> <ESC>:q<enter>
-
-imap <S-Up> <ESC>v
+"nmap <F12> :!make<enter>
+"imap <F2>  <ESC>:w<enter>a
+"imap <F10> <ESC>:q<enter>
+"imap <S-Up> <ESC>v
 
 " search (incremental, case insensitive except explicit caps)
 set incsearch
@@ -117,9 +112,6 @@ set hlsearch
 " C++11 syntax highlighting fix (lambdas and initializers)
 let c_no_curly_error=1
 
-" ruby-debugger
-let g:ruby_debugger_default_script = 'script/rails s'
-
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "100 :  will save up to 100 lines for each register
@@ -138,13 +130,8 @@ let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*' ]
 " fuzzyfinder shortcuts (command mode)
 "(buggy)nmap <C-L> :FufCoverageFile<CR>
 
-au BufNewFile,BufRead Jenkinsfile set filetype=groovy
 au BufNewFile,BufRead Makefile set ts=4 sw=4
-au BufNewFile,BufRead *.sls setf jinja
 
-" {{{ realtime auto completion (neocomplete)
-let g:neocomplete#enable_at_startup = 1
-" }}}
 " {{{ git (fugitive)
 nmap <C-G> :Gstatus<enter>
 nmap <C-B> :Gblame<enter>
@@ -177,6 +164,7 @@ au BufNewFile,BufRead *.flow setf x0dconf
 " {{{ C/C++
 au FileType c,cpp,objc set ts=4
 au FileType c,cpp,objc set sw=4
+au FileType c,cpp,objc set noet
 
 " let g:clang_format#style_options = {
 "             \ "AccessModifierOffset": -4,
@@ -192,37 +180,30 @@ autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
 " Toggle auto formatting:
 nmap <Leader>C :ClangFormatAutoToggle<CR>
 " }}}
-" {{{ Go language (vim-go)
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_types = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-au FileType go nmap <Leader>ds <Plug>(go-def-split)
-au FileType go nmap <Leader>dv <Plug>(go-def-vertical)
-au FileType go nmap <Leader>dt <Plug>(go-def-tab)
-au FileType go nmap <Leader>gd <Plug>(go-doc)
-au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
-au FileType go nmap <Leader>gb <Plug>(go-doc-browser)
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>i <Plug>(go-info)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-" }}}
 " {{{ FuzzyFinder
 "nmap <silent> <C-O> :FufFile<CR>
 nmap <silent> <C-T> {:call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', ['**/*.h', '**/*.cc', '**/*.cpp', '**/.md', '**/*.ac', '**/*.am', '**/*.pc.in', '**/*.conf', '**/*.jinja', '**/*.sls']]) \| FufCoverageFile<CR>}
 nmap <Leader>fr :FufRenewCache<CR>
 " }}}
+" {{{ YCM (YouCompleteMe)
+nnoremap <leader>gg :YcmCompleter GoTo<CR>
+nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
+nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
+nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>gt :YcmCompleter GoToType<CR>
+nnoremap <leader>it :YcmCompleter GetType<CR>
+" }}}
 
 function! SetupEnvironment()
   let l:path = expand('%:p')
   if l:path =~ '.sol$'
+    setlocal expandtab
+		setlocal tabstop=4 shiftwidth=4
+  elseif l:path =~ '/home/trapni/projects/contour'
+    setlocal expandtab
+		setlocal tabstop=4 shiftwidth=4
+  elseif l:path =~ '/home/trapni/projects/libterminal'
     setlocal expandtab
 		setlocal tabstop=4 shiftwidth=4
   elseif l:path =~ '/home/trapni/projects/klex'
@@ -243,4 +224,6 @@ endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
 
 au FileType fsharp set et ts=4 sw=4
-au BufNewFile,BufRead *.c1 setf c
+
+" open NERDTree when no file is to be opened at sratup
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
