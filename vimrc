@@ -151,13 +151,13 @@ nnoremap <leader>gpl :Dispatch! git pull<CR>
 
 " }}}
 " {{{ YCM (YouCompleteMe)
-nnoremap <leader>gg :YcmCompleter GoTo<CR>
-nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
-nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-nnoremap <leader>gt :YcmCompleter GoToType<CR>
-nnoremap <leader>it :YcmCompleter GetType<CR>
+"nnoremap <leader>gg :YcmCompleter GoTo<CR>
+"nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
+"nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
+"nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
+"nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+"nnoremap <leader>gt :YcmCompleter GoToType<CR>
+"nnoremap <leader>it :YcmCompleter GetType<CR>
 " }}}
 " {{{ CoC related
 set cmdheight=2
@@ -193,6 +193,17 @@ nmap <silent> <Leader>gr <Plug>(coc-references)
 
 au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+
+call coc#config('coc.preferences', {
+	\ 'timeout': 1000,
+	\})
+call coc#config('languageserver', {
+	\ 'ccls': {
+	\   "command": "ccls",
+	\   "trace.server": "verbose",
+	\   "filetypes": ["c", "cpp", "objc", "objcpp"]
+	\ }
+	\})
 " }}}
 " {{{ NERDTree
 let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'build' ]
