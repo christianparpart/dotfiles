@@ -7,8 +7,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
 Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
+Plug 'davidhalter/jedi-vim'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
 
@@ -16,6 +18,9 @@ call plug#end()
 let g:molokai_original = 1
 let g:rehash256 = 1
 colorscheme molokai
+
+"filetype indent on
+filetype plugin on
 
 syntax on
 set noswapfile
@@ -48,43 +53,10 @@ set cursorline
 set autoindent
 set smartindent
 set cindent
-
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-
-"filetype indent on
-filetype plugin on
-
-au FileType fsharp set et ts=4 sw=4
-au BufNewFile,BufRead *.md set syntax=markdown
-au BufNewFile,BufRead Makefile set ts=4 sw=4 noet
-
-" set <space> to toggle fold
-nnoremap <space> za
-
-" function shortcuts (command mode)
-nmap <C-N> :NERDTreeToggle<enter>
-nmap <C-L> :NERDTreeFocus<enter>
-nmap <C-J> :0read ~/.vim.header<enter>
-nmap <C-H> :noh<enter>
-
-" tabbed windows (command mode)
-nmap <S-H> :tabprev<enter>
-nmap <S-L> :tabnext<enter>
-nmap <S-T> :tabnew<enter>
-nmap <S-C> :tabclose<enter>
-nmap <A-L> :bn<enter>
-nmap <A-H> :bp<enter>
-
-" spelling (en)
-"set spell
-"set spelllang=en
-"set spellsuggest=9
-
-" C++11 syntax highlighting fix (lambdas and initializers)
-let c_no_curly_error=1
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -95,20 +67,39 @@ let c_no_curly_error=1
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
 set list
-"set listchars=trail:·
 set listchars=tab:\|\ ,trail:·
 "highlight NonText ctermbg=red ctermfg=white
 "highlight SpecialKey ctermbg=red ctermfg=white
 
-let g:indentLine_char_list = ['|', '', '', '']
+" spelling (en)
+"set spell
+"set spelllang=en
+"set spellsuggest=9
+
+" set <space> to toggle fold
+nnoremap <space> za
+
+" function shortcuts (command mode)
+nmap <C-N> :NERDTreeToggle<enter>
+nmap <C-L> :NERDTreeFocus<enter>
+nmap <C-H> :noh<enter>
+
+" tabbed windows (command mode)
+nmap <S-H> :tabprev<enter>
+nmap <S-L> :tabnext<enter>
+nmap <S-T> :tabnew<enter>
+nmap <S-C> :tabclose<enter>
+nmap <A-L> :bn<enter>
+nmap <A-H> :bp<enter>
+
+let g:indentLine_char_list = ['|', '|', '|', '|']
 
 " {{{ SetupEnvironment (tabstop, expandtab, ...)
+au BufNewFile,BufRead Makefile set ts=4 sw=4 noet
+au BufNewFile,BufRead *.sol set ts=4 sw=4 et
 function! SetupEnvironment()
   let l:path = expand('%:p')
-  if l:path =~ '.sol$'
-    setlocal expandtab
-    setlocal tabstop=4 shiftwidth=4
-  elseif l:path =~ '/home/trapni/projects/contour'
+  if l:path =~ '/home/trapni/projects/contour'
     setlocal expandtab
     setlocal tabstop=4 shiftwidth=4
   elseif l:path =~ '/home/trapni/projects/klex'
@@ -118,12 +109,6 @@ function! SetupEnvironment()
     setlocal noexpandtab
     setlocal tabstop=4 shiftwidth=4
     setlocal colorcolumn=99
-  elseif l:path =~ '/home/trapni/ethereum/cpp-ethereum'
-    setlocal tabstop=4 shiftwidth=4 expandtab
-    setlocal colorcolumn=99
-  elseif l:path =~ '/home/trapni/projects/x0'
-    setlocal expandtab
-    setlocal tabstop=2 shiftwidth=2
   endif
 endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
@@ -150,23 +135,16 @@ nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
 
 " }}}
-" {{{ YCM (YouCompleteMe)
-"nnoremap <leader>gg :YcmCompleter GoTo<CR>
-"nnoremap <leader>gi :YcmCompleter GoToInclude<CR>
-"nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
-"nnoremap <leader>gd :YcmCompleter GoToDefinition<CR>
-"nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-"nnoremap <leader>gt :YcmCompleter GoToType<CR>
-"nnoremap <leader>it :YcmCompleter GetType<CR>
-" }}}
 " {{{ CoC related
 set cmdheight=2
 set hidden
 set updatetime=300
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
+  \ 'coc-json',
   \ 'coc-pairs',
-  \ 'coc-json', 
+  \ 'coc-python',
+  \ 'coc-snippets',
+  \ 'coc-texlab'
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -194,22 +172,8 @@ nmap <silent> <Leader>gr <Plug>(coc-references)
 au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 
-call coc#config('coc.preferences', {
-    \ 'timeout': 1000,
-    \})
-call coc#config('languageserver', {
-    \ 'ccls': {
-    \   "command": "ccls",
-    \   "trace.server": "verbose",
-    \   "rootPatterns": [".ccls-root", "compile_commands.json"],
-    \   "filetypes": ["c", "cpp", "objc", "objcpp"],
-    \   "initializationOptions": {
-    \     "cache": {
-    \       "directory": ".ccls-cache"
-    \     }
-    \   }
-    \ }
-    \})
+" extend statusline with CoC status
+set statusline^=%{coc#status()})}
 " }}}
 " {{{ NERDTree
 let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'build' ]
