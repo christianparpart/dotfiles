@@ -195,15 +195,21 @@ au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 
 call coc#config('coc.preferences', {
-	\ 'timeout': 1000,
-	\})
+    \ 'timeout': 1000,
+    \})
 call coc#config('languageserver', {
-	\ 'ccls': {
-	\   "command": "ccls",
-	\   "trace.server": "verbose",
-	\   "filetypes": ["c", "cpp", "objc", "objcpp"]
-	\ }
-	\})
+    \ 'ccls': {
+    \   "command": "ccls",
+    \   "trace.server": "verbose",
+    \   "rootPatterns": [".ccls-root", "compile_commands.json"],
+    \   "filetypes": ["c", "cpp", "objc", "objcpp"],
+    \   "initializationOptions": {
+    \     "cache": {
+    \       "directory": ".ccls-cache"
+    \     }
+    \   }
+    \\ }
+    \})
 " }}}
 " {{{ NERDTree
 let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'build' ]
