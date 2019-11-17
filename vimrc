@@ -1,18 +1,28 @@
 set nocompatible
 
 call plug#begin('~/.vim/plugged')
+Plug 'tomasr/molokai'
+Plug 'yggdroot/indentline'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
+Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
+
+" Molokai (Monokai) color scheme
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
 
 syntax on
 set noswapfile
 set mouse=a
 set backspace=indent,eol,start
+set modelines=5
+set modeline
 set laststatus=2
 "set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
 set colorcolumn=110
@@ -26,14 +36,15 @@ set fdm=marker
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
+set nu
 set rnu
 set numberwidth=5
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
 set smarttab
-set modelines=5
-set modeline
+set cursorline
+"set cursorcolumn
 set autoindent
 set smartindent
 set cindent
@@ -43,23 +54,19 @@ set incsearch
 set ignorecase
 set smartcase
 
-au FileType fsharp set et ts=4 sw=4
-au BufNewFile,BufRead *.md set syntax=markdown
-
-"colorscheme trapni
-"colorscheme Monokai
-"colorscheme Benokai " overrides some stuff (types!)
-
 "filetype indent on
 filetype plugin on
+
+au FileType fsharp set et ts=4 sw=4
+au BufNewFile,BufRead *.md set syntax=markdown
+au BufNewFile,BufRead Makefile set ts=4 sw=4 noet
 
 " set <space> to toggle fold
 nnoremap <space> za
 
 " function shortcuts (command mode)
-nmap <F2>  :w<enter>
-nmap <F3> :NERDTreeToggle<enter>
-nmap <C-N> :NERDTreeFind<enter>
+nmap <C-N> :NERDTreeToggle<enter>
+nmap <C-L> :NERDTreeFocus<enter>
 nmap <C-J> :0read ~/.vim.header<enter>
 nmap <C-H> :noh<enter>
 
@@ -68,19 +75,13 @@ nmap <S-H> :tabprev<enter>
 nmap <S-L> :tabnext<enter>
 nmap <S-T> :tabnew<enter>
 nmap <S-C> :tabclose<enter>
-
-"nmap <F12> :!make<enter>
-"imap <F2>  <ESC>:w<enter>a
-"imap <F10> <ESC>:q<enter>
+nmap <A-L> :bn<enter>
+nmap <A-H> :bp<enter>
 
 " spelling (en)
 "set spell
 "set spelllang=en
 "set spellsuggest=9
-
-" enable current cursor line/column highlighting
-set cursorline
-"set cursorcolumn
 
 " C++11 syntax highlighting fix (lambdas and initializers)
 let c_no_curly_error=1
@@ -93,18 +94,40 @@ let c_no_curly_error=1
 "  n... :  where to save the viminfo files
 set viminfo='10,\"100,:20,%,n~/.viminfo
 
-let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*' ]
-
-"set list
-"set listchars=tab:――,trail:·
+set list
+"set listchars=trail:·
+set listchars=tab:\|\ ,trail:·
 "highlight NonText ctermbg=red ctermfg=white
 "highlight SpecialKey ctermbg=red ctermfg=white
 
-" fuzzyfinder shortcuts (command mode)
-"(buggy)nmap <C-L> :FufCoverageFile<CR>
+let g:indentLine_char_list = ['|', '', '', '']
 
-au BufNewFile,BufRead Makefile set ts=4 sw=4
-
+" {{{ SetupEnvironment (tabstop, expandtab, ...)
+function! SetupEnvironment()
+  let l:path = expand('%:p')
+  if l:path =~ '.sol$'
+    setlocal expandtab
+    setlocal tabstop=4 shiftwidth=4
+  elseif l:path =~ '/home/trapni/projects/contour'
+    setlocal expandtab
+    setlocal tabstop=4 shiftwidth=4
+  elseif l:path =~ '/home/trapni/projects/klex'
+    setlocal noexpandtab
+    setlocal tabstop=4 shiftwidth=4
+  elseif l:path =~ '/home/trapni/ethereum/solidity'
+    setlocal noexpandtab
+    setlocal tabstop=4 shiftwidth=4
+    setlocal colorcolumn=99
+  elseif l:path =~ '/home/trapni/ethereum/cpp-ethereum'
+    setlocal tabstop=4 shiftwidth=4 expandtab
+    setlocal colorcolumn=99
+  elseif l:path =~ '/home/trapni/projects/x0'
+    setlocal expandtab
+    setlocal tabstop=2 shiftwidth=2
+  endif
+endfunction
+autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
+" }}}
 " {{{ git (fugitive)
 nmap <C-G> :Gstatus<enter>
 nmap <C-B> :Gblame<enter>
@@ -126,37 +149,6 @@ nnoremap <leader>go :Git checkout<Space>
 nnoremap <leader>gps :Dispatch! git push<CR>
 nnoremap <leader>gpl :Dispatch! git pull<CR>
 
-" }}}
-" {{{ LLVM IR
-au BufNewFile,BufRead *.bc set filetype=llvm
-au BufNewFile,BufRead *.ll set filetype=llvm
-" }}}
-" {{{ x0 / Flow
-au BufNewFile,BufRead *.flow setf x0dconf
-" }}}
-" {{{ C/C++
-au FileType c,cpp,objc set ts=4
-au FileType c,cpp,objc set sw=4
-au FileType c,cpp,objc set noet
-
-" let g:clang_format#style_options = {
-"             \ "AccessModifierOffset": -4,
-"             \ "AllowShortIfStatementsOnASingleLine": "false",
-"             \ "AlwaysBreakTemplateDeclarations": "true",
-"             \ "Standard": "C++11" }
-
-" map to <Leader>cf in C++ code
-autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
-autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
-" if you install vim-operator-user
-autocmd FileType c,cpp,objc map <buffer><Leader>x <Plug>(operator-clang-format)
-" Toggle auto formatting:
-nmap <Leader>C :ClangFormatAutoToggle<CR>
-" }}}
-" {{{ FuzzyFinder
-"nmap <silent> <C-O> :FufFile<CR>
-nmap <silent> <C-T> {:call fuf#setOneTimeVariables(['g:fuf_coveragefile_globPatterns', ['**/*.h', '**/*.cc', '**/*.cpp', '**/.md', '**/*.ac', '**/*.am', '**/*.pc.in', '**/*.conf', '**/*.jinja', '**/*.sls']]) \| FufCoverageFile<CR>}
-nmap <Leader>fr :FufRenewCache<CR>
 " }}}
 " {{{ YCM (YouCompleteMe)
 nnoremap <leader>gg :YcmCompleter GoTo<CR>
@@ -192,9 +184,19 @@ endfunction
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-" }}}
 
+nn <silent> K :call CocActionAsync('doHover')<cr>
+nmap <silent> <Leader>gd <Plug>(coc-definition)
+nmap <silent> <Leader>gy <Plug>(coc-type-definition)
+nmap <silent> <Leader>gi <Plug>(coc-implementation)
+nmap <silent> <Leader>gr <Plug>(coc-references)
+
+au CursorHold * sil call CocActionAsync('highlight')
+au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+" }}}
 " {{{ NERDTree
+let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'build' ]
+
 " sync open file with NERDTree
 " " Check if NERDTree is open or active
 function! IsNERDTreeOpen()        
@@ -212,35 +214,8 @@ endfunction
 
 " Highlight currently open buffer in NERDTree
 autocmd BufEnter * call SyncTree()
-" }}}
-
-function! SetupEnvironment()
-  let l:path = expand('%:p')
-  if l:path =~ '.sol$'
-    setlocal expandtab
-    setlocal tabstop=4 shiftwidth=4
-  elseif l:path =~ '/home/trapni/projects/contour'
-    setlocal expandtab
-    setlocal tabstop=4 shiftwidth=4
-  elseif l:path =~ '/home/trapni/projects/libterminal'
-    setlocal expandtab
-    setlocal tabstop=4 shiftwidth=4
-  elseif l:path =~ '/home/trapni/projects/klex'
-    setlocal noexpandtab
-    setlocal tabstop=4 shiftwidth=4
-  elseif l:path =~ '/home/trapni/ethereum/solidity'
-    setlocal noexpandtab
-    setlocal tabstop=4 shiftwidth=4
-    setlocal colorcolumn=99
-  elseif l:path =~ '/home/trapni/ethereum/cpp-ethereum'
-    setlocal tabstop=4 shiftwidth=4 expandtab
-    setlocal colorcolumn=99
-  elseif l:path =~ '/home/trapni/projects/x0'
-    setlocal expandtab
-    setlocal tabstop=2 shiftwidth=2
-  endif
-endfunction
-autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
 
 " open NERDTree when no file is to be opened at sratup
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" }}}
