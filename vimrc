@@ -208,7 +208,7 @@ call coc#config('languageserver', {
     \       "directory": ".ccls-cache"
     \     }
     \   }
-    \\ }
+    \ }
     \})
 " }}}
 " {{{ NERDTree
