@@ -1,57 +1,53 @@
 set nocompatible
-
-call plug#begin('~/.vim/plugged')
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'ycm-core/YouCompleteMe'
-Plug 'vim-airline/vim-airline'
-Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
-call plug#end()
+set noswapfile
 
 syntax on
-set noswapfile
+
 set mouse=a
+
 set backspace=indent,eol,start
+
 set laststatus=2
-"set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
+set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
+
 set colorcolumn=110
 set textwidth=100
 set wrapmargin=0
 set formatoptions=cqt "tcron
-set nowrap
+
+call pathogen#infect()
+
 set encoding=utf-8
-set foldenable
-set fdm=marker
-set scrolloff=8
-set sidescrolloff=15
-set sidescroll=1
-set rnu
-set numberwidth=5
+
+au BufNewFile,BufRead *.md set syntax=markdown
+
+colorscheme trapni
+"colorscheme CodeFactoryv3
+"colorscheme 256-jungle
+"colorscheme 256-grayvim
+"colorscheme 3dglasses
+
+"colorscheme Monokai
+"colorscheme Benokai " overrides some stuff (types!)
+
+set nowrap
+
+" indention/tabstop/shiftwidth
 set tabstop=4
 set shiftwidth=4
 set noexpandtab
 set smarttab
-set modelines=5
-set modeline
-set autoindent
-set smartindent
-set cindent
-
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
-
-au FileType fsharp set et ts=4 sw=4
-au BufNewFile,BufRead *.md set syntax=markdown
-
-"colorscheme trapni
-"colorscheme Monokai
-"colorscheme Benokai " overrides some stuff (types!)
+"set ai
+"set smartindent
 
 "filetype indent on
 filetype plugin on
+
+" enable folding
+set foldenable
+"set fdm=indent
+set fdm=marker
+"set fdm=syntax
 
 " set <space> to toggle fold
 nnoremap <space> za
@@ -59,9 +55,15 @@ nnoremap <space> za
 " function shortcuts (command mode)
 nmap <F2>  :w<enter>
 nmap <F3> :NERDTreeToggle<enter>
-nmap <C-N> :NERDTreeFind<enter>
+nmap <F4> :NERDTreeFind<enter>
+nmap <C-L> :NERDTreeFind<enter>
+nmap <F9> :q<enter>
+"nmap <C-J> :0read ~/.vim.header<enter>:3<enter>$a
 nmap <C-J> :0read ~/.vim.header<enter>
 nmap <C-H> :noh<enter>
+nmap <F5> :bp<enter>
+nmap <F6> :bn<enter>
+nmap <F8> :mak<enter>
 
 " tabbed windows (command mode)
 nmap <S-H> :tabprev<enter>
@@ -72,15 +74,40 @@ nmap <S-C> :tabclose<enter>
 "nmap <F12> :!make<enter>
 "imap <F2>  <ESC>:w<enter>a
 "imap <F10> <ESC>:q<enter>
+"imap <S-Up> <ESC>v
+
+" search (incremental, case insensitive except explicit caps)
+set incsearch
+"set ignorecase
+set smartcase
+
+" we're on big screens, and I need a vertical scroll offset for better
+" readability
+set scrolloff=8
+set sidescrolloff=15
+set sidescroll=1
+
+" line numbering to take up to 5 spaces
+set nu
+set numberwidth=5
 
 " spelling (en)
 "set spell
 "set spelllang=en
 "set spellsuggest=9
 
+set modelines=5
+set modeline
+
+set ai
+set si
+set cindent
+
 " enable current cursor line/column highlighting
 set cursorline
 "set cursorcolumn
+
+set hlsearch
 
 " C++11 syntax highlighting fix (lambdas and initializers)
 let c_no_curly_error=1
@@ -167,80 +194,36 @@ nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>gt :YcmCompleter GoToType<CR>
 nnoremap <leader>it :YcmCompleter GetType<CR>
 " }}}
-" {{{ CoC related
-set cmdheight=2
-set hidden
-set updatetime=300
-let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-pairs',
-  \ 'coc-json', 
-  \ ]
-
-" Use tab for trigger completion with characters ahead and navigate.
-" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-inoremap <silent><expr> <c-space> coc#refresh()
-" }}}
-
-" {{{ NERDTree
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()        
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
-" }}}
 
 function! SetupEnvironment()
   let l:path = expand('%:p')
   if l:path =~ '.sol$'
     setlocal expandtab
-    setlocal tabstop=4 shiftwidth=4
+		setlocal tabstop=4 shiftwidth=4
   elseif l:path =~ '/home/trapni/projects/contour'
     setlocal expandtab
-    setlocal tabstop=4 shiftwidth=4
+		setlocal tabstop=4 shiftwidth=4
   elseif l:path =~ '/home/trapni/projects/libterminal'
     setlocal expandtab
-    setlocal tabstop=4 shiftwidth=4
+		setlocal tabstop=4 shiftwidth=4
   elseif l:path =~ '/home/trapni/projects/klex'
     setlocal noexpandtab
-    setlocal tabstop=4 shiftwidth=4
+		setlocal tabstop=4 shiftwidth=4
   elseif l:path =~ '/home/trapni/ethereum/solidity'
     setlocal noexpandtab
-    setlocal tabstop=4 shiftwidth=4
+		setlocal tabstop=4 shiftwidth=4
     setlocal colorcolumn=99
   elseif l:path =~ '/home/trapni/ethereum/cpp-ethereum'
     setlocal tabstop=4 shiftwidth=4 expandtab
     setlocal colorcolumn=99
   elseif l:path =~ '/home/trapni/projects/x0'
     setlocal expandtab
-    setlocal tabstop=2 shiftwidth=2
+	setlocal tabstop=2 shiftwidth=2
   endif
 endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
 
+au FileType fsharp set et ts=4 sw=4
+
 " open NERDTree when no file is to be opened at sratup
-"autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
