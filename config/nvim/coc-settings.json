@@ -1,0 +1,19 @@
+{
+  "python": {
+    "jediEnabled": false
+  },
+  "languageserver": {
+    "clangd": {
+      "command": "clangd-9",
+      "args": ["--background-index"],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["c", "cpp", "objc", "objcpp"]
+    },
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    },
+  }
+}
