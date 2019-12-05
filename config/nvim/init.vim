@@ -14,6 +14,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
 
+set termguicolors
+
 " Molokai (Monokai) color scheme
 let g:molokai_original = 1
 let g:rehash256 = 1
