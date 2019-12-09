@@ -13,6 +13,7 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tomtom/tcomment_vim'
+Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
 
@@ -100,6 +101,9 @@ let g:indentLine_char_list = ['|', '|', '|', '|']
 
 " FSharp
 au BufNewFile,BufRead *.fs set ts=4 sw=4 et
+
+" Toggle between header/source files.
+nnoremap <leader>fo :call CurtineIncSw()<CR>
 
 " {{{ SetupEnvironment (tabstop, expandtab, ...)
 au BufNewFile,BufRead Makefile set ts=4 sw=4 noet
