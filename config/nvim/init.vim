@@ -14,6 +14,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tomtom/tcomment_vim'
 Plug 'ericcurtin/CurtineIncSw.vim'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
 
@@ -151,6 +152,7 @@ let g:coc_global_extensions = [
   \ 'coc-pairs',
   \ 'coc-python',
   \ 'coc-snippets',
+  \ 'coc-highlight',
   \ 'coc-fsharp',
   \ 'coc-texlab'
   \ ]
@@ -172,13 +174,20 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 
 nn <silent> K :call CocActionAsync('doHover')<cr>
+nmap <silent> <Leader>gn :call CocActionAsync('rename')<cr>
 nmap <silent> <Leader>gd <Plug>(coc-definition)
 nmap <silent> <Leader>gy <Plug>(coc-type-definition)
 nmap <silent> <Leader>gi <Plug>(coc-implementation)
 nmap <silent> <Leader>gr <Plug>(coc-references)
+nmap <silent> <Leader>cn <Plug>(coc-diagnostic-next)
+nmap <silent> <Leader>cp <Plug>(coc-diagnostic-prev)
 
 au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+highlight CocErrorHighlight ctermfg=Red guibg=#ff0000
+highlight CocHighlightText ctermbg=Blue guibg=#005599
+
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " extend statusline with CoC status
 set statusline^=%{coc#status()})}
