@@ -15,10 +15,9 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tomtom/tcomment_vim'
 Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'editorconfig/editorconfig-vim'
 Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
-
-set termguicolors
 
 " Molokai (Monokai) color scheme
 let g:molokai_original = 1
@@ -64,6 +63,7 @@ set incsearch
 set ignorecase
 set smartcase
 set autoread " automatically reload files upon change outside VIM
+set termguicolors
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
