@@ -1,30 +1,83 @@
+acpitool
+alacritty
+apache2-utils
+apt-file
 aptitude
-apache2-utils bc gnupg htop mc keychain pv jq lsof
-traceroute
-python-pip
-xdot
-
-make autoconf automake libtool pkg-config ninja-build cmake cmake-curses-gui
-valgrind git cgdb gdb
-g++-8
-clang++-7 clang-format-7 libc++-dev
-libmysqlclient-dev zlib1g-dev libbz2-dev pkg-config libssl-dev
-libpcre3-dev libfcgi-dev libgoogle-perftools-dev libpam-dev
-libyaml-dev libsqlite3-dev libgmp-dev libgdbm-dev libncurses5-dev libgmp-dev libreadline6-dev
-libeditline-dev libedit-dev libboost-all-dev
-libleveldb-dev
-
-libleveldb-dev
-
-mysql-client-core-5.7
-ltrace strace tcpdump ngrep tmux vim-nox whois 
-sqlite3
-
+autoconf
+automake
+ccache
+cgdb
+clang++-9
+clang-tidy-9
+clangd-9
+cmake
+cmake-curses-gui
+fsharp
+g++-9
+gdb
+git
+gnupg
+gperf
+htop
+iotop
+jq
+kcachegrind
+kde-full
+libboost-all-dev
+libbz2-dev
+libc++-dev
+libedit-dev
+libeditline-dev
+libfontconfig1-dev
+libfreetype6-dev
+libgdbm-dev
+libgl1-mesa-dev
+libglm-dev
+libgmp-dev
+libharfbuzz-dev
+libncurses5-dev
+libpam-dev
+libpcre3-dev
+libqt5core5a-dbgsym
+libqt5gui5-dbgsym
+libreadline-dev
+libssl-dev
+libtool
+libtool-bin
+libyaml-dev
+lldb-9
+lsof
+ltrace
+make
+mc
+ngrep
+ninja-build
 nodejs
-
+openjdk-14-jdk
+openssh-server
+pkg-config
+plasma-desktop
+pv
+python-tk
+python3-numpy
+python3-pip
+python3-scipy
+qtbase5-dev
+qtbase5-dev-tools
+rsync
+strace
+tcpdump
+texlive-latex-extra
 texlive-latex-recommended
 texlive-luatex
 texlive-science
 texlive-xetex
-texlive-latex-extra
-openjdk-8-jre-headless
+tmux
+traceroute
+ubuntu-dbgsym-keyring
+valgrind
+whois
+xdot
+xterm
+zlib1g-dev
+zsh
