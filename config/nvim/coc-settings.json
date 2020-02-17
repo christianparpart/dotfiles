@@ -14,6 +14,13 @@
       "args": ["start"],
       "filetypes": ["sh"],
       "ignoredRootPaths": ["~"]
-    },
+    }
+//	,
+//	"fsharp": {
+//		"command": "dotnet",
+//		"args": ["/home/trapni/usr/src/fsharp-language-server/src/FSharpLanguageServer/bin/Release/netcoreapp2.0/FSharpLanguageServer.dll"],
+//		"filetypes": ["fsharp"],
+//		"rootPatterns": [".git/"]
+//	}
   }
 }

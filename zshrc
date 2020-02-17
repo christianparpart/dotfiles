@@ -6,6 +6,9 @@ HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 
+# Don't share history among open ZSH's
+unsetopt share_history
+
 # Path to your oh-my-zsh installation.
 export ZSH="/home/trapni/.oh-my-zsh"
 
@@ -166,3 +169,8 @@ fi
 # }}}
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+
+# VIM mode
+#bindkey -v
+
+# use `bindkey -e` to switch back to Emacs-mode

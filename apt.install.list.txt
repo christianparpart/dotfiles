@@ -84,3 +84,4 @@ xdot
 xterm
 zlib1g-dev
 zsh
+python3-matplotlib

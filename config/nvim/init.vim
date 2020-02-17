@@ -1,5 +1,6 @@
 set nocompatible
 
+" ----------------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentline'
@@ -12,12 +13,16 @@ Plug 'davidhalter/jedi-vim'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'tomtom/tcomment_vim'
+Plug 'tomlion/vim-solidity'
 Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'rafalbromirski/vim-aurora'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
+"Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
+" ----------------------------------------------------------------------------------------
 
 " Molokai (Monokai) color scheme
 let g:molokai_original = 1
@@ -194,26 +199,9 @@ set statusline^=%{coc#status()})}
 " }}}
 " {{{ NERDTree
 let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'build' ]
-
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()        
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
+let g:nerdtree_sync_cursorline = 1
 
 " open NERDTree when no file is to be opened at sratup
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " }}}
