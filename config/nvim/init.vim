@@ -4,6 +4,7 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
 Plug 'yggdroot/indentline'
+Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "Plug 'ycm-core/YouCompleteMe'
 Plug 'vim-airline/vim-airline'
@@ -16,6 +17,8 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'tomtom/tcomment_vim'
 Plug 'tomlion/vim-solidity'
+Plug 'jrozner/vim-antlr'
+Plug 'tikhomirov/vim-glsl'
 Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'rafalbromirski/vim-aurora'
@@ -123,6 +126,10 @@ function! SetupEnvironment()
   elseif l:path =~ '/home/trapni/projects/klex'
     setlocal noexpandtab
     setlocal tabstop=4 shiftwidth=4
+  elseif l:path =~ '/home/trapni/work/solidity'
+    setlocal noexpandtab
+    setlocal tabstop=4 shiftwidth=4
+    setlocal colorcolumn=99
   elseif l:path =~ '/home/trapni/ethereum/solidity'
     setlocal noexpandtab
     setlocal tabstop=4 shiftwidth=4
@@ -132,11 +139,11 @@ endfunction
 autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
 " }}}
 " {{{ git (fugitive)
-" nnoremap <leader>gs :Gstatus<CR>
-" nnoremap <leader>gc :Gcommit -v -q<CR>
-" nnoremap <leader>ga :Gcommit --amend<CR>
+nnoremap <leader>gs :Gstatus<CR>
+nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>ga :Gcommit --amend<CR>
 " nnoremap <leader>gt :Gcommit -v -q %<CR>
-" nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gd :Gdiff<CR>
 " nnoremap <leader>ge :Gedit<CR>
 " nnoremap <leader>gr :Gread<CR>
 " nnoremap <leader>gw :Gwrite<CR><CR>
@@ -179,11 +186,11 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 
 nn <silent> K :call CocActionAsync('doHover')<cr>
-nmap <silent> <Leader>gn :call CocActionAsync('rename')<cr>
-nmap <silent> <Leader>gd <Plug>(coc-definition)
-nmap <silent> <Leader>gy <Plug>(coc-type-definition)
-nmap <silent> <Leader>gi <Plug>(coc-implementation)
-nmap <silent> <Leader>gr <Plug>(coc-references)
+nmap <silent> <Leader>cm :call CocActionAsync('rename')<cr>
+nmap <silent> <Leader>cd <Plug>(coc-definition)
+nmap <silent> <Leader>cy <Plug>(coc-type-definition)
+nmap <silent> <Leader>ci <Plug>(coc-implementation)
+nmap <silent> <Leader>cr <Plug>(coc-references)
 nmap <silent> <Leader>cn <Plug>(coc-diagnostic-next)
 nmap <silent> <Leader>cp <Plug>(coc-diagnostic-prev)
 
