@@ -213,12 +213,11 @@ let g:nerdtree_sync_cursorline = 1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " }}}
 " {{{ Debugging
-" XXX on first run, call:
-"      :packadd termdebug
+packadd termdebug
 
 " open up debug windows in vertical split
 let g:termdebug_wide = 10
 
 " XXX example debug command:
-"      :TermdebugCommand ./path/to/binary [parameters ...]
+"      :Termdebug ./path/to/binary [parameters ...]
 " }}}
