@@ -27,11 +27,6 @@ Plug 'editorconfig/editorconfig-vim'
 call plug#end()
 " ----------------------------------------------------------------------------------------
 
-" Molokai (Monokai) color scheme
-let g:molokai_original = 1
-let g:rehash256 = 1
-colorscheme molokai
-
 "filetype indent on
 filetype plugin on
 
@@ -73,6 +68,11 @@ set smartcase
 set autoread " automatically reload files upon change outside VIM
 set termguicolors
 
+" Molokai (Monokai) color scheme
+let g:molokai_original = 1
+let g:rehash256 = 1
+colorscheme molokai
+
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
 "  "100 :  will save up to 100 lines for each register
@@ -97,15 +97,13 @@ nnoremap <space> za
 " function shortcuts (command mode)
 nmap <C-N> :NERDTreeToggle<enter>
 nmap <C-L> :NERDTreeFocus<enter>
-nmap <C-H> :noh<enter>
+"nmap <C-H> :noh<enter>
 
 " tabbed windows (command mode)
 nmap <S-H> :tabprev<enter>
 nmap <S-L> :tabnext<enter>
 nmap <S-T> :tabnew<enter>
 nmap <S-C> :tabclose<enter>
-nmap <A-L> :bn<enter>
-nmap <A-H> :bp<enter>
 
 let g:indentLine_char_list = ['|', '|', '|', '|']
 
@@ -114,6 +112,12 @@ au BufNewFile,BufRead *.fs set ts=4 sw=4 et
 
 " Toggle between header/source files.
 nnoremap <leader>fo :call CurtineIncSw()<CR>
+
+" moving around buffers via Alt modifier
+nmap <A-h> :wincmd h<enter>
+nmap <A-j> :wincmd j<enter>
+nmap <A-k> :wincmd k<enter>
+nmap <A-l> :wincmd l<enter>
 
 " {{{ SetupEnvironment (tabstop, expandtab, ...)
 au BufNewFile,BufRead Makefile set ts=4 sw=4 noet
@@ -221,3 +225,4 @@ let g:termdebug_wide = 10
 " XXX example debug command:
 "      :Termdebug ./path/to/binary [parameters ...]
 " }}}
+
