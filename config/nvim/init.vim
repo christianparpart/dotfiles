@@ -3,6 +3,7 @@ set nocompatible
 " ----------------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'tomasr/molokai'
+Plug 'morhetz/gruvbox'
 Plug 'yggdroot/indentline'
 Plug 'tpope/vim-fugitive'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -69,9 +70,12 @@ set autoread " automatically reload files upon change outside VIM
 set termguicolors
 
 " Molokai (Monokai) color scheme
-let g:molokai_original = 1
 let g:rehash256 = 1
-colorscheme molokai
+"let g:molokai_original = 1
+"colorscheme molokai
+
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files

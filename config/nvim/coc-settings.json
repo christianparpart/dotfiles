@@ -9,12 +9,24 @@
       "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
       "filetypes": ["c", "cpp", "objc", "objcpp"]
     },
-    "bash": {
-      "command": "bash-language-server",
-      "args": ["start"],
-      "filetypes": ["sh"],
-      "ignoredRootPaths": ["~"]
+//    "glsl": {
+//      "command": "/home/trapni/usr/src/glsl-language-server/build/glslls",
+//	  "args": ["--stdin"],
+//      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+//      "filetypes": ["glsl"]
+//    },
+    "solidity": {
+      "command": "/home/trapni/work/solidity/build/solsp/solsp",
+	  "args": ["/home/trapni/work/solidity/solsp/debug.log"],
+      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
+      "filetypes": ["solidity"]
     }
+//    "bash": {
+//      "command": "bash-language-server",
+//      "args": ["start"],
+//      "filetypes": ["sh"],
+//      "ignoredRootPaths": ["~"]
+//    }
 //	,
 //	"fsharp": {
 //		"command": "dotnet",
