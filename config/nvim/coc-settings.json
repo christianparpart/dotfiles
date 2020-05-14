@@ -1,38 +1,29 @@
 {
-  "python": {
-    "jediEnabled": false
-  },
-  "languageserver": {
-    "clangd": {
-      "command": "clangd-9",
-      "args": ["--background-index"],
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["c", "cpp", "objc", "objcpp"]
-    },
-//    "glsl": {
-//      "command": "/home/trapni/usr/src/glsl-language-server/build/glslls",
-//	  "args": ["--stdin"],
-//      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-//      "filetypes": ["glsl"]
-//    },
-    "solidity": {
-      "command": "/home/trapni/work/solidity/build/solsp/solsp",
-	  "args": ["/home/trapni/work/solidity/solsp/debug.log"],
-      "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
-      "filetypes": ["solidity"]
-    }
-//    "bash": {
-//      "command": "bash-language-server",
-//      "args": ["start"],
-//      "filetypes": ["sh"],
-//      "ignoredRootPaths": ["~"]
-//    }
-//	,
-//	"fsharp": {
-//		"command": "dotnet",
-//		"args": ["/home/trapni/usr/src/fsharp-language-server/src/FSharpLanguageServer/bin/Release/netcoreapp2.0/FSharpLanguageServer.dll"],
-//		"filetypes": ["fsharp"],
-//		"rootPatterns": [".git/"]
-//	}
+	"python": {
+		"jediEnabled": false
+	},
+	"languageserver": {
+	"clangd": {
+		"command": "clangd-9",
+		"args": ["--background-index"],
+		"trace.server": "verbose",
+		"rootPatterns": ["compile_commands.json", ".git/"],
+		"filetypes": ["c", "cpp", "objc", "objcpp"]
+	},
+	"solidity": {
+		"command": "/home/trapni/work/solidity/build/solls/solls",
+		"args": [],
+		"trace.server": "verbose",
+		"rootPatterns": ["compile_commands.json", ".git/"],
+		"filetypes": ["solidity"]
+	},
+	"cmake": {
+		"command": "cmake-language-server",
+		"filetypes": ["cmake"],
+		"rootPatterns": ["build/"],
+		"initializationOptions": {
+			"buildDirectory": "build"
+		}
+	}
   }
 }

@@ -89,6 +89,7 @@ plugins=(
 	colored-man-pages
 	colorize
 	command-not-found
+	zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -127,6 +128,7 @@ alias ls='ls --color=auto -F'
 alias ll='ls -lisah'
 alias l='ls -lish'
 alias po='ps -o pid,comm,wchan:21,cmd'
+alias ccat='pygmentize -g'
 
 if [[ $(uname) = "Darwin" ]]; then
   alias ls='ls -G -F'
@@ -135,6 +137,9 @@ else
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
 fi
+
+# for some reason there is a really ugly grep alias that's not mine (system default?)
+unalias grep
 
 # {{{ C++ development
 alias vg='valgrind --num-callers=32 --vgdb=full'
@@ -148,6 +153,7 @@ alias b='ninja'
 BINDIRS=( ${HOME}/bin
           ${HOME}/usr/bin
           ${HOME}/usr/sbin
+		  /snap/bin
           ${HOME}/.rvm/bin
           ${HOME}/.local/bin
 		  $(test -d "${HOME}/usr/opt" && find "${HOME}/usr/opt" -name bin -print)
@@ -178,7 +184,14 @@ fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
+# https://github.com/zsh-users/zsh-autosuggestions
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff6000,bg=#202020,bold,underline"
+
 # VIM mode
 #bindkey -v
 
+# for contour, as there seems to be issues when running on Wayland native (such as inside Sway)
+export QT_QPA_PLATFORM="xcb"
+
 # use `bindkey -e` to switch back to Emacs-mode
+export PATH="$HOME/.cargo/bin:$PATH"

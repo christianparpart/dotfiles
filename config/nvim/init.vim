@@ -2,31 +2,44 @@ set nocompatible
 
 " ----------------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
+
+" colorschemes
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
-Plug 'yggdroot/indentline'
-Plug 'tpope/vim-fugitive'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'ycm-core/YouCompleteMe'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'rafalbromirski/vim-aurora'
+
+" bottom status/tab line
 Plug 'vim-airline/vim-airline'
-"Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
-Plug 'fsharp/vim-fsharp'
-Plug 'davidhalter/jedi-vim'
+
+" productivity
+Plug 'yggdroot/indentline'                             " visualize indentation levels
+Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'tomtom/tcomment_vim'
+Plug 'ericcurtin/CurtineIncSw.vim'
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'davidhalter/jedi-vim'
 Plug 'tomlion/vim-solidity'
 Plug 'jrozner/vim-antlr'
 Plug 'tikhomirov/vim-glsl'
-Plug 'ericcurtin/CurtineIncSw.vim'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'rafalbromirski/vim-aurora'
-Plug 'editorconfig/editorconfig-vim'
+Plug 'fsharp/vim-fsharp'
+"Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
+
+" file manager on the left side
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'unkiwii/vim-nerdtree-sync'
+
 "Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
 " ----------------------------------------------------------------------------------------
+
+"let g:airline_theme='gruvbox'
+let g:airline_powerline_fonts = 1
 
 "filetype indent on
 filetype plugin on
@@ -101,7 +114,7 @@ nnoremap <space> za
 " function shortcuts (command mode)
 nmap <C-N> :NERDTreeToggle<enter>
 nmap <C-L> :NERDTreeFocus<enter>
-"nmap <C-H> :noh<enter>
+nmap <C-H> :noh<enter>
 
 " tabbed windows (command mode)
 nmap <S-H> :tabprev<enter>
@@ -151,7 +164,7 @@ nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>ga :Gcommit --amend<CR>
 " nnoremap <leader>gt :Gcommit -v -q %<CR>
-nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gd :Gvdiffsplit<CR>
 " nnoremap <leader>ge :Gedit<CR>
 " nnoremap <leader>gr :Gread<CR>
 " nnoremap <leader>gw :Gwrite<CR><CR>
@@ -173,6 +186,7 @@ let g:coc_global_extensions = [
   \ 'coc-python',
   \ 'coc-snippets',
   \ 'coc-highlight',
+  \ 'coc-vimlsp',
   \ 'coc-fsharp',
   \ 'coc-texlab'
   \ ]
@@ -194,13 +208,17 @@ endfunction
 inoremap <silent><expr> <c-space> coc#refresh()
 
 nn <silent> K :call CocActionAsync('doHover')<cr>
-nmap <silent> <Leader>cm :call CocActionAsync('rename')<cr>
+nmap <silent> <Leader>cm :call CocActionAsync<cr>
+nmap <silent> <leader>cf <Plug>(coc-fix-current)
 nmap <silent> <Leader>cd <Plug>(coc-definition)
 nmap <silent> <Leader>cy <Plug>(coc-type-definition)
 nmap <silent> <Leader>ci <Plug>(coc-implementation)
 nmap <silent> <Leader>cr <Plug>(coc-references)
 nmap <silent> <Leader>cn <Plug>(coc-diagnostic-next)
 nmap <silent> <Leader>cp <Plug>(coc-diagnostic-prev)
+
+" show logging output in a vsplit view
+nmap <silent> <Leader>co :CocCommand workspace.showOutput<cr>
 
 au CursorHold * sil call CocActionAsync('highlight')
 au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
@@ -225,6 +243,28 @@ packadd termdebug
 
 " open up debug windows in vertical split
 let g:termdebug_wide = 10
+
+
+nmap <C-F5>  :Stop <CR>
+nmap <F5>    :Run <CR>
+nmap <F6>    :Continue <CR>
+nmap <F9>    :Break <CR>
+nmap <F8>    :Clear <CR>
+nmap <F10>   :Over <CR>
+nmap <F11>   :Step <CR>
+nmap <F12>   :Finish <CR>
+nmap <S-F10> :Finish <CR>
+
+nmap <Leader>dr :Run <Cr>
+nmap <Leader>ds :Stop <Cr>
+nmap <Leader>dc :Continue <Cr>
+
+nmap <Leader>db :Break <Cr>
+nmap <Leader>dd :Clear <Cr>
+
+nmap <Leader>dn :Over <Cr>
+nmap <Leader>di :Step <Cr>
+nmap <Leader>df :Finish<Cr>
 
 " XXX example debug command:
 "      :Termdebug ./path/to/binary [parameters ...]
