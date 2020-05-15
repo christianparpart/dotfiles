@@ -11,6 +11,7 @@ Plug 'rafalbromirski/vim-aurora'
 
 " bottom status/tab line
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 " productivity
 Plug 'yggdroot/indentline'                             " visualize indentation levels
@@ -38,8 +39,12 @@ Plug 'unkiwii/vim-nerdtree-sync'
 call plug#end()
 " ----------------------------------------------------------------------------------------
 
+" Airline tweaks
 "let g:airline_theme='gruvbox'
+"let g:airline_statusline_ontop = 1
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_section_z = 'HEX 0x%04B'
 
 "filetype indent on
 filetype plugin on
