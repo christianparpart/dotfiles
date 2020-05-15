@@ -16,21 +16,20 @@
 [push]
 	default = simple
 [alias]
-	st = status
-	ci = commit -v
-	co = checkout
-	di = diff
-	ci = commit -v
-	dis = diff --staged
-	commit = commit -v
-    rebase = rebase --verbose
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph
-	nuke = clean -d -f -x
-	logp = log --pretty=oneline --abbrev-commit
-	logm = log --stat --patch
-	dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	br = branch
 	cat = !"cat"
+	ci = commit -v
+	co = checkout
+	commit = commit -v
+	di = diff
+	dis = diff --staged
+	dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph
+	logm = log --stat --patch
+	logp = log --pretty=oneline --abbrev-commit
+	nuke = clean -d -f -x
+	st = status
+    rebase = rebase --verbose
 [color]
 	ui = auto
 [color "decorate"]
