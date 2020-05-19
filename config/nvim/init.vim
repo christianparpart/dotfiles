@@ -20,6 +20,8 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'tomtom/tcomment_vim'
 Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Plug 'junegunn/fzf.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -38,13 +40,6 @@ Plug 'unkiwii/vim-nerdtree-sync'
 "Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
 " ----------------------------------------------------------------------------------------
-
-" Airline tweaks
-"let g:airline_theme='gruvbox'
-"let g:airline_statusline_ontop = 1
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_section_z = 'HEX 0x%04B'
 
 "filetype indent on
 filetype plugin on
@@ -87,6 +82,13 @@ set smartcase
 set autoread " automatically reload files upon change outside VIM
 set termguicolors
 
+" Airline tweaks
+"let g:airline_theme='gruvbox'
+"let g:airline_statusline_ontop = 1
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_section_z = 'HEX 0x%04B'
+
 " Molokai (Monokai) color scheme
 let g:rehash256 = 1
 "let g:molokai_original = 1
@@ -94,6 +96,9 @@ let g:rehash256 = 1
 
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
+
+" Always enable preview window on the right with 60% width
+let g:fzf_preview_window = 'right:60%'
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -118,14 +123,19 @@ nnoremap <space> za
 
 " function shortcuts (command mode)
 nmap <C-N> :NERDTreeToggle<enter>
-nmap <C-L> :NERDTreeFocus<enter>
-nmap <C-H> :noh<enter>
+nmap <C-T> :NERDTreeFocus<enter>
+nmap <C-]> :noh<enter>
 
 " tabbed windows (command mode)
+nmap <S-T> :tabnew<enter>
 nmap <S-H> :tabprev<enter>
 nmap <S-L> :tabnext<enter>
-nmap <S-T> :tabnew<enter>
 nmap <S-C> :tabclose<enter>
+
+" buffer management
+nmap <C-H> :bp<enter>
+nmap <C-L> :bn<enter>
+nmap <C-K> :bd<enter>
 
 let g:indentLine_char_list = ['|', '|', '|', '|']
 
