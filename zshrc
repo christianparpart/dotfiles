@@ -6,6 +6,16 @@ HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
 
+# ignore hist dups
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_BEEP
+
 # Don't share history among open ZSH's
 unsetopt share_history
 
