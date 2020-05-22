@@ -200,11 +200,11 @@ export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff6000,bg=#202020,bold,underline"
 # VIM mode
 #bindkey -v
 
-# fzf integration
-test -f /usr/share/doc/fzf/examples/key-bindings.zsh && source /usr/share/doc/fzf/examples/key-bindings.zsh
-
 # for contour, as there seems to be issues when running on Wayland native (such as inside Sway)
 export QT_QPA_PLATFORM="xcb"
 
 # use `bindkey -e` to switch back to Emacs-mode
 export PATH="$HOME/.cargo/bin:$PATH"
+
+# fzf integration
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

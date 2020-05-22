@@ -16,12 +16,13 @@ Plug 'vim-airline/vim-airline-themes'
 " productivity
 Plug 'yggdroot/indentline'                             " visualize indentation levels
 Plug 'tpope/vim-fugitive'
-Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
+"Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'tomtom/tcomment_vim'
 Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 "Plug 'junegunn/fzf.vim'
+"Plug '~/.fzf'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -87,7 +88,7 @@ set termguicolors
 "let g:airline_statusline_ontop = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_section_z = 'HEX 0x%04B'
+"let g:airline_section_z = 'HEX 0x%04B'
 
 " Molokai (Monokai) color scheme
 let g:rehash256 = 1
@@ -97,8 +98,36 @@ let g:rehash256 = 1
 let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 
+" {{{ fzf customization
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
+
+function! s:my_fzf_handler(lines) abort
+  if empty(a:lines)
+    return
+  endif
+  let cmd = get({ 'ctrl-t': 'tabedit',
+                \ 'ctrl-x': 'split',
+                \ 'ctrl-v': 'vsplit' }, remove(a:lines, 0), 'e')
+  for item in a:lines
+    execute cmd escape(item, ' %#\')
+  endfor
+endfunction
+
+nnoremap <silent> <C-P> :call fzf#run({
+  \ 'source': 'git ls-files',
+  \ 'options': '--expect=ctrl-t,ctrl-x,ctrl-v',
+  \ 'window':  {'width': 0.9, 'height': 0.6},
+  \ 'sink*':   function('<sid>my_fzf_handler')})<cr>
+
+nnoremap <silent> <C-T> :call fzf#run({
+  \ 'options': '--expect=ctrl-t,ctrl-x,ctrl-v',
+  \ 'window':  {'width': 0.9, 'height': 0.6},
+  \ 'sink*':   function('<sid>my_fzf_handler')})<cr>
+
+"nmap <silent> <C-T> :FZF<enter>
+"nmap <silent> <C-P> :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'window': {'width': 0.9, 'height': 0.6}})<cr>
+" }}}
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
@@ -123,7 +152,7 @@ nnoremap <space> za
 
 " function shortcuts (command mode)
 nmap <C-N> :NERDTreeToggle<enter>
-nmap <C-T> :NERDTreeFocus<enter>
+"nmap <C-T> :NERDTreeFocus<enter>
 nmap <C-]> :noh<enter>
 
 " tabbed windows (command mode)
