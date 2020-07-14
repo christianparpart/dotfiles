@@ -1,6 +1,7 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
+#export TERM=xterm-kitty
 
 HISTFILE=~/.histfile
 HISTSIZE=100000
@@ -27,14 +28,28 @@ export ZSH="/home/trapni/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="agnoster"
+#ZSH_THEME="gnzh"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE="nerdfont-fontconfig"
 
+# works with powerlevel9k
 prompt_setmark() {
-	echo -ne "\033[>M"
+	# \033[>M
+	echo -ne $"%{\033[>M%}$"
+	return
 }
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(setmark user dir vcs)
+# for agnoster
+prompt_agsetmark() {
+	prompt_segment '' '' $"%{\033[>M%}$"
+}
+
+#AGNOSTER_PROMPT_SEGMENTS=("prompt_setmark" "${AGNOSTER_PROMPT_SEGMENTS[@]}")
+#AGNOSTER_PROMPT_SEGMENTS+="agsetmark"
+PROMPT+=$"%{\033[>M%}$"
+
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -134,7 +149,7 @@ export LANG=en_US.UTF-8
 export GPG_TTY=$(tty)
 export EDITOR='vim'
 
-alias ls='ls --color=auto -F'
+alias ls='ls --color=auto -F --hyperlink=auto'
 alias ll='ls -lisah'
 alias l='ls -lish'
 alias po='ps -o pid,comm,wchan:21,cmd'
@@ -143,7 +158,6 @@ alias ccat='pygmentize -g'
 if [[ $(uname) = "Darwin" ]]; then
   alias ls='ls -G -F'
 else
-  alias ls='ls --color -F'
   alias pbcopy='xsel --clipboard --input'
   alias pbpaste='xsel --clipboard --output'
 fi

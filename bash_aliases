@@ -199,7 +199,7 @@ function parse_git_branch {
 
 function prompt_func() {
   local previous_return_value=$?;
-  local marker="\033[>M"
+  local marker="\\[\033[>M\\]"
   local prompt="${marker}${TITLEBAR}${BLUE}[${LIGHT_BLUE}\W${GREEN}$(parse_git_branch)${BLUE}]${COLOR_NONE} "
   if [[ $UID -eq 0 ]]; then
     if [[ $previous_return_value -eq 0 ]]; then

@@ -21,10 +21,11 @@ Plug 'tomtom/tcomment_vim'
 Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf.vim'
 "Plug '~/.fzf'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'puremourning/vimspector'
 
 Plug 'davidhalter/jedi-vim'
 Plug 'tomlion/vim-solidity'
@@ -90,13 +91,19 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 "let g:airline_section_z = 'HEX 0x%04B'
 
+" maybe this one can be removed again once I've got a better -more crisp- monitor.
+" this line helps me better seeing airline's top bar
+let g:airline_theme = "bubblegum"
+
 " Molokai (Monokai) color scheme
 let g:rehash256 = 1
 "let g:molokai_original = 1
 "colorscheme molokai
 
 let g:gruvbox_contrast_dark = 'hard'
+let g:gruvbox_color_column = 'bg2'
 colorscheme gruvbox
+" airline_tabfill xxx ctermfg=7 ctermbg=18
 
 " {{{ fzf customization
 " Always enable preview window on the right with 60% width
@@ -125,8 +132,16 @@ nnoremap <silent> <C-T> :call fzf#run({
   \ 'window':  {'width': 0.9, 'height': 0.6},
   \ 'sink*':   function('<sid>my_fzf_handler')})<cr>
 
+" TODO: try ripgrep here
+" command! -bang -nargs=* GGrep
+"   \ call fzf#vim#grep(
+"   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+"   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
 "nmap <silent> <C-T> :FZF<enter>
 "nmap <silent> <C-P> :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'window': {'width': 0.9, 'height': 0.6}})<cr>
+nmap <silent> <leader>ff :Buffers<cr>
+nmap <silent> <leader>fg :Rg<cr>
 " }}}
 
 " Tell vim to remember certain things when we exit
@@ -180,6 +195,10 @@ nmap <A-j> :wincmd j<enter>
 nmap <A-k> :wincmd k<enter>
 nmap <A-l> :wincmd l<enter>
 
+" move selected text one up or down by pressing Shift+J or Shift+K
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '>-2<CR>gv=gv
+
 " {{{ SetupEnvironment (tabstop, expandtab, ...)
 au BufNewFile,BufRead Makefile set ts=4 sw=4 noet
 au BufNewFile,BufRead *.sol set ts=4 sw=4 et
@@ -209,6 +228,7 @@ nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>ga :Gcommit --amend<CR>
 " nnoremap <leader>gt :Gcommit -v -q %<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
+vnoremap <leader>ga :diffput<CR>
 " nnoremap <leader>ge :Gedit<CR>
 " nnoremap <leader>gr :Gread<CR>
 " nnoremap <leader>gw :Gwrite<CR><CR>
@@ -251,7 +271,7 @@ endfunction
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-nn <silent> K :call CocActionAsync('doHover')<cr>
+nn <silent> I :call CocActionAsync('doHover')<cr>
 nmap <silent> <Leader>cm :call CocActionAsync<cr>
 nmap <silent> <leader>cf <Plug>(coc-fix-current)
 nmap <silent> <Leader>cd <Plug>(coc-definition)
@@ -260,6 +280,8 @@ nmap <silent> <Leader>ci <Plug>(coc-implementation)
 nmap <silent> <Leader>cr <Plug>(coc-references)
 nmap <silent> <Leader>cn <Plug>(coc-diagnostic-next)
 nmap <silent> <Leader>cp <Plug>(coc-diagnostic-prev)
+nmap <silent> <leader>cm <Plug>(coc-rename)
+nmap <silent> <Leader>gp :GFiles<CR>
 
 " show logging output in a vsplit view
 nmap <silent> <Leader>co :CocCommand workspace.showOutput<cr>
@@ -288,7 +310,6 @@ packadd termdebug
 " open up debug windows in vertical split
 let g:termdebug_wide = 10
 
-
 nmap <C-F5>  :Stop <CR>
 nmap <F5>    :Run <CR>
 nmap <F6>    :Continue <CR>
@@ -314,3 +335,4 @@ nmap <Leader>df :Finish<Cr>
 "      :Termdebug ./path/to/binary [parameters ...]
 " }}}
 
+"set bg=light
