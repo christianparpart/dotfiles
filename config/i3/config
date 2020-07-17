@@ -31,22 +31,22 @@ set $web_browser firefox
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
+set $ws1 "1: dev 1"
+set $ws2 "2: dev 2"
+set $ws3 "3: Work"
+set $ws4 "4: Web Browser"
 set $ws5 "5"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
-set $ws9 "9"
+set $ws9 "9: Chat"
 set $ws10 "10"
 # }}}
 
 workspace_layout tabbed
 
-#gaps inner 15
-#gaps inner 10
+# gaps inner 15
+# gaps inner 10
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -62,15 +62,6 @@ floating_modifier $mod
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
-# {{{ colors
-# class                 border  backgr. text    indicator child_border
-client.focused          #ff6600 #ff4000 #ffffff #ff0000   #cc4000
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #333333 #222222 #888888 #292d2e   #222222
-client.urgent           #2f343a #c00000 #ffffff #a00000   #a00000
-client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-client.background       #ffffff
-# }}}
 # {{{ Input bindings
 bindsym $mod+i exec $web_browser
 bindsym $mod+ctrl+l exec i3lock --nofork -c 000000
@@ -193,11 +184,32 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 # }}}
+# {{{ colors
+# class                 border  backgr. text    indicator child_border
+client.focused          #ff6600 #ff4000 #ffffff #ff0000   #cc4000
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #ff0099 #555555 #cccccc #292d2e   #222222
+client.urgent           #2f343a #c00000 #ffffff #a00000   #a00000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+# }}}
 # {{{ bar
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
 	status_command i3status
+    i3bar_command i3bar --transparency
+    colors {
+        background #000000D0
+        statusline #ffffffFF
+        separator #666666FF
+
+        focused_workspace  #ff6600FF #cc4000FF #ffffffFF
+        active_workspace   #333333FF #5f676aFF #ffffffFF
+        inactive_workspace #333333FF #222222FF #888888FF
+        urgent_workspace   #2f343aFF #900000FF #ffffffFF
+        binding_mode       #2f343aFF #900000FF #ffffffFF
+    }
 }
 # }}}
 # {{{ KDE Plasma
