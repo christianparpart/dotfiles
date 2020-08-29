@@ -6,12 +6,16 @@ call plug#begin('~/.vim/plugged')
 " colorschemes
 Plug 'tomasr/molokai'
 Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
+Plug 'chriskempson/base16-vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'rafalbromirski/vim-aurora'
 
 " bottom status/tab line
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'hardcoreplayers/spaceline.vim'
+Plug 'ryanoasis/vim-devicons'
 
 " productivity
 Plug 'yggdroot/indentline'                             " visualize indentation levels
@@ -31,8 +35,9 @@ Plug 'davidhalter/jedi-vim'
 Plug 'tomlion/vim-solidity'
 Plug 'jrozner/vim-antlr'
 Plug 'tikhomirov/vim-glsl'
-Plug 'fsharp/vim-fsharp'
-"Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
+"Plug 'fsharp/vim-fsharp'
+Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
+Plug 'PProvost/vim-ps1'
 
 " file manager on the left side
 Plug 'scrooloose/nerdtree'
@@ -45,6 +50,8 @@ call plug#end()
 
 "filetype indent on
 filetype plugin on
+
+let g:spaceline_seperate_style = 'arrow'
 
 syntax on
 set noswapfile
@@ -102,12 +109,18 @@ let g:rehash256 = 1
 
 let g:gruvbox_contrast_dark = 'hard'
 let g:gruvbox_color_column = 'bg2'
-colorscheme gruvbox
+"colorscheme gruvbox
+"colorscheme base16-gruvbox-dark-pale
+colorscheme gruvbox8_hard
 " airline_tabfill xxx ctermfg=7 ctermbg=18
+
+" base16 plugin: Highlight comments
+"call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
 
 " {{{ fzf customization
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
+let $FZF_DEFAULT_OPTS='--reverse'
 
 function! s:my_fzf_handler(lines) abort
   if empty(a:lines)
@@ -311,8 +324,8 @@ packadd termdebug
 let g:termdebug_wide = 10
 
 nmap <C-F5>  :Stop <CR>
-nmap <F5>    :Run <CR>
-nmap <F6>    :Continue <CR>
+nmap <F5>    :Continue <CR>
+nmap <F6>    :Run <CR>
 nmap <F9>    :Break <CR>
 nmap <F8>    :Clear <CR>
 nmap <F10>   :Over <CR>
