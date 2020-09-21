@@ -64,6 +64,7 @@ floating_modifier $mod
 
 # {{{ Input bindings
 bindsym $mod+i exec $web_browser
+bindsym $mod+g exec google-chrome --password-store=gnome
 bindsym $mod+ctrl+l exec i3lock --nofork -c 000000
 
 # Use pactl to adjust volume in PulseAudio.
@@ -263,6 +264,9 @@ exec --no-startup-id /usr/share/libpam-kwallet-common/pam_kwallet_init
 
 # PulseAudio system tray
 exec --no-startup-id pasystray
+
+# Get password manager for Google Chrome working by using gnome-keyring-daemon ;-(
+exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
 # Initially startup a terminal
 #exec $terminal
