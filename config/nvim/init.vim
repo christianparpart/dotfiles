@@ -34,6 +34,9 @@ Plug 'tikhomirov/vim-glsl'
 Plug 'fsharp/vim-fsharp'
 "Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
 
+" syntax highlighting
+Plug 'PProvost/vim-ps1'
+
 " file manager on the left side
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -334,5 +337,10 @@ nmap <Leader>df :Finish<Cr>
 " XXX example debug command:
 "      :Termdebug ./path/to/binary [parameters ...]
 " }}}
+" {{{ Quickfix window navigation (qn = next, qp = prev)
+nmap <silent> <Leader>qn :cn<CR>
+nmap <silent> <Leader>qp :cp<CR>
+" }}}
+
 
 "set bg=light
