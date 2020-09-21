@@ -15,21 +15,18 @@ Plug 'rafalbromirski/vim-aurora'
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
 Plug 'hardcoreplayers/spaceline.vim'
-Plug 'ryanoasis/vim-devicons'
+"Plug 'ryanoasis/vim-devicons'
 
 " productivity
 Plug 'yggdroot/indentline'                             " visualize indentation levels
 Plug 'tpope/vim-fugitive'
-"Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'tomtom/tcomment_vim'
 Plug 'ericcurtin/CurtineIncSw.vim'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-"Plug '~/.fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'puremourning/vimspector'
+"Plug 'puremourning/vimspector'
 
 Plug 'davidhalter/jedi-vim'
 Plug 'tomlion/vim-solidity'
@@ -47,7 +44,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'unkiwii/vim-nerdtree-sync'
 
-"Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
+Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
 call plug#end()
 " ----------------------------------------------------------------------------------------
 
