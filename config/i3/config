@@ -22,8 +22,8 @@ set $down j
 
 set $wallpaper_paths /home/trapni/Pictures/Wallpaper/*
 
-set $terminal ~/projects/dotfiles/bin/terminal.sh
-#set $terminal /home/trapni/usr/opt/contour/bin/contour
+#set $terminal ~/projects/dotfiles/bin/terminal.sh
+set $terminal /home/trapni/usr/opt/contour/bin/contour
 #set $terminal konsole
 #set $terminal i3-sensible-terminal
 

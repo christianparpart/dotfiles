@@ -1,7 +1,4 @@
 {
-	"python": {
-		"jediEnabled": false
-	},
 	"codeLens.enable": true,
 	"diagnostic.errorSign": "❗",
 	"diagnostic.warningSign": "⚠️",

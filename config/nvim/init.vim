@@ -212,6 +212,9 @@ nmap <A-l> :wincmd l<enter>
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '>-2<CR>gv=gv
 
+" vertical diff'ing (see Gdiffsplit)
+set diffopt+=vertical
+
 " {{{ SetupEnvironment (tabstop, expandtab, ...)
 au BufNewFile,BufRead Makefile set ts=4 sw=4 noet
 au BufNewFile,BufRead *.sol set ts=4 sw=4 et
