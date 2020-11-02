@@ -1,4 +1,9 @@
 {
+	"codeLens.enable": true,
+	"diagnostic.errorSign": "❗",
+	"diagnostic.warningSign": "⚠️",
+	"diagnostic.infoSign": "ℹ️",
+	"diagnostic.hintSign": "💡",
 	"languageserver": {
 		"clangd": {
 		  "command": "clangd-9",
