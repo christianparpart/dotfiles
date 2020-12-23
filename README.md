@@ -9,3 +9,9 @@ It's just my dotfiles
 - `ctrlp` opens files fast
 - `nerdtree` an improved file tree view
 - `vim-airline` improved and beautivul vim status line
+
+### Nice additions
+```sh
+	git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+	p10k configure
+```
