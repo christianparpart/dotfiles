@@ -268,6 +268,7 @@ let g:coc_global_extensions = [
   \ 'coc-highlight',
   \ 'coc-vimlsp',
   \ 'coc-fsharp',
+  \ 'coc-json',
   \ 'coc-texlab'
   \ ]
 
