@@ -13,6 +13,8 @@
 	lineNumber = true
 [pull]
 	default = simple
+	ff = only
+	rebase = false
 [push]
 	default = simple
 [alias]

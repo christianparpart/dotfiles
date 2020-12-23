@@ -32,7 +32,8 @@ export ZSH="/home/trapni/.oh-my-zsh"
 
 export MANPAGER="nvim +Man!"
 
-export GNUTERM="sixelgd size 450,200 truecolor font arial 16"
+# for gnuplot-nox
+export GNUTERM="sixelgd size 1600,300 truecolor font arial 16"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -166,6 +167,8 @@ alias ll='ls -lisah'
 alias l='ls -lish'
 alias po='ps -o pid,comm,wchan:21,cmd'
 alias ccat='pygmentize -g'
+
+alias isvg='rsvg-convert | img2sixel'
 
 if [[ $(uname) = "Darwin" ]]; then
   alias ls='ls -G -F'
