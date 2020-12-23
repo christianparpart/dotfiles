@@ -29,7 +29,7 @@ Plug 'junegunn/fzf.vim'
 "Plug '~/.fzf'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'puremourning/vimspector'
+"? Plug 'puremourning/vimspector'
 
 Plug 'davidhalter/jedi-vim'
 Plug 'tomlion/vim-solidity'
@@ -212,6 +212,8 @@ nnoremap <Esc>l <C-w>l
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '>-2<CR>gv=gv
 
+vnoremap <Leader>dp :diffput<CR>
+
 " vertical diff'ing (see Gdiffsplit)
 set diffopt+=vertical
 
@@ -311,6 +313,15 @@ autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " extend statusline with CoC status
 set statusline^=%{coc#status()})}
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+    " Recently vim can merge signcolumn and number column into one
+    set signcolumn=number
+else
+    set signcolumn=yes
+endif
 " }}}
 " {{{ NERDTree
 let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'build' ]
@@ -324,31 +335,36 @@ let g:nerdtree_sync_cursorline = 1
 packadd termdebug
 
 " open up debug windows in vertical split
-let g:termdebug_wide = 10
+"let g:termdebug_wide = 10
 
-nmap <C-F5>  :Stop <CR>
-nmap <F5>    :Continue <CR>
-nmap <F6>    :Run <CR>
-nmap <F9>    :Break <CR>
-nmap <F8>    :Clear <CR>
-nmap <F10>   :Over <CR>
-nmap <F11>   :Step <CR>
-nmap <F12>   :Finish <CR>
-nmap <S-F10> :Finish <CR>
-
-nmap <Leader>dr :Run <Cr>
-nmap <Leader>ds :Stop <Cr>
-nmap <Leader>dc :Continue <Cr>
-
-nmap <Leader>db :Break <Cr>
-nmap <Leader>dd :Clear <Cr>
-
-nmap <Leader>dn :Over <Cr>
-nmap <Leader>di :Step <Cr>
-nmap <Leader>df :Finish<Cr>
+" nmap <C-F5>  :Stop <CR>
+" nmap <F5>    :Continue <CR>
+" nmap <F6>    :Run <CR>
+" nmap <F9>    :Break <CR>
+" nmap <F8>    :Clear <CR>
+" nmap <F10>   :Over <CR>
+" nmap <F11>   :Step <CR>
+" nmap <F12>   :Finish <CR>
+" nmap <S-F10> :Finish <CR>
+"
+" nmap <Leader>dr :Run <Cr>
+" nmap <Leader>ds :Stop <Cr>
+" nmap <Leader>dc :Continue <Cr>
+"
+" nmap <Leader>db :Break <Cr>
+" nmap <Leader>dd :Clear <Cr>
+"
+" nmap <Leader>dn :Over <Cr>
+" nmap <Leader>di :Step <Cr>
+" nmap <Leader>df :Finish<Cr>
 
 " XXX example debug command:
 "      :Termdebug ./path/to/binary [parameters ...]
 " }}}
+" {{{ Vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+"let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+packadd! vimspector
+nmap <silent> <Leader>dR :VimspectorReset<cr>
+" }}}
 
-"set bg=light
