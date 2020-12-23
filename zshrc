@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
@@ -25,13 +32,14 @@ export ZSH="/home/trapni/.oh-my-zsh"
 
 export MANPAGER="nvim +Man!"
 
-export GNUTERM="sixelgd size 1200,450 truecolor font arial 16"
+export GNUTERM="sixelgd size 450,200 truecolor font arial 16"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+#ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="gnzh"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE="nerdfont-fontconfig"
@@ -215,6 +223,9 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 # https://github.com/zsh-users/zsh-autosuggestions
 export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff6000,bg=#202020,bold,underline"
 
+# C-U to mimmick the behaviour of C-U in Bash
+bindkey \^U backward-kill-line
+
 # VIM mode
 #bindkey -v
 
@@ -226,3 +237,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # fzf integration
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
