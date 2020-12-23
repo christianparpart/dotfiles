@@ -160,6 +160,8 @@ alias l='ls -lish'
 alias po='ps -o pid,comm,wchan:21,cmd'
 alias ccat='pygmentize -g'
 
+alias isvg='rsvg-convert | img2sixel'
+
 if [[ $(uname) = "Darwin" ]]; then
   alias ls='ls -G -F'
 else
