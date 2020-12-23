@@ -355,5 +355,6 @@ nmap <silent> <Leader>qn :cn<CR>
 nmap <silent> <Leader>qp :cp<CR>
 " }}}
 
+let g:vimspector_enable_mappings = 'HUMAN'
 
 "set bg=light
