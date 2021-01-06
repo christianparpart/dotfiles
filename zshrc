@@ -45,20 +45,6 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 #ZSH_THEME="powerlevel9k/powerlevel9k"
 #POWERLEVEL9K_MODE="nerdfont-fontconfig"
 
-# works with powerlevel9k
-prompt_setmark() {
-	# \033[>M
-	echo -ne $"%{\033[>M%}$"
-	return
-}
-
-# for agnoster
-prompt_agsetmark() {
-	prompt_segment '' '' $"%{\033[>M%}$"
-}
-
-#AGNOSTER_PROMPT_SEGMENTS=("prompt_setmark" "${AGNOSTER_PROMPT_SEGMENTS[@]}")
-#AGNOSTER_PROMPT_SEGMENTS+="agsetmark"
 PROMPT+=$"%{\033[>M%}$"
 
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir vcs)
@@ -243,3 +229,11 @@ export PATH="$HOME/.cargo/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# {{{ setmark
+autoload -Uz add-zsh-hook
+precmd_setmark() print -n '\e[>M' >$TTY
+add-zsh-hook precmd precmd_setmark
+# preexec_test() print "Hello Test" >$TTY
+# add-zsh-hook preexec preexec_test
+# }}}
