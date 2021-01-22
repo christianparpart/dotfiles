@@ -231,9 +231,45 @@ export PATH="$HOME/.cargo/bin:$PATH"
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # {{{ setmark
+vt_set_profile()
+{
+    local name="${1}"
+    echo -ne "\033P\$p${name}\033\\"
+}
+
+dir_prefix_match()
+{
+	echo "$PWD" | grep -q "$1" &>/dev/null
+}
+
+update_profile()
+{
+	case "$PWD" in
+		"$HOME"/work*) vt_set_profile work ;;
+		"$HOME"/projects*) vt_set_profile main ;;
+		*) vt_set_profile mobile ;;
+	esac
+}
+
 autoload -Uz add-zsh-hook
-precmd_setmark() print -n '\e[>M' >$TTY
-add-zsh-hook precmd precmd_setmark
-# preexec_test() print "Hello Test" >$TTY
-# add-zsh-hook preexec preexec_test
+precmd_hook_contour()
+{
+	# disable text reflow
+	print -n '\e[?2027l' >$TTY
+
+	# set line mark
+	echo -n '\e[>M' >$TTY
+
+	# update profile based on CWD
+	# update_profile >$TTY
+}
+
+preexec_hook_contour()
+{
+	# enable text reflow
+	print "\e[?2027h" >$TTY
+}
+
+add-zsh-hook precmd precmd_hook_contour
+add-zsh-hook preexec preexec_hook_contour
 # }}}
