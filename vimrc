@@ -34,7 +34,7 @@ Plug 'puremourning/vimspector'                          " advanced debugging
 "Plug 'davidhalter/jedi-vim'                            " Python
 Plug 'tomlion/vim-solidity'                             " Solidity
 "Plug 'jrozner/vim-antlr'                               " ANTLR
-"Plug 'tikhomirov/vim-glsl'                             " OpenGL shading language (GLSL)
+Plug 'tikhomirov/vim-glsl'                             " OpenGL shading language (GLSL)
 "Plug 'fsharp/vim-fsharp'                               " F#
 "Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
 Plug 'PProvost/vim-ps1'
