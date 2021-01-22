@@ -1,0 +1,412 @@
+# Default Contour Configuration File.
+
+# Word delimiters when selecting word-wise.
+word_delimiters: " /\\()\"'-.,:;<>~!@#$%^&*+=[]{}~?|│"
+
+#default_profile: main
+default_profile: mobile
+
+# visual scrollbar support
+scrollbar:
+    # scroll bar position: Left, Right, Hidden (ignore-case)
+    position: right
+    # whether or not to hide the scrollbar when in alt-screen.
+    hide_in_alt_screen: true
+
+# Inline image related default configuration and limits
+images:
+    sixel_scrolling: true
+    sixel_register_count: 256
+    sixel_cursor_conformance: false
+    max_width: 1920
+    max_height: 1024
+
+# Terminal Profiles
+# -----------------
+#
+# Dominates how your terminal visually looks like. You will need at least one terminal profile.
+profiles:
+    main: &main_profile
+        #shell: "/bin/bash"
+        terminal_size:
+            columns: 130
+            lines: 30
+        environment:
+            TERM_OLD: xterm-256color
+            TERM: xterm-kitty # for curly underline
+            COLORTERM: truecolor
+        history:
+            limit: 64000
+            auto_scroll_on_update: false
+            scroll_multiplier: 3
+        font_size: 12
+        font:
+            render_mode: lcd
+            regular: "Fira Code"
+            bold: "Hack:style=bold"
+            italic: "Hack:style=italic"
+            bold_italic: "Hack:style=bold italic"
+        tab_width: 8
+        cursor:
+            shape: "block"
+            blinking: false
+            blinking_interval: 500
+        background:
+            opacity: 0.9
+            blur: true
+        colors: "default"
+
+    mobile:
+        <<: *main_profile
+        #shell: "/bin/bash"
+        terminal_size:
+            columns: 130
+            lines: 30
+        environment:
+            TERM: xterm-256color
+            COLORTERM: truecolor
+        history:
+            limit: 32000
+            auto_scroll_on_update: false
+            scroll_multiplier: 3
+        font_size: 20
+        font:
+            render_mode: lcd
+            regular: "Fira Code"
+            bold: "Hack:style=bold"
+            italic: "Hack:style=italic"
+            bold_italic: "Hack:style=bold italic"
+        tab_width: 8
+        cursor:
+            shape: "block"
+            blinking: false
+            blinking_interval: 500
+        background:
+            opacity: 0.9
+            blur: true
+        colors: "gjm"
+
+    work:
+        <<: *main_profile
+        #shell: "/bin/bash"
+        terminal_size:
+            columns: 130
+            lines: 30
+        environment:
+            TERM: xterm-256color
+            COLORTERM: truecolor
+        history:
+            limit: 32000
+            auto_scroll_on_update: false
+            scroll_multiplier: 3
+        font_size: 20
+        font:
+            render_mode: lcd
+            regular: "Fira Code"
+            bold: "Hack:style=bold"
+            italic: "Hack:style=italic"
+            bold_italic: "Hack:style=bold italic"
+        tab_width: 8
+        cursor:
+            shape: "block"
+            blinking: false
+            blinking_interval: 500
+        background:
+            opacity: 1.0
+            blur: false
+        colors: "solarized"
+
+        # Hyperlinks (via OSC-8) can be stylized and colorized on hover.
+        hyperlink_decoration:
+            default: dotted
+            hover: underline
+
+# Color Profiles
+# --------------
+#
+# Here you can configure your color profiles, wereas a color can be expressed in standard web format,
+# with a leading # followed by red/green/blue values, 7 characters in total.
+# You may alternatively use 0x as prefix instead of #.
+# For example 0x102030 is equal to '#102030'.
+color_schemes:
+    default:
+        # Mandates the color of the cursor.
+        cursor: '#FF6000'
+        # The text selection color can be customized here.
+        #selection: '#808080'
+        # Opacity to draw the selection color over the existing screen cell(s).
+        hyperlink_decoration:
+            normal: '#f0f0c0'
+            hover: '#ff0000'
+        # Default colors
+        default:
+            # Default background color (this can be made transparent, see above).
+            #background: '#1d1f21'
+            background: '#101010'
+            # Default foreground text color.
+            foreground: '#d5d8d6'
+        # Normal colors
+        normal:
+            black:   '#000000'
+            red:     '#e6193c'
+            green:   '#29a329'
+            yellow:  '#c3c322'
+            blue:    '#3d62f5'
+            magenta: '#ad2bee'
+            cyan:    '#1999b3'
+            white:   '#8ca68c'
+        # Bright colors
+        bright:
+            black:   '#000000'
+            red:     '#e6193c'
+            green:   '#29a329'
+            yellow:  '#c3c322'
+            blue:    '#3d62f5'
+            magenta: '#ad2bee'
+            cyan:    '#1999b3'
+            white:   '#f0fff0'
+
+    default:
+        # Mandates the color of the cursor.
+        cursor: '#e02030'
+        # The text selection color can be customized here.
+        selection: '#c08080'
+        # Opacity to draw the selection color over the existing screen cell(s).
+        hyperlink_decoration:
+            normal: '#f0f0c0'
+            hover: '#ff0000'
+        # Default colors
+        default:
+            # Default background color (this can be made transparent, see above).
+            #background: '#1d1f21'
+            background: '#101010'
+            # Default foreground text color.
+            foreground: '#d5d8d6'
+        # Normal colors
+        normal:
+            black:   '#000000'
+            red:     '#f00000'
+            green:   '#29a329'
+            yellow:  '#c3c322'
+            blue:    '#3d62f5'
+            magenta: '#ad2bee'
+            cyan:    '#1999b3'
+            white:   '#8ca68c'
+        # Bright colors
+        bright:
+            black:   '#000000'
+            red:     '#e6193c'
+            green:   '#29a329'
+            yellow:  '#c3c322'
+            blue:    '#3d62f5'
+            magenta: '#ad2bee'
+            cyan:    '#1999b3'
+            white:   '#f0fff0'
+
+    google_dark:
+        cursor: '#FF3040'
+        selection: '#c08080'
+        hyperlink_decoration:
+            normal: '#f0f0c0'
+            hover: '#ff0000'
+        # Default colors
+        default:
+            background: '#1d1f21'
+            foreground: '#c5c8c6'
+        normal:
+            black:   '#1d1f21'
+            red:     '#cc342b'
+            green:   '#198844'
+            yellow:  '#fba922'
+            blue:    '#3971ed'
+            magenta: '#a36ac7'
+            cyan:    '#3971ed'
+            white:   '#c5c8c6'
+        bright:
+            black:   '#969896'
+            red:     '#cc342b'
+            green:   '#198844'
+            yellow:  '#fba922'
+            blue:    '#3971ed'
+            magenta: '#a36ac7'
+            cyan:    '#3971ed'
+            white:   '#ffffff'
+
+    solarized:
+        cursor: '#FF3040'
+        selection: '#c08080'
+        hyperlink_decoration:
+            normal: '#f0f0c0'
+            hover: '#ff0000'
+        default:
+            background: '#fdf6e3'
+            foreground: '#586e75'
+        normal:
+            black:   '#002b36'
+            red:     '#dc322f'
+            green:   '#859900'
+            yellow:  '#b58900'
+            blue:    '#268bd2'
+            magenta: '#6c71c4'
+            cyan:    '#2aa198'
+            white:   '#93a1a1'
+        bright:
+            black:   '#657b83'
+            red:     '#dc322f'
+            green:   '#859900'
+            yellow:  '#b58900'
+            blue:    '#268bd2'
+            magenta: '#6c71c4'
+            cyan:    '#2aa198'
+            white:   '#fdf6e3'
+
+    gjm:
+        cursor: '#FF3040'
+        selection: '#c08080'
+        hyperlink_decoration:
+            normal: '#f0f0c0'
+            hover: '#ff0000'
+        default:
+            background: '#1c1c1c'
+            foreground: '#c5c5c5'
+        normal:
+            black:   '#1c1c1c'
+            red:     '#ff005b'
+            green:   '#cee318'
+            yellow:  '#ffe755'
+            blue:    '#3d62f5'
+            magenta: '#833c9f'
+            cyan:    '#0ac1cd'
+            white:   '#e5e5e5'
+        bright:
+            black:   '#666666'
+            red:     '#ff00a0'
+            green:   '#ccff00'
+            yellow:  '#ff9f00'
+            blue:    '#3d62f5'
+            magenta: '#be67e1'
+            cyan:    '#63e7f0'
+            white:   '#f3f3f3'
+
+# Key Bindings
+# ------------
+#
+# In this section you can customize key bindings.
+# Each array element in `input_mapping` represents one key binding,
+# whereas `mods` represents an array of keyboard modifiers that must be pressed - as well as
+# the `key` or `mouse` -  in order to activate the corresponding action,
+#
+# `key` represents keys on your keyboard, and `mouse` represents buttons
+# as well as the scroll wheel.
+#
+# Modifiers:
+# - Alt
+# - Control
+# - Shift
+# - Meta (this is the Windows key on Windows OS, and the Command key on OS/X, and Meta on anything else)
+#
+# Keys can be expressed case-insensitively symbolic:
+#   APOSTROPHE, ADD, BACKSLASH, COMMA, DECIMAL, DIVIDE, EQUAL, LEFT_BRACKET,
+#   MINUS, MULTIPLY, PERIOD, RIGHT_BRACKET, SEMICOLON, SLASH, SUBTRACT, SPACE
+#   Enter, Backspace, Tab, Escape, F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12,
+#   DownArrow, LeftArrow, RightArrow, UpArrow, Insert, Delete, Home, End, PageUp, PageDown,
+#   Numpad_NumLock, Numpad_Divide, Numpad_Multiply, Numpad_Subtract, Numpad_CapsLock,
+#   Numpad_Add, Numpad_Decimal, Numpad_Enter, Numpad_Equal,
+#   Numpad_0, Numpad_1, Numpad_2, Numpad_3, Numpad_4,
+#   Numpad_5, Numpad_6, Numpad_7, Numpad_8, Numpad_9
+# or in case of standard characters, just the character.
+#
+# Mouse buttons can be one of the following self-explanary ones:
+#   Left, Middle, Right, WheelUp, WheelDown
+#
+# Actions:
+# - CopySelection     Copies the current selection into the clipboard buffer.
+# - DecreaseFontSize  Decreases the font size by 1 pixel.
+# - DecreaseOpacity   Decreases the default-background opacity by 5%.
+# - IncreaseFontSize  Increases the font size by 1 pixel.
+# - IncreaseOpacity   Increases the default-background opacity by 5%.
+# - NewTerminal       Spawns a new terminal at the current terminals current working directory.
+# - OpenConfiguration Opens the configuration file.
+# - PasteClipboard    Pastes clipboard to standard input.
+# - PasteSelection    Pastes current selection to standard input.
+# - Quit              Quits the application.
+# - ReloadConfig      Forces a configuration reload.
+# - ResetConfig       Overwrites current configuration with builtin default configuration and loads it. Attention, all your current configuration will be lost due to overwrite!
+# - ResetFontSize     Resets font size to what is configured in the config file.
+# - ScreenshotVT      Takes a screenshot in form of VT escape sequences.
+# - ScrollDown        Scrolls down by the multiplier factor.
+# - ScrollOneDown     Scrolls down by exactly one line.
+# - ScrollOneUp       Scrolls up by exactly one line.
+# - ScrollPageDown    Scrolls a page down.
+# - ScrollPageUp      Scrolls a page up.
+# - ScrollMarkUp      Scrolls one mark up
+# - ScrollMarkDown    Scrolls one mark down (if none present, bottom of the screen)
+# - ScrollToBottom    Scrolls to the bottom of the screen buffer.
+# - ScrollToTop       Scrolls to the top of the screen buffer.
+# - ScrollUp          Scrolls up by the multiplier factor.
+# - SendChars         Writes given characters in `chars` member to the applications input.
+# - ToggleFullScreen  Enables/disables full screen mode.
+# - WriteScreen:      Writes VT sequence in `chars` member to the screen (bypassing the application).
+
+input_mapping:
+    - { mods: [Control],        mouse: Left,        action: FollowHyperlink }
+    - { mods: [],               mouse: Middle,      action: PasteSelection }
+    - { mods: [],               mouse: WheelDown,   action: ScrollDown }
+    - { mods: [],               mouse: WheelUp,     action: ScrollUp }
+    - { mods: [Alt],            key: Enter,         action: ToggleFullscreen }
+    - { mods: [Alt],            mouse: WheelDown,   action: DecreaseOpacity }
+    - { mods: [Alt],            mouse: WheelUp,     action: IncreaseOpacity }
+    - { mods: [Control],        key: '0',           action: ResetFontSize }
+    - { mods: [Control, Alt],   key: S,             action: ScreenshotVT }
+    - { mods: [Control, Shift], key: Plus,          action: IncreaseFontSize }
+    - { mods: [Control, Shift], key: C,             action: CopySelection }
+    - { mods: [Control, Shift], key: Minus,         action: DecreaseFontSize }
+    - { mods: [Control, Shift], key: '_',           action: DecreaseFontSize }
+    - { mods: [Control, Shift], key: N,             action: NewTerminal }
+    - { mods: [Control, Shift], key: V,             action: PasteClipboard }
+    - { mods: [Control, Shift], key: Comma,         action: OpenConfiguration }
+    - { mods: [Control, Shift], key: Q,             action: Quit }
+    - { mods: [Control],        mouse: WheelDown,   action: DecreaseFontSize }
+    - { mods: [Control],        mouse: WheelUp,     action: IncreaseFontSize }
+    - { mods: [Shift],          key: DownArrow,     action: ScrollOneDown }
+    - { mods: [Shift],          key: End,           action: ScrollToBottom }
+    - { mods: [Shift],          key: Home,          action: ScrollToTop }
+    - { mods: [Shift],          key: PageDown,      action: ScrollPageDown }
+    - { mods: [Shift],          key: PageUp,        action: ScrollPageUp }
+    - { mods: [Shift],          key: UpArrow,       action: ScrollOneUp }
+    - { mods: [Shift],          mouse: WheelDown,   action: ScrollPageDown }
+    - { mods: [Shift],          mouse: WheelUp,     action: ScrollPageUp }
+    - { mods: [Control, Alt],   key: 'k',           action: ScrollMarkUp }
+    - { mods: [Control, Alt],   key: 'j',           action: ScrollMarkDown }
+    - { mods: [Control],        key: '1',           action: ChangeProfile, name: 'main' }
+    - { mods: [Control],        key: '2',           action: ChangeProfile, name: 'mobile' }
+    - { mods: [Control, Alt],   key: P,             action: WriteScreen, chars: '\e]888\e\\' }
+    - { mods: [Control, Shift], key: M,             action: CopyPreviousMarkRange }
+
+# Logging section
+logging:
+    # Log messages will go to the specified file.
+    # If no file was specified, then the terminal emulator will write to its own stdout instead.
+    # file: "/tmp/contour.log"
+
+    # Enable this option to log parser (syntax) errors in the VT sequence stream.
+    parse_errors: true
+
+    # Enable this option to log VT semantic errors, such as invalid parameters to some VT sequence.
+    invalid_output: true
+
+    # Enable this option to log VT sequences that were seen but are unsupported.
+    unsupported_output: true
+
+    # Enable this option to log raw VT sequence input.
+    raw_input: false
+
+    # Enable this option to log parsed VT sequence input.
+    trace_input: false
+
+    # Enable this option to log raw VT sequence output.
+    raw_output: false
+
+    # Enable this option to log parsed VT sequence output.
+    trace_output: false
+
