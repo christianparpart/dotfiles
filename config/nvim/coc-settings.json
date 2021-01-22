@@ -6,19 +6,19 @@
 	"diagnostic.hintSign": "💡",
 	"languageserver": {
 		"clangd": {
-			"command": "clangd-9",
+			"command": "clangd-11",
 			"args": ["--background-index"],
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json"],
 			"filetypes": ["c", "cpp", "objc", "objcpp"]
 		},
-		//	"solidity": {
-		//		"command": "/home/trapni/work/solidity/build/solls/solls",
-		//		"args": [],
-		//		"trace.server": "verbose",
-		//		"rootPatterns": ["compile_commands.json", ".git/"],
-		//		"filetypes": ["solidity"]
-		//	},
+		"solidity": {
+			"command": "/home/trapni/work/solidity/build/solls/solls",
+			"args": [],
+			"trace.server": "verbose",
+			"rootPatterns": ["compile_commands.json", ".git/"],
+			"filetypes": ["solidity"]
+		},
 		"cmake": {
 			"command": "cmake-language-server",
 			"filetypes": ["cmake"],

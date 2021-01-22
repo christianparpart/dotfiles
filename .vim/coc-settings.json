@@ -6,11 +6,22 @@
 	"diagnostic.hintSign": "💡",
 	"languageserver": {
 		"clangd": {
-		  "command": "clangd-9",
-		  "args": ["--background-index"],
+		  "command": "clangd-11",
+		  "args": ["--background-index", "--log=verbose"],
 		  "rootPatterns": ["compile_flags.txt", "compile_commands.json", ".vim/", ".git/", ".hg/"],
 		  "filetypes": ["c", "cpp", "objc", "objcpp"]
-		},
+		}
+		,
+		"solidity": {
+			//"command": "/home/trapni/work/solidity/build/solls/solls",
+			//"args": [],
+			"host": "127.0.0.1",
+			"port": 5050,
+			"trace.server": "verbose",
+			"rootPatterns": ["compile_commands.json", ".git/"],
+			"filetypes": ["solidity"]
+		}
+		,
 		"bash": {
 		  "command": "bash-language-server",
 		  "args": ["start"],

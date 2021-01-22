@@ -111,7 +111,7 @@ let g:airline_theme = "bubblegum"
 " {{{ colorscheme 
 let g:gruvbox_filetype_hi_groups = 1    " Set to 1 to include syntax highlighting definitions for several filetypes.
 let g:gruvbox_plugin_hi_groups = 1      " Set to 1 to include syntax highlighting definitions for a number of popular plugins
-let g:gruvbox_transp_bg = 1             " gransparent background"
+"let g:gruvbox_transp_bg = 1             " gransparent background
 set background=dark                     " required to ensure it's using the dark theme
 colorscheme gruvbox8_hard
 " }}}
