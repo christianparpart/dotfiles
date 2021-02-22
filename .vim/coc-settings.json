@@ -19,6 +19,10 @@
 			"port": 5050,
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json", ".git/"],
+			"settings": {
+				"evm": "constantinople",
+				"remapping": "foo=bar,foo2=bar2"
+			},
 			"filetypes": ["solidity"]
 		}
 		,
