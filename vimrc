@@ -171,6 +171,11 @@ set listchars=tab:\|\ ,trail:·
 highlight NonText ctermbg=red ctermfg=white
 highlight SpecialKey ctermbg=red ctermfg=white
 
+" spelling (en)
+"set spell
+"set spelllang=en
+"set spellsuggest=9
+
 " set <space> to toggle fold
 nnoremap <space> za
 
@@ -243,6 +248,7 @@ let g:coc_global_extensions = [
   \ 'coc-highlight',
   \ 'coc-vimlsp',
   \ 'coc-fsharp',
+  \ 'coc-json',
   \ 'coc-texlab'
   \ ]
 
@@ -343,5 +349,9 @@ let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 packadd! vimspector
 nmap <silent> <Leader>dR :VimspectorReset<cr>
+" }}}
+" {{{ Quickfix window navigation (qn = next, qp = prev)
+nmap <silent> <Leader>qn :cn<CR>
+nmap <silent> <Leader>qp :cp<CR>
 " }}}
 

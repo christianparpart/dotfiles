@@ -1,57 +1,56 @@
 set nocompatible
+" vim:et:ts=4:sw=4
 
 " ----------------------------------------------------------------------------------------
 call plug#begin('~/.vim/plugged')
 
-" colorschemes
-Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
+""" colorschemes
+"Plug 'tomasr/molokai'
+"Plug 'chriskempson/base16-vim'
+"Plug 'NLKNguyen/papercolor-theme'
+"Plug 'rafalbromirski/vim-aurora'
+"Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-gruvbox8'
-Plug 'chriskempson/base16-vim'
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'rafalbromirski/vim-aurora'
 
-" bottom status/tab line
+""" bottom/top status/tab line
 " Plug 'vim-airline/vim-airline'
 " Plug 'vim-airline/vim-airline-themes'
-Plug 'hardcoreplayers/spaceline.vim'
-"Plug 'ryanoasis/vim-devicons'
+"Plug 'hardcoreplayers/spaceline.vim'
+Plug 'glepnir/spaceline.vim'
 
-" productivity
-Plug 'yggdroot/indentline'                             " visualize indentation levels
-Plug 'tpope/vim-fugitive'
-Plug 'tomtom/tcomment_vim'
-Plug 'ericcurtin/CurtineIncSw.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+""" productivity
+Plug 'yggdroot/indentline'                              " visualize indentation levels
+Plug 'tpope/vim-fugitive'                               " git in vim
+Plug 'tomtom/tcomment_vim'                              " toggle comments using `gc`
+Plug 'ericcurtin/CurtineIncSw.vim'                      " toggle between header/implementation files
+Plug 'editorconfig/editorconfig-vim'                    " auto-load .editorconfig files
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
+Plug 'junegunn/fzf.vim'
+"Plug '~/.fzf'
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'puremourning/vimspector'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
+Plug 'puremourning/vimspector'                          " advanced debugging
 
-Plug 'davidhalter/jedi-vim'
-Plug 'tomlion/vim-solidity'
-Plug 'jrozner/vim-antlr'
-Plug 'tikhomirov/vim-glsl'
-"Plug 'fsharp/vim-fsharp'
-Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
+"Plug 'davidhalter/jedi-vim'                            " Python
+Plug 'tomlion/vim-solidity'                             " Solidity
+"Plug 'jrozner/vim-antlr'                               " ANTLR
+Plug 'tikhomirov/vim-glsl'                             " OpenGL shading language (GLSL)
+"Plug 'fsharp/vim-fsharp'                               " F#
+"Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
 Plug 'PProvost/vim-ps1'
 
-" syntax highlighting
-Plug 'PProvost/vim-ps1'
-
-" file manager on the left side
+""" file manager on the left side
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'unkiwii/vim-nerdtree-sync'
 
-Plug 'ryanoasis/vim-devicons' " XXX must be last plugin to be loaded
+" XXX This must be the last plugin to be loaded!
+Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " ----------------------------------------------------------------------------------------
 
 "filetype indent on
 filetype plugin on
-
-let g:spaceline_seperate_style = 'arrow'
 
 syntax on
 set noswapfile
@@ -91,32 +90,31 @@ set smartcase
 set autoread " automatically reload files upon change outside VIM
 set termguicolors
 
-" Airline tweaks
-"let g:airline_theme='gruvbox'
-"let g:airline_statusline_ontop = 1
+" {{{ spaceline tweaks
+"let g:spaceline_seperate_style = 'arrow'
+let g:spaceline_seperate_style = 'curve'
+" }}}
+" {{{ Airline tweaks
+let g:airline_theme='gruvbox'
+let g:airline_statusline_ontop = 1
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-"let g:airline_section_z = 'HEX 0x%04B'
+" let g:airline#extensions#tabline#left_sep = ' '
+" let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#enabled = 1            " show tabs or all buffers if only one tab open
+let g:airline_section_z = 'U+%04B'                      " show current character symbol in hex
 
 " maybe this one can be removed again once I've got a better -more crisp- monitor.
 " this line helps me better seeing airline's top bar
 let g:airline_theme = "bubblegum"
-
-" Molokai (Monokai) color scheme
-let g:rehash256 = 1
-"let g:molokai_original = 1
-"colorscheme molokai
-
-let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_color_column = 'bg2'
-"colorscheme gruvbox
-"colorscheme base16-gruvbox-dark-pale
-colorscheme gruvbox8_hard
 " airline_tabfill xxx ctermfg=7 ctermbg=18
-
-" base16 plugin: Highlight comments
-"call Base16hi("Comment", g:base16_gui09, "", g:base16_cterm09, "", "", "")
-
+" }}}
+" {{{ colorscheme 
+let g:gruvbox_filetype_hi_groups = 1    " Set to 1 to include syntax highlighting definitions for several filetypes.
+let g:gruvbox_plugin_hi_groups = 1      " Set to 1 to include syntax highlighting definitions for a number of popular plugins
+"let g:gruvbox_transp_bg = 1             " gransparent background
+set background=dark                     " required to ensure it's using the dark theme
+colorscheme gruvbox8_hard
+" }}}
 " {{{ fzf customization
 " Always enable preview window on the right with 60% width
 let g:fzf_preview_window = 'right:60%'
@@ -170,8 +168,8 @@ set viminfo='10,\"100,:20,%,n~/.nviminfo
 
 set list
 set listchars=tab:\|\ ,trail:·
-"highlight NonText ctermbg=red ctermfg=white
-"highlight SpecialKey ctermbg=red ctermfg=white
+highlight NonText ctermbg=red ctermfg=white
+highlight SpecialKey ctermbg=red ctermfg=white
 
 " spelling (en)
 "set spell
@@ -215,32 +213,11 @@ nmap <A-l> :wincmd l<enter>
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '>-2<CR>gv=gv
 
+vnoremap <Leader>dp :diffput<CR>
+
 " vertical diff'ing (see Gdiffsplit)
 set diffopt+=vertical
 
-" {{{ SetupEnvironment (tabstop, expandtab, ...)
-au BufNewFile,BufRead Makefile set ts=4 sw=4 noet
-au BufNewFile,BufRead *.sol set ts=4 sw=4 et
-function! SetupEnvironment()
-  let l:path = expand('%:p')
-  if l:path =~ '/home/trapni/projects/contour'
-    setlocal expandtab
-    setlocal tabstop=4 shiftwidth=4
-  elseif l:path =~ '/home/trapni/projects/klex'
-    setlocal noexpandtab
-    setlocal tabstop=4 shiftwidth=4
-  elseif l:path =~ '/home/trapni/work/solidity'
-    setlocal noexpandtab
-    setlocal tabstop=4 shiftwidth=4
-    setlocal colorcolumn=99
-  elseif l:path =~ '/home/trapni/ethereum/solidity'
-    setlocal noexpandtab
-    setlocal tabstop=4 shiftwidth=4
-    setlocal colorcolumn=99
-  endif
-endfunction
-autocmd! BufReadPost,BufNewFile * call SetupEnvironment()
-" }}}
 " {{{ git (fugitive)
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
@@ -301,6 +278,7 @@ nmap <silent> <Leader>cr <Plug>(coc-references)
 nmap <silent> <Leader>cn <Plug>(coc-diagnostic-next)
 nmap <silent> <Leader>cp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>cm <Plug>(coc-rename)
+
 nmap <silent> <Leader>gp :GFiles<CR>
 
 " show logging output in a vsplit view
@@ -315,6 +293,15 @@ autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 " extend statusline with CoC status
 set statusline^=%{coc#status()})}
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+if has("patch-8.1.1564")
+    " Recently vim can merge signcolumn and number column into one
+    set signcolumn=number
+else
+    set signcolumn=yes
+endif
 " }}}
 " {{{ NERDTree
 let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'build' ]
@@ -325,40 +312,47 @@ let g:nerdtree_sync_cursorline = 1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " }}}
 " {{{ Debugging
-packadd termdebug
-
-" open up debug windows in vertical split
-let g:termdebug_wide = 10
-
-nmap <C-F5>  :Stop <CR>
-nmap <F5>    :Continue <CR>
-nmap <F6>    :Run <CR>
-nmap <F9>    :Break <CR>
-nmap <F8>    :Clear <CR>
-nmap <F10>   :Over <CR>
-nmap <F11>   :Step <CR>
-nmap <F12>   :Finish <CR>
-nmap <S-F10> :Finish <CR>
-
-nmap <Leader>dr :Run <Cr>
-nmap <Leader>ds :Stop <Cr>
-nmap <Leader>dc :Continue <Cr>
-
-nmap <Leader>db :Break <Cr>
-nmap <Leader>dd :Clear <Cr>
-
-nmap <Leader>dn :Over <Cr>
-nmap <Leader>di :Step <Cr>
-nmap <Leader>df :Finish<Cr>
+" " open up debug windows in vertical split
+" let g:termdebug_wide = 10
+"
+" packadd termdebug
+"
+" " open up debug windows in vertical split
+" let g:termdebug_wide = 10
+"
+" nmap <C-F5>  :Stop <CR>
+" nmap <F5>    :Continue <CR>
+" nmap <F6>    :Run <CR>
+" nmap <F9>    :Break <CR>
+" nmap <F8>    :Clear <CR>
+" nmap <F10>   :Over <CR>
+" nmap <F11>   :Step <CR>
+" nmap <F12>   :Finish <CR>
+" nmap <S-F10> :Finish <CR>
+"
+" nmap <Leader>dr :Run <Cr>
+" nmap <Leader>ds :Stop <Cr>
+" nmap <Leader>dc :Continue <Cr>
+"
+" nmap <Leader>db :Break <Cr>
+" nmap <Leader>dd :Clear <Cr>
+"
+" nmap <Leader>dn :Over <Cr>
+" nmap <Leader>di :Step <Cr>
+" nmap <Leader>df :Finish<Cr>
 
 " XXX example debug command:
 "      :Termdebug ./path/to/binary [parameters ...]
+" }}}
+" {{{ Vimspector
+let g:vimspector_enable_mappings = 'HUMAN'
+"let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
+packadd! vimspector
+nmap <silent> <Leader>dR :VimspectorReset<cr>
 " }}}
 " {{{ Quickfix window navigation (qn = next, qp = prev)
 nmap <silent> <Leader>qn :cn<CR>
 nmap <silent> <Leader>qp :cp<CR>
 " }}}
-
-let g:vimspector_enable_mappings = 'HUMAN'
 
 "set bg=light
