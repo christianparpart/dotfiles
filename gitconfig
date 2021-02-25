@@ -22,6 +22,7 @@
 	cat = !"cat"
 	ci = commit -v
 	co = checkout
+	sm = submodule
 	di = diff
 	dis = diff --staged
 	dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
