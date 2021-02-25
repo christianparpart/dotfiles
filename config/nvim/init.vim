@@ -155,6 +155,9 @@ nnoremap <silent> <C-T> :call fzf#run({
 "nmap <silent> <C-P> :call fzf#run({'source': 'git ls-files', 'sink': 'e', 'window': {'width': 0.9, 'height': 0.6}})<cr>
 nmap <silent> <leader>ff :Buffers<cr>
 nmap <silent> <leader>fg :Rg<cr>
+nmap <silent> <leader>fm :Marks<cr>
+nmap <silent> <leader>fl :BLines<cr>
+nmap <silent> <leader>fc :BCommits<cr>
 " }}}
 
 " Tell vim to remember certain things when we exit

@@ -30,7 +30,7 @@ unsetopt share_history
 # Path to your oh-my-zsh installation.
 export ZSH="/home/trapni/.oh-my-zsh"
 
-export MANPAGER="nvim +Man!"
+#export MANPAGER="nvim +Man!"
 
 # for gnuplot-nox
 export GNUTERM="sixelgd size 1600,300 truecolor font arial 16"
@@ -172,7 +172,7 @@ if [[ -d "$HOME/usr/lib/pkgconfig" ]]; then
   export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
 fi
 alias n='ninja'
-alias b='ninja'
+alias nn='nice ninja'
 # }}}
 # {{{ bin PATH directories
 BINDIRS=( ${HOME}/bin
@@ -259,6 +259,9 @@ precmd_hook_contour()
 
 	# set line mark
 	echo -n '\e[>M' >$TTY
+
+	# set cwd
+	echo -ne '\e]7;'$(pwd)'\e\\' >$TTY
 
 	# update profile based on CWD
 	# update_profile >$TTY
