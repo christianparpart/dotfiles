@@ -28,6 +28,10 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 "Plug '~/.fzf'
 
+Plug 'nvim-lua/popup.nvim'                              " required for telescope.nvim?
+Plug 'nvim-lua/plenary.nvim'                            " required for telescope.nvim?
+Plug 'nvim-telescope/telescope.nvim'                    # also a fuzzy finder
+
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
 Plug 'puremourning/vimspector'                          " advanced debugging
 
@@ -38,6 +42,9 @@ Plug 'tikhomirov/vim-glsl'                             " OpenGL shading language
 "Plug 'fsharp/vim-fsharp'                               " F#
 "Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
 Plug 'PProvost/vim-ps1'
+
+""" eye-candy
+"Plug 'jszakmeister/vim-togglecursor'
 
 """ file manager on the left side
 Plug 'scrooloose/nerdtree'
@@ -218,6 +225,25 @@ vnoremap <Leader>dp :diffput<CR>
 " vertical diff'ing (see Gdiffsplit)
 set diffopt+=vertical
 
+" {{{ vim-togglecursor
+if $TERMINAL_NAME == 'contour'
+    " Set the kind of escape sequences to use.  Most use xterm-style
+    " escaping, there are a few that use the iterm (CursorShape) style
+    " sequences.  The two acceptable values to use here are: 'xterm'
+    " and 'iterm'.
+    let g:togglecursor_force = 'xterm'
+endif
+
+" Use I-Beam in default mode.
+let g:togglecursor_default = "block"
+" line
+
+" Use blinking line for insertion.
+let g:togglecursor_insert = "blinking_line"
+
+" Revert back to I-Beam cursor in the terminal after leave.
+let g:togglecursor_leave = "blinking_line"
+" }}}
 " {{{ git (fugitive)
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
