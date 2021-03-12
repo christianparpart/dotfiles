@@ -244,7 +244,8 @@ for_window [class="pavucontrol"] floating enable, border none
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -c 000000
 
 # Fixes tearing!!!
-exec --no-startup-id compton --config ~/.config/compton.conf -b
+#exec --no-startup-id compton --config ~/.config/compton.conf -b
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b --experimental-backends
 
 # Swaps Alt and Windows key on keyboard.
 # FIXME: keep forgetting after a few minutes, lol?

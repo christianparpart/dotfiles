@@ -275,4 +275,17 @@ preexec_hook_contour()
 
 add-zsh-hook precmd precmd_hook_contour
 add-zsh-hook preexec preexec_hook_contour
+
+# contour-capture-test() {
+# 	#~/usr/bin/isatty-stdio
+# 	#/home/trapni/projects/contour/build/src/contour/contour capture output "${tmpfile}" lines 50 logical timeout 20
+# 	local tmpfile="/tmp/capture.vt"
+# 	contour capture output "${tmpfile}" lines 50 logical timeout 20
+# 	fzf <"${tmpfile}"
+# }
+# zle -N contour-capture-test
+# bindkey '^F' contour-capture-test
+
+. ~/.fzf-contour.zsh
+
 # }}}

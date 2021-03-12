@@ -13,10 +13,11 @@
 		}
 		,
 		"solidity": {
-			//"command": "/home/trapni/work/solidity/build/solls/solls",
-			//"args": [],
-			"host": "127.0.0.1",
-			"port": 5050,
+			"command": "/home/trapni/work/solidity/build/solc/solc",
+			"args": [
+				"--lsp",
+				"--lsp-trace=/tmp/lsp.trace.log"
+			],
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json", ".git/"],
 			"settings": {

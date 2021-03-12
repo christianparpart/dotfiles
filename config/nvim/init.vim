@@ -31,6 +31,11 @@ Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
 Plug 'puremourning/vimspector'                          " advanced debugging
 
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
+Plug 'nvim-treesitter/nvim-treesitter'
 "Plug 'davidhalter/jedi-vim'                            " Python
 Plug 'tomlion/vim-solidity'                             " Solidity
 "Plug 'jrozner/vim-antlr'                               " ANTLR
@@ -40,9 +45,9 @@ Plug 'tikhomirov/vim-glsl'                             " OpenGL shading language
 Plug 'PProvost/vim-ps1'
 
 """ file manager on the left side
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'unkiwii/vim-nerdtree-sync'
+"Plug 'scrooloose/nerdtree'
+"Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'unkiwii/vim-nerdtree-sync'
 
 " XXX This must be the last plugin to be loaded!
 Plug 'ryanoasis/vim-devicons'
@@ -92,7 +97,7 @@ set termguicolors
 
 " {{{ spaceline tweaks
 "let g:spaceline_seperate_style = 'arrow'
-let g:spaceline_seperate_style = 'curve'
+"let g:spaceline_seperate_style = 'curve'
 " }}}
 " {{{ Airline tweaks
 let g:airline_theme='gruvbox'
@@ -180,9 +185,10 @@ highlight SpecialKey ctermbg=red ctermfg=white
 nnoremap <space> za
 
 " function shortcuts (command mode)
-nmap <C-N> :NERDTreeToggle<enter>
-"nmap <C-T> :NERDTreeFocus<enter>
 nmap <C-]> :noh<enter>
+"
+"nmap <C-N> :NERDTreeToggle<enter>
+""nmap <C-T> :NERDTreeFocus<enter>
 
 " tabbed windows (command mode)
 nmap <S-T> :tabnew<enter>
@@ -209,14 +215,36 @@ nmap <A-j> :wincmd j<enter>
 nmap <A-k> :wincmd k<enter>
 nmap <A-l> :wincmd l<enter>
 
-" move selected text one up or down by pressing Shift+J or Shift+K
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '>-2<CR>gv=gv
-
 vnoremap <Leader>dp :diffput<CR>
 
 " vertical diff'ing (see Gdiffsplit)
 set diffopt+=vertical
+
+" {{{ Telescope
+" Find files using Telescope command-line sugar.
+nnoremap <leader>tt <cmd>Telescope commands<cr>
+nnoremap <leader>tf <cmd>Telescope find_files<cr>
+nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+nnoremap <leader>tb <cmd>Telescope buffers<cr>
+nnoremap <leader>th <cmd>Telescope help_tags<cr>
+nnoremap <leader>tr <cmd>Telescope file_browser<cr>
+nnoremap <leader>tm <cmd>Telescope marks<cr>
+nnoremap <leader>tp <cmd>Telescope man_pages<cr>
+nnoremap <leader>tq <cmd>Telescope quickfix<cr>
+nnoremap <Leader>td :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
+
+" }}}
+" {{{ TreeSitter
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+}
+EOF
+" }}}
 
 " {{{ git (fugitive)
 nnoremap <leader>gs :Gstatus<CR>
@@ -347,8 +375,8 @@ let g:nerdtree_sync_cursorline = 1
 " {{{ Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-packadd! vimspector
-nmap <silent> <Leader>dR :VimspectorReset<cr>
+" packadd! vimspector
+" nmap <silent> <Leader>dR :VimspectorReset<cr>
 " }}}
 " {{{ Quickfix window navigation (qn = next, qp = prev)
 nmap <silent> <Leader>qn :cn<CR>

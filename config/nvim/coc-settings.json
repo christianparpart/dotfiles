@@ -13,8 +13,11 @@
 			"filetypes": ["c", "cpp", "objc", "objcpp"]
 		},
 		"solidity": {
-			"command": "/home/trapni/work/solidity/build/solls/solls",
-			"args": [],
+			"command": "/home/trapni/work/solidity/build/solc/solc",
+			"args": [
+				"--lsp",
+				"--lsp-trace=/tmp/solc.lsp.log"
+			],
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json", ".git/"],
 			"filetypes": ["solidity"]
