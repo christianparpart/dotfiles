@@ -18,19 +18,20 @@
 [push]
 	default = simple
 [alias]
-	br = branch
-	cat = !"cat"
 	ci = commit -v
 	co = checkout
 	sm = submodule
+	st = status
+	br = branch
 	di = diff
 	dis = diff --staged
+
+	cat = !"cat"
 	dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph
 	logm = log --stat --patch
 	logp = log --pretty=oneline --abbrev-commit
 	nuke = clean -d -f -x
-	st = status
     rebase = rebase --verbose
 [color]
 	ui = auto
