@@ -9,7 +9,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'chriskempson/base16-vim'
 "Plug 'NLKNguyen/papercolor-theme'
 "Plug 'rafalbromirski/vim-aurora'
-"Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-gruvbox8'
 
 """ bottom/top status/tab line
@@ -45,9 +45,9 @@ Plug 'tikhomirov/vim-glsl'                             " OpenGL shading language
 Plug 'PProvost/vim-ps1'
 
 """ file manager on the left side
-"Plug 'scrooloose/nerdtree'
-"Plug 'Xuyuanp/nerdtree-git-plugin'
-"Plug 'unkiwii/vim-nerdtree-sync'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'unkiwii/vim-nerdtree-sync'
 
 " XXX This must be the last plugin to be loaded!
 Plug 'ryanoasis/vim-devicons'
@@ -95,6 +95,10 @@ set smartcase
 set autoread " automatically reload files upon change outside VIM
 set termguicolors
 
+" {{{ macros
+" apply macro stored in q
+nmap <silent> <Space> @q
+" }}}
 " {{{ spaceline tweaks
 "let g:spaceline_seperate_style = 'arrow'
 "let g:spaceline_seperate_style = 'curve'
@@ -113,12 +117,16 @@ let g:airline_section_z = 'U+%04B'                      " show current character
 let g:airline_theme = "bubblegum"
 " airline_tabfill xxx ctermfg=7 ctermbg=18
 " }}}
-" {{{ colorscheme 
+" {{{ colorscheme
 let g:gruvbox_filetype_hi_groups = 1    " Set to 1 to include syntax highlighting definitions for several filetypes.
 let g:gruvbox_plugin_hi_groups = 1      " Set to 1 to include syntax highlighting definitions for a number of popular plugins
 "let g:gruvbox_transp_bg = 1             " gransparent background
 set background=dark                     " required to ensure it's using the dark theme
 colorscheme gruvbox8_hard
+"colorscheme gruvbox
+
+" disable background
+"hi Normal guibg=NONE ctermbg=NONE
 " }}}
 " {{{ fzf customization
 " Always enable preview window on the right with 60% width
@@ -161,15 +169,16 @@ nmap <silent> <leader>fg :Rg<cr>
 nmap <silent> <leader>fm :Marks<cr>
 nmap <silent> <leader>fl :BLines<cr>
 nmap <silent> <leader>fc :BCommits<cr>
+nmap <silent> <C-Space> :Commands<cr>
 " }}}
 
 " Tell vim to remember certain things when we exit
 "  '10  :  marks will be remembered for up to 10 previously edited files
-"  "100 :  will save up to 100 lines for each register
+"  "1000 :  will save up to 100 lines for each register
 "  :20  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
-set viminfo='10,\"100,:20,%,n~/.nviminfo
+"set viminfo='10,\"1000,:20,%,n~/.nviminfo
 
 set list
 set listchars=tab:\|\ ,trail:·
@@ -182,12 +191,12 @@ highlight SpecialKey ctermbg=red ctermfg=white
 "set spellsuggest=9
 
 " set <space> to toggle fold
-nnoremap <space> za
+nnoremap <S-O> za
 
 " function shortcuts (command mode)
 nmap <C-]> :noh<enter>
 "
-"nmap <C-N> :NERDTreeToggle<enter>
+nmap <C-N> :NERDTreeToggle<enter>
 ""nmap <C-T> :NERDTreeFocus<enter>
 
 " tabbed windows (command mode)

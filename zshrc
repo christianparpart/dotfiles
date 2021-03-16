@@ -286,6 +286,8 @@ add-zsh-hook preexec preexec_hook_contour
 # zle -N contour-capture-test
 # bindkey '^F' contour-capture-test
 
-. ~/.fzf-contour.zsh
+if [[ -f ~/.fzf-contour.zsh ]]; then
+	. ~/.fzf-contour.zsh
+fi
 
 # }}}
