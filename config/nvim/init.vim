@@ -375,8 +375,8 @@ let g:nerdtree_sync_cursorline = 1
 " {{{ Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-" packadd! vimspector
-" nmap <silent> <Leader>dR :VimspectorReset<cr>
+packadd! vimspector
+nmap <silent> <Leader>dR :VimspectorReset<cr>
 " }}}
 " {{{ Quickfix window navigation (qn = next, qp = prev)
 nmap <silent> <Leader>qn :cn<CR>

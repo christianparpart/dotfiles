@@ -28,9 +28,9 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 "Plug '~/.fzf'
 
-Plug 'nvim-lua/popup.nvim'                              " required for telescope.nvim?
-Plug 'nvim-lua/plenary.nvim'                            " required for telescope.nvim?
-Plug 'nvim-telescope/telescope.nvim'                    # also a fuzzy finder
+" Plug 'nvim-lua/popup.nvim'                              " required for telescope.nvim?
+" Plug 'nvim-lua/plenary.nvim'                            " required for telescope.nvim?
+" Plug 'nvim-telescope/telescope.nvim'                    # also a fuzzy finder
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
 Plug 'puremourning/vimspector'                          " advanced debugging
