@@ -191,7 +191,7 @@ highlight SpecialKey ctermbg=red ctermfg=white
 "set spellsuggest=9
 
 " set <space> to toggle fold
-nnoremap <S-O> za
+nnoremap <S-F> za
 
 " function shortcuts (command mode)
 nmap <C-]> :noh<enter>
@@ -279,6 +279,7 @@ set hidden
 set updatetime=300
 let g:coc_global_extensions = [
   \ 'coc-json',
+  \ 'coc-flutter',
   \ 'coc-pairs',
   \ 'coc-python',
   \ 'coc-snippets',
