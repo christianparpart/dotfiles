@@ -183,8 +183,13 @@ BINDIRS=( ${HOME}/bin
           ${HOME}/.local/bin
 		  $(test -d "${HOME}/usr/opt" && find "${HOME}/usr/opt" -name bin -print)
 		  $(find /opt -name bin -print)
+		  #$(find /usr/lib -maxdepth 1 -name bin -print)
           /usr/local/opt/llvm/bin
           ${GOPATH}/bin )
+
+if [[ -d /usr/lib/dart/bin ]]; then
+      export PATH="/usr/lib/dart/bin${PATH:+:}${PATH}"
+fi
 
 for bindir in ${BINDIRS[*]}; do
   if [[ -d "${bindir}" ]]; then
