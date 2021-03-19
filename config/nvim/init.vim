@@ -90,8 +90,8 @@ set smartindent
 set cindent
 set hlsearch
 set incsearch
-set ignorecase
-set smartcase
+"set ignorecase
+"set smartcase
 set autoread " automatically reload files upon change outside VIM
 set termguicolors
 
