@@ -231,6 +231,7 @@ set diffopt+=vertical
 
 " {{{ Telescope
 " Find files using Telescope command-line sugar.
+nnoremap <leader>tc <cmd>Telescope command_history<cr>
 nnoremap <leader>tt <cmd>Telescope commands<cr>
 nnoremap <leader>tf <cmd>Telescope find_files<cr>
 nnoremap <leader>tg <cmd>Telescope live_grep<cr>
