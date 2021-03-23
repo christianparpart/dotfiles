@@ -35,7 +35,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-Plug 'nvim-treesitter/nvim-treesitter'
+"Plug 'nvim-treesitter/nvim-treesitter'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+
 "Plug 'davidhalter/jedi-vim'                            " Python
 Plug 'tomlion/vim-solidity'                             " Solidity
 "Plug 'jrozner/vim-antlr'                               " ANTLR
@@ -49,10 +51,21 @@ Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'unkiwii/vim-nerdtree-sync'
 
+""" Dart/Flutter
+" Plug 'dart-lang/dart-vim-plugin'
+" Plug 'thosakwe/vim-flutter'
+" Plug 'natebosch/vim-lsc'
+" Plug 'natebosch/vim-lsc-dart'
+
 " XXX This must be the last plugin to be loaded!
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " ----------------------------------------------------------------------------------------
+
+" vim-lsc (&dart/flutter) related
+set shortmess-=F
+"let g:lsc_server_commands = {'dart': 'dart_language_server'}
+"let g:flutter_command = "/snap/bin/flutter"
 
 "filetype indent on
 filetype plugin on
@@ -95,6 +108,34 @@ set incsearch
 set autoread " automatically reload files upon change outside VIM
 set termguicolors
 
+""" {{{ lsc dart/flutter
+" Use all the defaults (recommended):
+let g:lsc_auto_map = v:true
+
+" Apply the defaults with a few overrides:
+let g:lsc_auto_map = {'defaults': v:true, 'FindReferences': '<leader>r'}
+
+" Setting a value to a blank string leaves that command unmapped:
+let g:lsc_auto_map = {'defaults': v:true, 'FindImplementations': ''}
+
+" ... or set only the commands you want mapped without defaults.
+" Complete default mappings are:
+let g:lsc_auto_map = {
+    \ 'GoToDefinition': '<C-]>',
+    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
+    \ 'FindReferences': 'gr',
+    \ 'NextReference': '<C-n>',
+    \ 'PreviousReference': '<C-p>',
+    \ 'FindImplementations': 'gI',
+    \ 'FindCodeActions': 'ga',
+    \ 'Rename': 'gR',
+    \ 'ShowHover': v:true,
+    \ 'DocumentSymbol': 'go',
+    \ 'WorkspaceSymbol': 'gS',
+    \ 'SignatureHelp': 'gm',
+    \ 'Completion': 'completefunc',
+    \}
+""" }}}
 " {{{ macros
 " apply macro stored in q
 nmap <silent> <Space> @q
@@ -244,19 +285,18 @@ nnoremap <leader>tq <cmd>Telescope quickfix<cr>
 nnoremap <Leader>td :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
 
 " }}}
-" {{{ TreeSitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
-  },
-}
-EOF
-" }}}
 
-" {{{ git (fugitive)
+" {{{ TreeSitter
+" lua <<EOF
+" require'nvim-treesitter.configs'.setup {
+"   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+"   highlight = {
+"     enable = true,              -- false will disable the whole extension
+"     disable = { "c", "rust" },  -- list of language that will be disabled
+"   },
+" }
+" EOF
+" }}}
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>ga :Gcommit --amend<CR>
