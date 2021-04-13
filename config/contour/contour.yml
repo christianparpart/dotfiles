@@ -35,20 +35,24 @@ profiles:
             TERM_OLD: xterm-256color
             TERM: xterm-kitty # for curly underline
             COLORTERM: truecolor
+        maximized: false
+        fullscreen: false
         history:
             limit: 64000
             auto_scroll_on_update: false
             scroll_multiplier: 3
-        font_size: 12
         font:
-            render_mode: lcd
-            regular: "Fira Code"
-            bold: "Hack:style=bold"
-            italic: "Hack:style=italic"
-            bold_italic: "Hack:style=bold italic"
+            size: 12
+            render_mode: gray
+            only_monospace: false
+            #regular: "Fira Code"
+            regular: "JetBrainsMono Nerd Font Mono"
+            # bold: "Hack:style=bold"
+            # italic: "Hack:style=italic"
+            # bold_italic: "Hack:style=bold italic"
         tab_width: 8
         cursor:
-            shape: "block"
+            shape: "bar"
             blinking: false
             blinking_interval: 500
         background:
@@ -62,6 +66,8 @@ profiles:
         terminal_size:
             columns: 130
             lines: 30
+        maximized: true
+        fullscreen: false
         environment:
             TERM: xterm-256color
             COLORTERM: truecolor
@@ -69,22 +75,20 @@ profiles:
             limit: 32000
             auto_scroll_on_update: false
             scroll_multiplier: 3
-        font_size: 20
         font:
-            render_mode: lcd
-            regular: "Fira Code"
-            bold: "Hack:style=bold"
-            italic: "Hack:style=italic"
-            bold_italic: "Hack:style=bold italic"
+            size: 14
+            render_mode: gray
+            only_monospace: true
+            regular: "JetBrainsMono Nerd Font Mono"
         tab_width: 8
         cursor:
-            shape: "block"
+            shape: "bar"
             blinking: false
             blinking_interval: 500
         background:
-            opacity: 0.9
-            blur: true
-        colors: "gjm"
+            opacity: 1.0
+            blur: false
+        colors: "default"
 
     work:
         <<: *main_profile
@@ -95,14 +99,17 @@ profiles:
         environment:
             TERM: xterm-256color
             COLORTERM: truecolor
+        maximized: true
+        fullscreen: false
         history:
             limit: 32000
             auto_scroll_on_update: false
             scroll_multiplier: 3
-        font_size: 20
         font:
+            size: 20
             render_mode: lcd
-            regular: "Fira Code"
+            #regular: "Fira Code"
+            regular: "JetBrainsMono Nerd Font Mono"
             bold: "Hack:style=bold"
             italic: "Hack:style=italic"
             bold_italic: "Hack:style=bold italic"
@@ -114,7 +121,7 @@ profiles:
         background:
             opacity: 1.0
             blur: false
-        colors: "solarized"
+        colors: "default"
 
         # Hyperlinks (via OSC-8) can be stylized and colorized on hover.
         hyperlink_decoration:
@@ -129,46 +136,46 @@ profiles:
 # You may alternatively use 0x as prefix instead of #.
 # For example 0x102030 is equal to '#102030'.
 color_schemes:
-    default:
-        # Mandates the color of the cursor.
-        cursor: '#FF6000'
-        # The text selection color can be customized here.
-        #selection: '#808080'
-        # Opacity to draw the selection color over the existing screen cell(s).
-        hyperlink_decoration:
-            normal: '#f0f0c0'
-            hover: '#ff0000'
-        # Default colors
-        default:
-            # Default background color (this can be made transparent, see above).
-            #background: '#1d1f21'
-            background: '#101010'
-            # Default foreground text color.
-            foreground: '#d5d8d6'
-        # Normal colors
-        normal:
-            black:   '#000000'
-            red:     '#e6193c'
-            green:   '#29a329'
-            yellow:  '#c3c322'
-            blue:    '#3d62f5'
-            magenta: '#ad2bee'
-            cyan:    '#1999b3'
-            white:   '#8ca68c'
-        # Bright colors
-        bright:
-            black:   '#000000'
-            red:     '#e6193c'
-            green:   '#29a329'
-            yellow:  '#c3c322'
-            blue:    '#3d62f5'
-            magenta: '#ad2bee'
-            cyan:    '#1999b3'
-            white:   '#f0fff0'
+    # default:
+    #     # Mandates the color of the cursor.
+    #     cursor: '#FF6000'
+    #     # The text selection color can be customized here.
+    #     #selection: '#808080'
+    #     # Opacity to draw the selection color over the existing screen cell(s).
+    #     hyperlink_decoration:
+    #         normal: '#f0f0c0'
+    #         hover: '#ff0000'
+    #     # Default colors
+    #     default:
+    #         # Default background color (this can be made transparent, see above).
+    #         #background: '#1d1f21'
+    #         background: '#101010'
+    #         # Default foreground text color.
+    #         foreground: '#d5d8d6'
+    #     # Normal colors
+    #     normal:
+    #         black:   '#000000'
+    #         red:     '#e6193c'
+    #         green:   '#007300'
+    #         yellow:  '#c0c000'
+    #         blue:    '#3d62f5'
+    #         magenta: '#ad2bee'
+    #         cyan:    '#1999b3'
+    #         white:   '#8ca68c'
+    #     # Bright colors
+    #     bright:
+    #         black:   '#000000'
+    #         red:     '#e6193c'
+    #         green:   '#00ff00'
+    #         yellow:  '#ffff00'
+    #         blue:    '#3d62f5'
+    #         magenta: '#ad2bee'
+    #         cyan:    '#1999b3'
+    #         white:   '#f0fff0'
 
     default:
         # Mandates the color of the cursor.
-        cursor: '#e02030'
+        cursor: '#7070f0'
         # The text selection color can be customized here.
         selection: '#c08080'
         # Opacity to draw the selection color over the existing screen cell(s).
@@ -203,71 +210,15 @@ color_schemes:
             cyan:    '#1999b3'
             white:   '#f0fff0'
 
-    google_dark:
-        cursor: '#FF3040'
-        selection: '#c08080'
-        hyperlink_decoration:
-            normal: '#f0f0c0'
-            hover: '#ff0000'
-        # Default colors
-        default:
-            background: '#1d1f21'
-            foreground: '#c5c8c6'
-        normal:
-            black:   '#1d1f21'
-            red:     '#cc342b'
-            green:   '#198844'
-            yellow:  '#fba922'
-            blue:    '#3971ed'
-            magenta: '#a36ac7'
-            cyan:    '#3971ed'
-            white:   '#c5c8c6'
-        bright:
-            black:   '#969896'
-            red:     '#cc342b'
-            green:   '#198844'
-            yellow:  '#fba922'
-            blue:    '#3971ed'
-            magenta: '#a36ac7'
-            cyan:    '#3971ed'
-            white:   '#ffffff'
-
-    solarized:
-        cursor: '#FF3040'
-        selection: '#c08080'
-        hyperlink_decoration:
-            normal: '#f0f0c0'
-            hover: '#ff0000'
-        default:
-            background: '#fdf6e3'
-            foreground: '#586e75'
-        normal:
-            black:   '#002b36'
-            red:     '#dc322f'
-            green:   '#859900'
-            yellow:  '#b58900'
-            blue:    '#268bd2'
-            magenta: '#6c71c4'
-            cyan:    '#2aa198'
-            white:   '#93a1a1'
-        bright:
-            black:   '#657b83'
-            red:     '#dc322f'
-            green:   '#859900'
-            yellow:  '#b58900'
-            blue:    '#268bd2'
-            magenta: '#6c71c4'
-            cyan:    '#2aa198'
-            white:   '#fdf6e3'
-
     gjm:
-        cursor: '#FF3040'
+        cursor: '#f0c0f0'
         selection: '#c08080'
         hyperlink_decoration:
             normal: '#f0f0c0'
             hover: '#ff0000'
         default:
-            background: '#1c1c1c'
+            #background: '#1c1c1c'
+            background: '#000000'
             foreground: '#c5c5c5'
         normal:
             black:   '#1c1c1c'
@@ -378,35 +329,8 @@ input_mapping:
     - { mods: [Shift],          mouse: WheelUp,     action: ScrollPageUp }
     - { mods: [Control, Alt],   key: 'k',           action: ScrollMarkUp }
     - { mods: [Control, Alt],   key: 'j',           action: ScrollMarkDown }
-    - { mods: [Control],        key: '1',           action: ChangeProfile, name: 'main' }
-    - { mods: [Control],        key: '2',           action: ChangeProfile, name: 'mobile' }
+    - { mods: [Control, Alt],   key: '1',           action: ChangeProfile, name: 'main' }
+    - { mods: [Control, Alt],   key: '2',           action: ChangeProfile, name: 'mobile' }
     - { mods: [Control, Alt],   key: P,             action: WriteScreen, chars: '\e]888\e\\' }
     - { mods: [Control, Shift], key: M,             action: CopyPreviousMarkRange }
-
-# Logging section
-logging:
-    # Log messages will go to the specified file.
-    # If no file was specified, then the terminal emulator will write to its own stdout instead.
-    # file: "/tmp/contour.log"
-
-    # Enable this option to log parser (syntax) errors in the VT sequence stream.
-    parse_errors: true
-
-    # Enable this option to log VT semantic errors, such as invalid parameters to some VT sequence.
-    invalid_output: true
-
-    # Enable this option to log VT sequences that were seen but are unsupported.
-    unsupported_output: true
-
-    # Enable this option to log raw VT sequence input.
-    raw_input: false
-
-    # Enable this option to log parsed VT sequence input.
-    trace_input: false
-
-    # Enable this option to log raw VT sequence output.
-    raw_output: false
-
-    # Enable this option to log parsed VT sequence output.
-    trace_output: false
 

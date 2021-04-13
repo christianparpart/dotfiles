@@ -62,6 +62,9 @@ Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " ----------------------------------------------------------------------------------------
 
+" Do not hide anything.
+set conceallevel=0
+
 " vim-lsc (&dart/flutter) related
 set shortmess-=F
 "let g:lsc_server_commands = {'dart': 'dart_language_server'}
@@ -78,7 +81,7 @@ set modelines=5
 set modeline
 set laststatus=2
 "set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
-set colorcolumn=110
+set colorcolumn=80 " 110
 set textwidth=100
 set wrapmargin=0
 set formatoptions=cqt "tcron
@@ -433,5 +436,10 @@ nmap <silent> <Leader>dR :VimspectorReset<cr>
 nmap <silent> <Leader>qn :cn<CR>
 nmap <silent> <Leader>qp :cp<CR>
 " }}}
+
+augroup personal
+  au!
+  autocmd BufNewFile,BufRead *.terminfo set syntax=terminfo
+augroup END
 
 "set bg=light
