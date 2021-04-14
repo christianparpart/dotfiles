@@ -229,70 +229,11 @@ export QT_QPA_PLATFORM="xcb"
 # use `bindkey -e` to switch back to Emacs-mode
 export PATH="$HOME/.cargo/bin:$PATH"
 
-# fzf integration
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-# {{{ setmark
-vt_set_profile()
-{
-    local name="${1}"
-    echo -ne "\033P\$p${name}\033\\"
+function try_source() {
+	[[ ! -f "${1}" ]] || source "${1}"
 }
 
-dir_prefix_match()
-{
-	echo "$PWD" | grep -q "$1" &>/dev/null
-}
-
-update_profile()
-{
-	case "$PWD" in
-		"$HOME"/work*) vt_set_profile work ;;
-		"$HOME"/projects*) vt_set_profile main ;;
-		*) vt_set_profile mobile ;;
-	esac
-}
-
-autoload -Uz add-zsh-hook
-precmd_hook_contour()
-{
-	# disable text reflow
-	print -n '\e[?2027l' >$TTY
-
-	# set line mark
-	echo -n '\e[>M' >$TTY
-
-	# set cwd
-	echo -ne '\e]7;'$(pwd)'\e\\' >$TTY
-
-	# update profile based on CWD
-	# update_profile >$TTY
-}
-
-preexec_hook_contour()
-{
-	# enable text reflow
-	print "\e[?2027h" >$TTY
-}
-
-add-zsh-hook precmd precmd_hook_contour
-add-zsh-hook preexec preexec_hook_contour
-
-# contour-capture-test() {
-# 	#~/usr/bin/isatty-stdio
-# 	#/home/trapni/projects/contour/build/src/contour/contour capture output "${tmpfile}" lines 50 logical timeout 20
-# 	local tmpfile="/tmp/capture.vt"
-# 	contour capture output "${tmpfile}" lines 50 logical timeout 20
-# 	fzf <"${tmpfile}"
-# }
-# zle -N contour-capture-test
-# bindkey '^F' contour-capture-test
-
-if [[ -f ~/.fzf-contour.zsh ]]; then
-	. ~/.fzf-contour.zsh
-fi
-
-# }}}
+try_source ~/.fzf.zsh
+try_source ~/.p10k.zsh
+try_source ~/.fzf-contour.zsh
+try_source ~/projects/contour/contour-integration.zsh
