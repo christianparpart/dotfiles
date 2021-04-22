@@ -171,11 +171,13 @@ alias vg='valgrind --num-callers=32 --vgdb=full'
 if [[ -d "$HOME/usr/lib/pkgconfig" ]]; then
   export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
 fi
-alias n='ninja'
-alias nn='nice ninja'
+alias n='nice ninja -j20'
+alias nn='ninja'
 # }}}
 # {{{ bin PATH directories
 BINDIRS=( ${HOME}/bin
+          ${HOME}/go/bin
+          ${HOME}/.local/bin
           ${HOME}/usr/bin
           ${HOME}/usr/sbin
 		  /snap/bin
@@ -227,7 +229,13 @@ bindkey \^U backward-kill-line
 export QT_QPA_PLATFORM="xcb"
 
 # use `bindkey -e` to switch back to Emacs-mode
-export PATH="$HOME/.cargo/bin:$PATH"
+source $HOME/.cargo/env
+
+# Enforce applying the KDE configured theme of KDE applications.
+export XDG_CURRENT_DESKTOP=KDE
+
+# path to evmone library for soltest/isoltest
+export ETH_EVMONE="${HOME}/usr/opt/evmone/lib/libevmone.so"
 
 function try_source() {
 	[[ ! -f "${1}" ]] || source "${1}"

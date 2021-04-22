@@ -76,8 +76,8 @@ profiles:
             auto_scroll_on_update: false
             scroll_multiplier: 3
         font:
-            size: 14
-            render_mode: gray
+            size: 12
+            render_mode: lcd
             only_monospace: true
             regular: "JetBrainsMono Nerd Font Mono"
         tab_width: 8
@@ -154,7 +154,7 @@ color_schemes:
     #         foreground: '#d5d8d6'
     #     # Normal colors
     #     normal:
-    #         black:   '#000000'
+    #         black:   '#2a2a2a'
     #         red:     '#e6193c'
     #         green:   '#007300'
     #         yellow:  '#c0c000'
@@ -164,7 +164,7 @@ color_schemes:
     #         white:   '#8ca68c'
     #     # Bright colors
     #     bright:
-    #         black:   '#000000'
+    #         black:   '#505050'
     #         red:     '#e6193c'
     #         green:   '#00ff00'
     #         yellow:  '#ffff00'
@@ -201,7 +201,7 @@ color_schemes:
             white:   '#8ca68c'
         # Bright colors
         bright:
-            black:   '#000000'
+            black:   '#505050'
             red:     '#e6193c'
             green:   '#29a329'
             yellow:  '#c3c322'

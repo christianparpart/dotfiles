@@ -6,18 +6,20 @@
 	"diagnostic.hintSign": "💡",
 	"languageserver": {
 		"clangd": {
-			"command": "clangd-11",
+			"command": "clangd-12",
 			"args": ["--background-index"],
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json"],
 			"filetypes": ["c", "cpp", "objc", "objcpp"]
 		},
 		"solidity": {
-			"command": "/home/trapni/work/solidity/build/solc/solc",
-			"args": [
-				"--lsp",
-				"--lsp-trace=/tmp/solc.lsp.log"
-			],
+			"host": "127.0.0.1",
+			"port": 4040,
+			//"command": "/home/trapni/work/solidity/build/solc/solc",
+			//"args": [
+			//	"--lsp",
+			//	"--lsp-trace=/tmp/solc.lsp.log"
+			//],
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json", ".git/"],
 			"filetypes": ["solidity"]

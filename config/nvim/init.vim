@@ -290,15 +290,15 @@ nnoremap <Leader>td :lua require'telescope.builtin'.find_files(require('telescop
 " }}}
 
 " {{{ TreeSitter
-" lua <<EOF
-" require'nvim-treesitter.configs'.setup {
-"   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-"   highlight = {
-"     enable = true,              -- false will disable the whole extension
-"     disable = { "c", "rust" },  -- list of language that will be disabled
-"   },
-" }
-" EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+}
+EOF
 " }}}
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
@@ -429,7 +429,7 @@ let g:nerdtree_sync_cursorline = 1
 " {{{ Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-packadd! vimspector
+"packadd! vimspector
 nmap <silent> <Leader>dR :VimspectorReset<cr>
 " }}}
 " {{{ Quickfix window navigation (qn = next, qp = prev)

@@ -78,6 +78,8 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # start a terminal
 bindsym $mod+Return exec $terminal
 
+bindsym $mod+e exec XDG_CURRENT_DESKTOP=KDE dolphin
+
 # kill focused window
 bindsym $mod+Shift+q kill
 
@@ -89,7 +91,7 @@ bindsym Print exec --no-startup-id spectacle
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
-bindsym $mod+p exec --no-startup-id i3-dmenu-desktop
+bindsym $mod+p exec --no-startup-id XDG_CURRENT_DESKTOP=KDE i3-dmenu-desktop
 
 # change focus
 bindsym $mod+$left focus left
@@ -107,15 +109,15 @@ bindsym $mod+Shift+$right move right
 bindsym $mod+b split h
 
 # split in vertical orientation
-bindsym $mod+v split v
+BINDSYM $MOD+V SPLIT V
 
 # enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen toggle
+BINDSYM $MOD+F FULLSCREEN TOGGLE
 
-# change container layout (stacked, tabbed, toggle split)
+# CHANGE CONTAINER LAYOUT (STACKED, TABBED, TOGGLE SPLIT)
 #bindsym $mod+s layout stacked
 bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+s layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -189,9 +191,9 @@ bindsym $mod+r mode "resize"
 # }}}
 # {{{ colors
 # class                 border  backgr. text    indicator child_border
-client.focused          #ff6600 #ff4000 #ffffff #ff0000   #cc4000
-client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
-client.unfocused        #ff0099 #555555 #cccccc #292d2e   #222222
+client.focused          #cccccc #3366ff #ffffff #ff0000   #cc4000
+client.focused_inactive #333333 #01879c #ffff00 #484e50   #5f676a
+client.unfocused        #ff0099 #005555 #cccccc #292d2e   #222222
 client.urgent           #2f343a #c00000 #ffffff #a00000   #a00000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
@@ -199,21 +201,23 @@ client.background       #ffffff
 # {{{ bar
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-	status_command i3status
-    i3bar_command i3bar --transparency
-    colors {
-        background #000000D0
-        statusline #ffffffFF
-        separator #666666FF
-
-        focused_workspace  #ff6600FF #cc4000FF #ffffffFF
-        active_workspace   #333333FF #5f676aFF #ffffffFF
-        inactive_workspace #333333FF #222222FF #888888FF
-        urgent_workspace   #2f343aFF #900000FF #ffffffFF
-        binding_mode       #2f343aFF #900000FF #ffffffFF
-    }
-}
+# bar {
+# 	# status_command i3status
+# 	status_command i3status
+#     i3bar_command i3bar --transparency
+# 	#i3bar_command polybar primary
+#     colors {
+#         background #000000D0
+#         statusline #ffffffFF
+#         separator #666666FF
+#
+#         focused_workspace  #ff6600FF #cc4000FF #ffffffFF
+#         active_workspace   #333333FF #5f676aFF #ffffffFF
+#         inactive_workspace #333333FF #222222FF #888888FF
+#         urgent_workspace   #2f343aFF #900000FF #ffffffFF
+#         binding_mode       #2f343aFF #900000FF #ffffffFF
+#     }
+# }
 # }}}
 # {{{ KDE Plasma
 ## Plasma Integration
@@ -232,7 +236,7 @@ for_window [class="(?i)*nextcloud*"] floating disable
 for_window [class="plasmashell" window_type="notification"] floating enable, border none, move right 700px, move down 450px, no_focus 
 # }}}
 # {{{ placement criteria
-assign [class="obs"] $ws9
+assign [class="obs"] $ws10
 # }}}
 
 # seems not to work ;(
@@ -270,6 +274,9 @@ exec --no-startup-id pasystray
 
 # Get password manager for Google Chrome working by using gnome-keyring-daemon ;-(
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+
+# startup polybar
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 # Initially startup a terminal
 #exec $terminal

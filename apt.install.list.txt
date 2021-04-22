@@ -5,6 +5,7 @@ apt-transport-https
 aptitude
 autoconf
 automake
+bpytop
 ccache
 cgdb
 clang
@@ -14,6 +15,7 @@ cmake
 cmake-curses-gui
 cmatrix
 curl
+fping
 fsharp
 g++-10
 gdb
@@ -47,6 +49,7 @@ libpcre3-dev
 libqt5core5a-dbgsym
 libqt5gui5-dbgsym
 libreadline-dev
+libsixel-bin
 libssl-dev
 libtool
 libtool-bin
@@ -56,11 +59,13 @@ lsof
 ltrace
 make
 mc
+net-tools
 ngrep
 ninja-build
 nodejs
 openjdk-17-jdk
 openssh-server
+pasystray
 pkg-config
 plasma-desktop
 plasma-desktop
@@ -73,6 +78,8 @@ python3-pip
 python3-scipy
 qtbase5-dev
 qtbase5-dev-tools
+ranger
+rofi
 rsync
 strace
 stterm
@@ -90,6 +97,7 @@ vim-gtk
 wget
 whois
 xdot
+xdotool
 xterm
 zlib1g-dev
 zsh
