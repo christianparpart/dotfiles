@@ -43,7 +43,7 @@ Plug 'tomlion/vim-solidity'                             " Solidity
 "Plug 'jrozner/vim-antlr'                               " ANTLR
 Plug 'tikhomirov/vim-glsl'                             " OpenGL shading language (GLSL)
 "Plug 'fsharp/vim-fsharp'                               " F#
-"Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
+Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
 Plug 'PProvost/vim-ps1'
 
 """ file manager on the left side
@@ -61,6 +61,11 @@ Plug 'unkiwii/vim-nerdtree-sync'
 Plug 'ryanoasis/vim-devicons'
 call plug#end()
 " ----------------------------------------------------------------------------------------
+
+" clear my personal config group
+augroup mygroup
+    au!
+augroup end
 
 " Do not hide anything.
 set conceallevel=0
@@ -142,6 +147,8 @@ let g:lsc_auto_map = {
 " {{{ macros
 " apply macro stored in q
 nmap <silent> <Space> @q
+
+nmap <silent> <C-Space> @@
 " }}}
 " {{{ spaceline tweaks
 "let g:spaceline_seperate_style = 'arrow'
@@ -288,7 +295,6 @@ nnoremap <leader>tq <cmd>Telescope quickfix<cr>
 nnoremap <Leader>td :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
 
 " }}}
-
 " {{{ TreeSitter
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
@@ -300,6 +306,7 @@ require'nvim-treesitter.configs'.setup {
 }
 EOF
 " }}}
+" {{{ Git: Fugitive
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>ga :Gcommit --amend<CR>
@@ -366,12 +373,15 @@ nmap <silent> <Leader>gp :GFiles<CR>
 " show logging output in a vsplit view
 nmap <silent> <Leader>co :CocCommand workspace.showOutput<cr>
 
-au CursorHold * sil call CocActionAsync('highlight')
-au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 highlight CocErrorHighlight ctermfg=Red guibg=#ff0000
 highlight CocHighlightText ctermbg=Blue guibg=#005599
 
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup mygroup
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+    " Update signature help on jump placeholder.
+    autocmd User CocJumpPlaceholder silent call CocActionAsync('showSignatureHelp')
+    "autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+augroup end
 
 " extend statusline with CoC status
 set statusline^=%{coc#status()})}
@@ -386,7 +396,7 @@ else
 endif
 " }}}
 " {{{ NERDTree
-let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'build' ]
+let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*' ]
 let g:nerdtree_sync_cursorline = 1
 
 " open NERDTree when no file is to be opened at sratup
@@ -431,15 +441,16 @@ let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 "packadd! vimspector
 nmap <silent> <Leader>dR :VimspectorReset<cr>
+nmap <silent> <Leader>dP <Plug>VimspectorPause
+nmap <silent> <Leader>dC <Plug>VimspectorContinue
 " }}}
 " {{{ Quickfix window navigation (qn = next, qp = prev)
 nmap <silent> <Leader>qn :cn<CR>
 nmap <silent> <Leader>qp :cp<CR>
 " }}}
 
-augroup personal
-  au!
+augroup mygroup
   autocmd BufNewFile,BufRead *.terminfo set syntax=terminfo
-augroup END
+augroup end
 
 "set bg=light
