@@ -207,7 +207,7 @@ LIBDIRS=( ${HOME}/lib/cmake
           ${HOME}/go/lib/cmake
           ${HOME}/usr/lib/cmake
 		  $(test -d "${HOME}/usr/opt" && find "${HOME}/usr/opt" -name cmake -print | grep lib/cmake)
-		  $(find /opt -name cmake -print)
+		  $(find /opt -name cmake -print 2>/dev/null)
 		)
 extend_search_path CMAKE_LIBRARY_PATH "${LIBDIRS[@]}"
 #export CMAKE_LIBRARY_PATH=/home/trapni/usr/opt/boost/lib
@@ -221,7 +221,7 @@ BINDIRS=( ${HOME}/bin
           ${HOME}/.rvm/bin
           ${HOME}/.local/bin
 		  $(test -d "${HOME}/usr/opt" && find "${HOME}/usr/opt" -name bin -print)
-		  $(find /opt -name bin -print)
+		  $(find /opt -name bin -print 2>/dev/null)
 		  #$(find /usr/lib -maxdepth 1 -name bin -print)
           /usr/local/opt/llvm/bin
           ${GOPATH}/bin )
