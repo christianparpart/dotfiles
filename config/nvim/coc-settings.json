@@ -6,7 +6,7 @@
 	"diagnostic.hintSign": "💡",
 	"languageserver": {
 		"clangd": {
-			"command": "clangd-12",
+			"command": "clangd",
 			"args": ["--background-index"],
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json"],
@@ -20,6 +20,11 @@
 			//	"--lsp",
 			//	"--lsp-trace=/tmp/solc.lsp.log"
 			//],
+			"settings": { // Solidity Standard-JSON's input settings.
+				"remappings": [],
+				"evmVersion": "berlin",
+				"": ""
+			},
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json", ".git/"],
 			"filetypes": ["solidity"]

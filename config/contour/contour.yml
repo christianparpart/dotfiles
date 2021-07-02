@@ -3,6 +3,10 @@
 # Word delimiters when selecting word-wise.
 word_delimiters: " /\\()\"'-.,:;<>~!@#$%^&*+=[]{}~?|│"
 
+experimental:
+    # Enables experimental support for termcap/terminfo queries
+    tcap: true
+
 #default_profile: main
 default_profile: mobile
 
@@ -28,6 +32,7 @@ images:
 profiles:
     main: &main_profile
         #shell: "/bin/bash"
+        refresh_rate: 60
         terminal_size:
             columns: 130
             lines: 30
@@ -38,7 +43,7 @@ profiles:
         maximized: false
         fullscreen: false
         history:
-            limit: 64000
+            limit: 4000
             auto_scroll_on_update: false
             scroll_multiplier: 3
         font:
@@ -63,6 +68,7 @@ profiles:
     mobile:
         <<: *main_profile
         #shell: "/bin/bash"
+        refresh_rate: 30
         terminal_size:
             columns: 130
             lines: 30
@@ -72,13 +78,13 @@ profiles:
             TERM: xterm-256color
             COLORTERM: truecolor
         history:
-            limit: 32000
+            limit: 4000
             auto_scroll_on_update: false
             scroll_multiplier: 3
         font:
             size: 12
             render_mode: lcd
-            only_monospace: true
+            only_monospace: false
             regular: "JetBrainsMono Nerd Font Mono"
         tab_width: 8
         cursor:
@@ -87,12 +93,13 @@ profiles:
             blinking_interval: 500
         background:
             opacity: 1.0
-            blur: false
+            blur: true
         colors: "default"
 
     work:
         <<: *main_profile
         #shell: "/bin/bash"
+        refresh_rate: 30
         terminal_size:
             columns: 130
             lines: 30
@@ -102,7 +109,7 @@ profiles:
         maximized: true
         fullscreen: false
         history:
-            limit: 32000
+            limit: 4000
             auto_scroll_on_update: false
             scroll_multiplier: 3
         font:
@@ -298,15 +305,12 @@ color_schemes:
 # - SendChars         Writes given characters in `chars` member to the applications input.
 # - ToggleFullScreen  Enables/disables full screen mode.
 # - WriteScreen:      Writes VT sequence in `chars` member to the screen (bypassing the application).
+# - ToggleAllKeyBindings: ...
+# - ToggleAllMouseBindings
 
 input_mapping:
     - { mods: [Control],        mouse: Left,        action: FollowHyperlink }
-    - { mods: [],               mouse: Middle,      action: PasteSelection }
-    - { mods: [],               mouse: WheelDown,   action: ScrollDown }
-    - { mods: [],               mouse: WheelUp,     action: ScrollUp }
     - { mods: [Alt],            key: Enter,         action: ToggleFullscreen }
-    - { mods: [Alt],            mouse: WheelDown,   action: DecreaseOpacity }
-    - { mods: [Alt],            mouse: WheelUp,     action: IncreaseOpacity }
     - { mods: [Control],        key: '0',           action: ResetFontSize }
     - { mods: [Control, Alt],   key: S,             action: ScreenshotVT }
     - { mods: [Control, Shift], key: Plus,          action: IncreaseFontSize }
@@ -317,20 +321,25 @@ input_mapping:
     - { mods: [Control, Shift], key: V,             action: PasteClipboard }
     - { mods: [Control, Shift], key: Comma,         action: OpenConfiguration }
     - { mods: [Control, Shift], key: Q,             action: Quit }
-    - { mods: [Control],        mouse: WheelDown,   action: DecreaseFontSize }
-    - { mods: [Control],        mouse: WheelUp,     action: IncreaseFontSize }
     - { mods: [Shift],          key: DownArrow,     action: ScrollOneDown }
     - { mods: [Shift],          key: End,           action: ScrollToBottom }
     - { mods: [Shift],          key: Home,          action: ScrollToTop }
     - { mods: [Shift],          key: PageDown,      action: ScrollPageDown }
     - { mods: [Shift],          key: PageUp,        action: ScrollPageUp }
     - { mods: [Shift],          key: UpArrow,       action: ScrollOneUp }
-    - { mods: [Shift],          mouse: WheelDown,   action: ScrollPageDown }
-    - { mods: [Shift],          mouse: WheelUp,     action: ScrollPageUp }
     - { mods: [Control, Alt],   key: 'k',           action: ScrollMarkUp }
     - { mods: [Control, Alt],   key: 'j',           action: ScrollMarkDown }
     - { mods: [Control, Alt],   key: '1',           action: ChangeProfile, name: 'main' }
     - { mods: [Control, Alt],   key: '2',           action: ChangeProfile, name: 'mobile' }
     - { mods: [Control, Alt],   key: P,             action: WriteScreen, chars: '\e]888\e\\' }
     - { mods: [Control, Shift], key: M,             action: CopyPreviousMarkRange }
+    - { mods: [],               mouse: Middle,      action: PasteSelection }
+    - { mods: [],               mouse: WheelDown,   action: ScrollDown }
+    - { mods: [],               mouse: WheelUp,     action: ScrollUp }
+    - { mods: [Alt],            mouse: WheelDown,   action: DecreaseOpacity }
+    - { mods: [Alt],            mouse: WheelUp,     action: IncreaseOpacity }
+    - { mods: [Control],        mouse: WheelDown,   action: DecreaseFontSize }
+    - { mods: [Control],        mouse: WheelUp,     action: IncreaseFontSize }
+    - { mods: [Shift],          mouse: WheelDown,   action: ScrollPageDown }
+    - { mods: [Shift],          mouse: WheelUp,     action: ScrollPageUp }
 
