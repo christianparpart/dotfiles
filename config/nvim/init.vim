@@ -145,7 +145,7 @@ let g:airline_theme='gruvbox'
 let g:airline_statusline_ontop = 1
 let g:airline_powerline_fonts = 1
 " let g:airline#extensions#tabline#left_sep = ' '
-" let g:airline#extensions#tabline#left_alt_sep = '|'
+" let g:airline#extensions#tabline#left_alt_sep = '│'
 let g:airline#extensions#tabline#enabled = 1            " show tabs or all buffers if only one tab open
 let g:airline_section_z = 'U+%04B'                      " show current character symbol in hex
 
@@ -247,7 +247,7 @@ nmap <C-H> :bp<enter>
 nmap <C-L> :bn<enter>
 nmap <C-K> :bd<enter>
 
-let g:indentLine_char_list = ['|', '|', '|', '|']
+let g:indentLine_char_list = ['│', '│', '│', '│']
 
 " Toggle between header/source files.
 nnoremap <leader>fo :call CurtineIncSw()<CR>
