@@ -5,17 +5,10 @@ set nocompatible
 call plug#begin('~/.vim/plugged')
 
 """ colorschemes
-"Plug 'tomasr/molokai'
-"Plug 'chriskempson/base16-vim'
-"Plug 'NLKNguyen/papercolor-theme'
-"Plug 'rafalbromirski/vim-aurora'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-gruvbox8'
 
 """ bottom/top status/tab line
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-"Plug 'hardcoreplayers/spaceline.vim'
 Plug 'glepnir/spaceline.vim'
 
 """ productivity
@@ -26,7 +19,6 @@ Plug 'ericcurtin/CurtineIncSw.vim'                      " toggle between header/
 Plug 'editorconfig/editorconfig-vim'                    " auto-load .editorconfig files
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
 Plug 'junegunn/fzf.vim'
-"Plug '~/.fzf'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
 Plug 'puremourning/vimspector'                          " advanced debugging
@@ -35,15 +27,9 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
-"Plug 'nvim-treesitter/nvim-treesitter'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 
-"Plug 'davidhalter/jedi-vim'                            " Python
-Plug 'tomlion/vim-solidity'                             " Solidity
-"Plug 'jrozner/vim-antlr'                               " ANTLR
 Plug 'tikhomirov/vim-glsl'                             " OpenGL shading language (GLSL)
-"Plug 'fsharp/vim-fsharp'                               " F#
-Plug 'fsharp/vim-fsharp', {'for': 'fsharp', 'do': 'make fsautocomplete'}
 Plug 'PProvost/vim-ps1'
 
 """ file manager on the left side
@@ -229,10 +215,10 @@ nmap <silent> <C-Space> :Commands<cr>
 "  :20  :  up to 20 lines of command-line history will be remembered
 "  %    :  saves and restores the buffer list
 "  n... :  where to save the viminfo files
-"set viminfo='10,\"1000,:20,%,n~/.nviminfo
+set viminfo='10,\"1000,:20,%,n~/.nviminfo
 
-set list
-set listchars=tab:\|\ ,trail:·
+set list " │
+set listchars=tab:\│\ ,trail:·
 highlight NonText ctermbg=red ctermfg=white
 highlight SpecialKey ctermbg=red ctermfg=white
 
@@ -262,9 +248,6 @@ nmap <C-L> :bn<enter>
 nmap <C-K> :bd<enter>
 
 let g:indentLine_char_list = ['|', '|', '|', '|']
-
-" FSharp
-au BufNewFile,BufRead *.fs set ts=4 sw=4 et
 
 " Toggle between header/source files.
 nnoremap <leader>fo :call CurtineIncSw()<CR>
@@ -301,7 +284,7 @@ require'nvim-treesitter.configs'.setup {
   ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
-    disable = { "c", "rust" },  -- list of language that will be disabled
+    disable = { },  -- list of language that will be disabled
   },
 }
 EOF
@@ -437,6 +420,7 @@ let g:nerdtree_sync_cursorline = 1
 "      :Termdebug ./path/to/binary [parameters ...]
 " }}}
 " {{{ Vimspector
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
 let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 "packadd! vimspector
