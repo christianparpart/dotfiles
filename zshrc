@@ -279,6 +279,11 @@ export XDG_CURRENT_DESKTOP=KDE
 # path to evmone library for soltest/isoltest
 export ETH_EVMONE="${HOME}/usr/opt/evmone/lib/libevmone.so"
 
+# ZSH Highlighting overrides
+# See: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
+typeset -A ZSH_HIGHLIGHT_STYLES
+ZSH_HIGHLIGHT_STYLES[comment]='fg=#909090'
+
 function try_source() {
 	[[ ! -f "${1}" ]] || source "${1}"
 }
