@@ -9,6 +9,8 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 #
 #export TERM=xterm-kitty
+export TERM=xterm-256color
+export COLORTERM=24bit
 
 HISTFILE=~/.histfile
 HISTSIZE=100000
@@ -237,3 +239,12 @@ try_source ~/.fzf.zsh
 try_source ~/.p10k.zsh
 try_source ~/.fzf-contour.zsh
 try_source ~/projects/contour/contour-integration.zsh
+
+CONTOUR_BIN=$(which contour)
+T=$PATH
+unset PATH
+eval "$(${CONTOUR_BIN} generate integration shell zsh to -)"
+export PATH=$T
+unset T
+
+ulimit -c unlimited
