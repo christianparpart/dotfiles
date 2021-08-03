@@ -15,19 +15,14 @@ Plug 'ericcurtin/CurtineIncSw.vim'                      " toggle between header/
 Plug 'editorconfig/editorconfig-vim'                    " auto-load .editorconfig files
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
 Plug 'junegunn/fzf.vim'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
 Plug 'puremourning/vimspector'                          " advanced debugging
-
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-
 Plug 'tikhomirov/vim-glsl'              " OpenGL shading language (GLSL)
 Plug 'PProvost/vim-ps1'                 " PowerShell
-
 Plug 'scrooloose/nerdtree'              " file manager on the left side
 Plug 'Xuyuanp/nerdtree-git-plugin'      " -> Extending with git functionas
 Plug 'unkiwii/vim-nerdtree-sync'        " -> keep tree in sync with document
@@ -41,6 +36,11 @@ Plug 'unkiwii/vim-nerdtree-sync'        " -> keep tree in sync with document
 Plug 'ryanoasis/vim-devicons'           " XXX This must be the last plugin to be loaded!
 call plug#end()
 " }}}
+
+" clear my personal config group
+augroup mygroup
+    au!
+augroup end
 
 " Do not hide anything.
 set conceallevel=0
@@ -86,6 +86,8 @@ set wrapmargin=0
 " {{{ macros
 " apply macro stored in q
 nmap <silent> <Space> @q
+
+nmap <silent> <C-Space> @@
 " }}}
 " {{{ spaceline tweaks
 "let g:spaceline_seperate_style = 'arrow'
@@ -292,12 +294,15 @@ nmap <silent> <Leader>gp :GFiles<CR>
 " show logging output in a vsplit view
 nmap <silent> <Leader>co :CocCommand workspace.showOutput<cr>
 
-au CursorHold * sil call CocActionAsync('highlight')
-au CursorHoldI * sil call CocActionAsync('showSignatureHelp')
 highlight CocErrorHighlight ctermfg=Red guibg=#ff0000
 highlight CocHighlightText ctermbg=Blue guibg=#005599
 
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup mygroup
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+    " Update signature help on jump placeholder.
+    autocmd User CocJumpPlaceholder silent call CocActionAsync('showSignatureHelp')
+    "autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+augroup end
 
 " extend statusline with CoC status
 set statusline^=%{coc#status()})}
@@ -312,7 +317,7 @@ else
 endif
 " }}}
 " {{{ NERDTree
-let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'build' ]
+let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*' ]
 let g:nerdtree_sync_cursorline = 1
 
 " open NERDTree when no file is to be opened at sratup
@@ -353,9 +358,10 @@ let g:nerdtree_sync_cursorline = 1
 "      :Termdebug ./path/to/binary [parameters ...]
 " }}}
 " {{{ Vimspector
+let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
 let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-packadd! vimspector
+"packadd! vimspector
 nmap <silent> <Leader>dR :VimspectorReset<cr>
 nmap <silent> <Leader>dp <Plug>VimspectorPause
 nmap <silent> <Leader>dc <Plug>VimspectorContinue
@@ -369,12 +375,11 @@ nmap <silent> <Leader>qn :cn<CR>
 nmap <silent> <Leader>qp :cp<CR>
 " }}}
 
-augroup personal
-  au!
+augroup mygroup
   autocmd BufNewFile,BufRead *.terminfo set syntax=terminfo
 
   nnoremap <leader>hi :%!xxd<CR>
   nnoremap <leader>ho :%!xxd -r<CR>
-augroup END
+augroup end
 
 "set bg=light

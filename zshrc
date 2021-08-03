@@ -116,6 +116,7 @@ plugins=(
 	colorize
 	command-not-found
 	zsh-autosuggestions
+	zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -174,17 +175,56 @@ if [[ -d "$HOME/usr/lib/pkgconfig" ]]; then
   export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
 fi
 alias n='ninja'
-alias nn='nice ninja'
+alias nn='nice ninja -j20'
+alias j='make -j25'
+alias jj='nice make -j25'
 # }}}
+# {{{ key chain (SSH, GnuPG)
+#if [[ -z "${SUDO_USER}" && -z "${SSH_AUTH_SOCK}" ]]; then
+if [[ -z "${SUDO_USER}" ]]; then
+  if which keychain &>/dev/null; then
+    SSH_KEYFILES=$(cd ~/.ssh; for file in $(/bin/ls -1 *.pub 2>/dev/null); do echo $(basename $file .pub); done)
+    eval `keychain --systemd --quiet --eval ${SSH_KEYFILES}`
+  fi
+fi
+# }}}
+
+function extend_search_path() {
+    local VarName=${1}
+    shift
+    local SearchPaths=( ${*} )
+    for dir in ${SearchPaths[*]}; do
+        local CurrentPaths=$(echo $(eval echo "\$(eval echo \$${VarName})"))
+        if [[ -d "${dir}" ]]; then
+            if echo "${CurrentPaths}" | grep -q -v ${dir}; then
+                export `eval "echo '\$VarName'"`="${dir}${CurrentPaths:+:}$(echo $(eval echo "\$(eval echo \$${VarName})"))"
+            else
+                # Path already in \$PATH: ${dir}
+                true
+            fi
+        fi
+    done
+}
+
+LIBDIRS=( ${HOME}/lib/cmake
+          ${HOME}/go/lib/cmake
+          ${HOME}/usr/lib/cmake
+		  $(test -d "${HOME}/usr/opt" && find "${HOME}/usr/opt" -name cmake -print | grep lib/cmake)
+		  $(find /opt -name cmake -print 2>/dev/null)
+		)
+extend_search_path CMAKE_LIBRARY_PATH "${LIBDIRS[@]}"
+#export CMAKE_LIBRARY_PATH=/home/trapni/usr/opt/boost/lib
+
 # {{{ bin PATH directories
 BINDIRS=( ${HOME}/bin
+          ${HOME}/go/bin
           ${HOME}/usr/bin
           ${HOME}/usr/sbin
 		  /snap/bin
           ${HOME}/.rvm/bin
           ${HOME}/.local/bin
 		  $(test -d "${HOME}/usr/opt" && find "${HOME}/usr/opt" -name bin -print)
-		  $(find /opt -name bin -print)
+		  $(find /opt -name bin -print 2>/dev/null)
 		  #$(find /usr/lib -maxdepth 1 -name bin -print)
           /usr/local/opt/llvm/bin
           ${GOPATH}/bin )
@@ -217,7 +257,11 @@ fi
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # https://github.com/zsh-users/zsh-autosuggestions
-export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff6000,bg=#202020,bold,underline"
+#export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff6000,bg=#202020,bold,underline"
+#export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="bg=#6060ff,fg=#FFFFFF,bold,underline"
+export ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#6060ff,bold,underline"
+# #ff6000
+# #6060ff
 
 # C-U to mimmick the behaviour of C-U in Bash
 bindkey \^U backward-kill-line
@@ -229,7 +273,13 @@ bindkey \^U backward-kill-line
 export QT_QPA_PLATFORM="xcb"
 
 # use `bindkey -e` to switch back to Emacs-mode
-export PATH="$HOME/.cargo/bin:$PATH"
+source $HOME/.cargo/env
+
+# Enforce applying the KDE configured theme of KDE applications.
+export XDG_CURRENT_DESKTOP=KDE
+
+# path to evmone library for soltest/isoltest
+export ETH_EVMONE="${HOME}/usr/opt/evmone/lib/libevmone.so"
 
 function try_source() {
 	[[ ! -f "${1}" ]] || source "${1}"
@@ -238,7 +288,7 @@ function try_source() {
 try_source ~/.fzf.zsh
 try_source ~/.p10k.zsh
 try_source ~/.fzf-contour.zsh
-try_source ~/projects/contour/contour-integration.zsh
+#try_source ~/projects/contour/contour-integration.zsh
 
 CONTOUR_BIN=$(which contour)
 T=$PATH

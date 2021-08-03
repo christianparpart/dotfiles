@@ -33,5 +33,7 @@
 		  "filetypes": ["sh"],
 		  "ignoredRootPaths": ["~"]
 		}
-	}
+  },
+  "python.linting.pylintEnabled": true,
+  "python.linting.enabled": true
 }
