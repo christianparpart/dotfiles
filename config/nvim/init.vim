@@ -1,15 +1,11 @@
 set nocompatible
 " vim:et:ts=4:sw=4
 
-" ----------------------------------------------------------------------------------------
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.vim/plugged') " {{{ 
 
-""" colorschemes
-Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'                      " colorschemes
 Plug 'lifepillar/vim-gruvbox8'
-
-""" bottom/top status/tab line
-Plug 'glepnir/spaceline.vim'
+Plug 'glepnir/spaceline.vim'                " bottom/top status/tab line
 
 """ productivity
 Plug 'yggdroot/indentline'                              " visualize indentation levels
@@ -19,23 +15,17 @@ Plug 'ericcurtin/CurtineIncSw.vim'                      " toggle between header/
 Plug 'editorconfig/editorconfig-vim'                    " auto-load .editorconfig files
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
 Plug 'junegunn/fzf.vim'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
 Plug 'puremourning/vimspector'                          " advanced debugging
-
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-
-Plug 'tikhomirov/vim-glsl'                             " OpenGL shading language (GLSL)
-Plug 'PProvost/vim-ps1'
-
-""" file manager on the left side
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'unkiwii/vim-nerdtree-sync'
+Plug 'tikhomirov/vim-glsl'              " OpenGL shading language (GLSL)
+Plug 'PProvost/vim-ps1'                 " PowerShell
+Plug 'scrooloose/nerdtree'              " file manager on the left side
+Plug 'Xuyuanp/nerdtree-git-plugin'      " -> Extending with git functionas
+Plug 'unkiwii/vim-nerdtree-sync'        " -> keep tree in sync with document
 
 """ Dart/Flutter
 " Plug 'dart-lang/dart-vim-plugin'
@@ -43,10 +33,9 @@ Plug 'unkiwii/vim-nerdtree-sync'
 " Plug 'natebosch/vim-lsc'
 " Plug 'natebosch/vim-lsc-dart'
 
-" XXX This must be the last plugin to be loaded!
-Plug 'ryanoasis/vim-devicons'
+Plug 'ryanoasis/vim-devicons'           " XXX This must be the last plugin to be loaded!
 call plug#end()
-" ----------------------------------------------------------------------------------------
+" }}}
 
 " clear my personal config group
 augroup mygroup
@@ -56,80 +45,44 @@ augroup end
 " Do not hide anything.
 set conceallevel=0
 
-" vim-lsc (&dart/flutter) related
-set shortmess-=F
-"let g:lsc_server_commands = {'dart': 'dart_language_server'}
-"let g:flutter_command = "/snap/bin/flutter"
-
-"filetype indent on
 filetype plugin on
 
 syntax on
-set noswapfile
-set mouse=a
-set backspace=indent,eol,start
-set modelines=5
-set modeline
-set laststatus=2
-"set statusline=%f\ %l:%c\ [offset:\ %{line2byte(line('.'))-1+col('.')-1}]\ hex:\ 0x%02B
-set colorcolumn=80 " 110
-set textwidth=100
-set wrapmargin=0
-set formatoptions=cqt "tcron
-set nowrap
-set encoding=utf-8
-set foldenable
-set fdm=marker
-set scrolloff=8
-set sidescrolloff=15
-set sidescroll=1
-set nu
-set rnu
-set numberwidth=5
-set tabstop=4
-set shiftwidth=4
-set noexpandtab
-set smarttab
-set cursorline
-"set cursorcolumn
+
 set autoindent
-set smartindent
+set autoread                    " automatically reload files upon change outside VIM
+set backspace=indent,eol,start
 set cindent
+set colorcolumn=80 " 110
+set cursorline
+set diffopt+=vertical           " vertical diff'ing (see Gdiffsplit)
+set encoding=utf-8
+set fdm=marker
+set foldenable
+set formatoptions=cqt "tcron
 set hlsearch
 set incsearch
-"set ignorecase
-"set smartcase
-set autoread " automatically reload files upon change outside VIM
+set laststatus=2
+set modeline
+set modelines=5
+set mouse=a
+set noexpandtab
+set noswapfile
+set nowrap
+set nu
+set numberwidth=5
+set rnu
+set scrolloff=8
+set shiftwidth=4
+set sidescroll=1
+set sidescrolloff=15
+set smartindent
+set smarttab
+set tabstop=4
 set termguicolors
+set textwidth=100
+set wrapmargin=0
 
-""" {{{ lsc dart/flutter
-" Use all the defaults (recommended):
-let g:lsc_auto_map = v:true
-
-" Apply the defaults with a few overrides:
-let g:lsc_auto_map = {'defaults': v:true, 'FindReferences': '<leader>r'}
-
-" Setting a value to a blank string leaves that command unmapped:
-let g:lsc_auto_map = {'defaults': v:true, 'FindImplementations': ''}
-
-" ... or set only the commands you want mapped without defaults.
-" Complete default mappings are:
-let g:lsc_auto_map = {
-    \ 'GoToDefinition': '<C-]>',
-    \ 'GoToDefinitionSplit': ['<C-W>]', '<C-W><C-]>'],
-    \ 'FindReferences': 'gr',
-    \ 'NextReference': '<C-n>',
-    \ 'PreviousReference': '<C-p>',
-    \ 'FindImplementations': 'gI',
-    \ 'FindCodeActions': 'ga',
-    \ 'Rename': 'gR',
-    \ 'ShowHover': v:true,
-    \ 'DocumentSymbol': 'go',
-    \ 'WorkspaceSymbol': 'gS',
-    \ 'SignatureHelp': 'gm',
-    \ 'Completion': 'completefunc',
-    \}
-""" }}}
 " {{{ macros
 " apply macro stored in q
 nmap <silent> <Space> @q
@@ -209,32 +162,19 @@ nmap <silent> <leader>fc :BCommits<cr>
 nmap <silent> <C-Space> :Commands<cr>
 " }}}
 
-" Tell vim to remember certain things when we exit
-"  '10  :  marks will be remembered for up to 10 previously edited files
-"  "1000 :  will save up to 100 lines for each register
-"  :20  :  up to 20 lines of command-line history will be remembered
-"  %    :  saves and restores the buffer list
-"  n... :  where to save the viminfo files
-set viminfo='10,\"1000,:20,%,n~/.nviminfo
-
-set list " │
+let g:indentLine_char_list = ['│', '│', '│', '│']
+set list
 set listchars=tab:\│\ ,trail:·
 highlight NonText ctermbg=red ctermfg=white
 highlight SpecialKey ctermbg=red ctermfg=white
 
-" spelling (en)
-"set spell
-"set spelllang=en
-"set spellsuggest=9
-
 " set <space> to toggle fold
 nnoremap <S-F> za
 
-" function shortcuts (command mode)
+" disable highlighting of last search
 nmap <C-]> :noh<enter>
-"
+
 nmap <C-N> :NERDTreeToggle<enter>
-""nmap <C-T> :NERDTreeFocus<enter>
 
 " tabbed windows (command mode)
 nmap <S-T> :tabnew<enter>
@@ -247,8 +187,6 @@ nmap <C-H> :bp<enter>
 nmap <C-L> :bn<enter>
 nmap <C-K> :bd<enter>
 
-let g:indentLine_char_list = ['│', '│', '│', '│']
-
 " Toggle between header/source files.
 nnoremap <leader>fo :call CurtineIncSw()<CR>
 
@@ -257,11 +195,6 @@ nmap <A-h> :wincmd h<enter>
 nmap <A-j> :wincmd j<enter>
 nmap <A-k> :wincmd k<enter>
 nmap <A-l> :wincmd l<enter>
-
-vnoremap <Leader>dp :diffput<CR>
-
-" vertical diff'ing (see Gdiffsplit)
-set diffopt+=vertical
 
 " {{{ Telescope
 " Find files using Telescope command-line sugar.
@@ -276,26 +209,31 @@ nnoremap <leader>tm <cmd>Telescope marks<cr>
 nnoremap <leader>tp <cmd>Telescope man_pages<cr>
 nnoremap <leader>tq <cmd>Telescope quickfix<cr>
 nnoremap <Leader>td :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
-
 " }}}
 " {{{ TreeSitter
-lua <<EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = { },  -- list of language that will be disabled
-  },
-}
+if has('nvim')
+    lua <<EOF
+    require'nvim-treesitter.configs'.setup {
+      ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+      highlight = {
+        enable = true,              -- false will disable the whole extension
+        disable = { "c", "rust" },  -- list of language that will be disabled
+      },
+    }
 EOF
+endif
 " }}}
-" {{{ Git: Fugitive
+" {{{ Git-fugitive 
 nnoremap <leader>gs :Gstatus<CR>
 nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>ga :Gcommit --amend<CR>
 " nnoremap <leader>gt :Gcommit -v -q %<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
+
+" In diff view to stage a chunk
+vnoremap <Leader>dp :diffput<CR>
 vnoremap <leader>ga :diffput<CR>
+
 " nnoremap <leader>ge :Gedit<CR>
 " nnoremap <leader>gr :Gread<CR>
 " nnoremap <leader>gw :Gwrite<CR><CR>
@@ -425,8 +363,12 @@ let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
 "packadd! vimspector
 nmap <silent> <Leader>dR :VimspectorReset<cr>
-nmap <silent> <Leader>dP <Plug>VimspectorPause
-nmap <silent> <Leader>dC <Plug>VimspectorContinue
+nmap <silent> <Leader>dp <Plug>VimspectorPause
+nmap <silent> <Leader>dc <Plug>VimspectorContinue
+nmap <silent> <Leader>dr <Plug>VimspectorRestart
+nmap <silent> <Leader>dt <Plug>VimspectorRunToCursor
+" Evaluate expression under cursor (or visual) in popup
+nmap <silent> <Leader>de <Plug>VimspectorBalloonEval
 " }}}
 " {{{ Quickfix window navigation (qn = next, qp = prev)
 nmap <silent> <Leader>qn :cn<CR>
@@ -435,6 +377,9 @@ nmap <silent> <Leader>qp :cp<CR>
 
 augroup mygroup
   autocmd BufNewFile,BufRead *.terminfo set syntax=terminfo
+
+  nnoremap <leader>hi :%!xxd<CR>
+  nnoremap <leader>ho :%!xxd -r<CR>
 augroup end
 
 "set bg=light
