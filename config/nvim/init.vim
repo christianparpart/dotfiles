@@ -8,6 +8,7 @@ Plug 'lifepillar/vim-gruvbox8'
 Plug 'glepnir/spaceline.vim'                " bottom/top status/tab line
 
 """ productivity
+Plug 'machakann/vim-highlightedyank'                    " shortly highlights what was yanked
 Plug 'yggdroot/indentline'                              " visualize indentation levels
 Plug 'tpope/vim-fugitive'                               " git in vim
 Plug 'tomtom/tcomment_vim'                              " toggle comments using `gc`
