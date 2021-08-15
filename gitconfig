@@ -59,3 +59,5 @@
 	path = .gitconfig-github
 [includeIf "gitdir:~/ethereum/"]
 	path = ethereum/gitconfig
+[http]
+	cookiefile = /home/trapni/.gitcookies
