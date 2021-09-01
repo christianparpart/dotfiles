@@ -12,10 +12,10 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-if [[ $"$TERMINAL_NAME" = "contour" ]]; then
-	export TERM=contour-latest
+if [[ "$TERMINAL_NAME" = "contour" ]]; then
+	export TERM="contour-latest"
 else
-	export TERM=xterm-256color
+	export TERM="xterm-256color"
 fi
 
 HISTFILE=~/.histfile
