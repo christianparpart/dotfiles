@@ -295,8 +295,9 @@ nmap <silent> <Leader>gp :GFiles<CR>
 " show logging output in a vsplit view
 nmap <silent> <Leader>co :CocCommand workspace.showOutput<cr>
 
-highlight CocErrorHighlight ctermfg=Red guibg=#ff0000
-highlight CocHighlightText ctermbg=Blue guibg=#005599
+highlight CocErrorHighlight gui=undercurl guisp=#FF0000
+highlight CocHighlightText  ctermbg=Blue guibg=#005599
+"highlight Error             ctermfg=Green guifg=#00ff00
 
 augroup mygroup
     autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -324,39 +325,6 @@ let g:nerdtree_sync_cursorline = 1
 " open NERDTree when no file is to be opened at sratup
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" }}}
-" {{{ Debugging
-" " open up debug windows in vertical split
-" let g:termdebug_wide = 10
-"
-" packadd termdebug
-"
-" " open up debug windows in vertical split
-" let g:termdebug_wide = 10
-"
-" nmap <C-F5>  :Stop <CR>
-" nmap <F5>    :Continue <CR>
-" nmap <F6>    :Run <CR>
-" nmap <F9>    :Break <CR>
-" nmap <F8>    :Clear <CR>
-" nmap <F10>   :Over <CR>
-" nmap <F11>   :Step <CR>
-" nmap <F12>   :Finish <CR>
-" nmap <S-F10> :Finish <CR>
-"
-" nmap <Leader>dr :Run <Cr>
-" nmap <Leader>ds :Stop <Cr>
-" nmap <Leader>dc :Continue <Cr>
-"
-" nmap <Leader>db :Break <Cr>
-" nmap <Leader>dd :Clear <Cr>
-"
-" nmap <Leader>dn :Over <Cr>
-" nmap <Leader>di :Step <Cr>
-" nmap <Leader>df :Finish<Cr>
-
-" XXX example debug command:
-"      :Termdebug ./path/to/binary [parameters ...]
 " }}}
 " {{{ Vimspector
 let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
