@@ -1,6 +1,6 @@
-if [[ $- == *i* ]]; then
-    exec powershell -nologo
-fi
+# if [[ $- == *i* ]]; then
+#     exec powershell -nologo
+# fi
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -11,10 +11,12 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-#
-#export TERM=xterm-kitty
-export TERM=xterm-256color
-export COLORTERM=24bit
+
+if [[ $"$TERMINAL_NAME" = "contour" ]]; then
+	export TERM=contour-latest
+else
+	export TERM=xterm-256color
+fi
 
 HISTFILE=~/.histfile
 HISTSIZE=100000
