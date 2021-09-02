@@ -295,9 +295,10 @@ nmap <silent> <Leader>gp :GFiles<CR>
 " show logging output in a vsplit view
 nmap <silent> <Leader>co :CocCommand workspace.showOutput<cr>
 
-highlight CocErrorHighlight gui=undercurl guisp=#FF0000
-highlight CocHighlightText  ctermbg=Blue guibg=#005599
-"highlight Error             ctermfg=Green guifg=#00ff00
+highlight CocWarningHighlight gui=undercurl guisp=#FFFF00
+highlight CocErrorHighlight   gui=undercurl guisp=#FF0000
+highlight CocHighlightText    guibg=#005599
+highlight Error               gui=undercurl guisp=#FF0000
 
 augroup mygroup
     autocmd CursorHold * silent call CocActionAsync('highlight')
