@@ -176,6 +176,7 @@ fi
 unalias grep
 
 # {{{ C++ development
+alias pt='valgrind --tool=callgrind --dump-instr=yes --collect-jumps=yes --branch-sim=yes --cache-sim=yes'
 alias vg='valgrind --num-callers=32 --vgdb=full'
 if [[ -d "$HOME/usr/lib/pkgconfig" ]]; then
   export PKG_CONFIG_PATH="${HOME}/usr/lib/pkgconfig${PKG_CONFIG_PATH:+:}${PKG_CONFIG_PATH}"
