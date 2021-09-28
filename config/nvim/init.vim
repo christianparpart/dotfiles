@@ -247,9 +247,9 @@ vnoremap <leader>ga :diffput<CR>
 " nnoremap <leader>gpl :Dispatch! git pull<CR>
 " }}}
 " {{{ CoC related
-set cmdheight=2
+set cmdheight=1
 set hidden
-set updatetime=300
+set updatetime=50 " wanna be awesome (use 300 or 750 if the CPU won't make it, but 50 is awesome)
 let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-flutter',
