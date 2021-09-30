@@ -1,5 +1,4 @@
 {
-<<<<<<< Updated upstream
 	"codeLens.enable": true,
 	"diagnostic.errorSign": "❗",
 	"diagnostic.warningSign": "⚠️",
@@ -14,8 +13,11 @@
 			"filetypes": ["asm", "nasm", "S"]
 		},
 		"clangd": {
-			"command": "clangd",
-			"args": ["--background-index"],
+			"command": "/usr/local/opt/llvm/bin/clangd",
+			"args": [
+				"--background-index",
+				"--clang-tidy"
+			],
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json"],
 			"filetypes": ["c", "cpp", "objc", "objcpp"]
@@ -36,17 +38,6 @@
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json", ".git/"],
 			"filetypes": ["solidity"]
-=======
-	"languageserver": {
-		"clangd": {
-			"command": "/usr/local/opt/llvm/bin/clangd",
-			"args": [
-				"--background-index",
-				"--clang-tidy"
-			],
-			"trace.server": "verbose",
-			"rootPatterns": ["compile_commands.json", ".git/"],
-			"filetypes": ["c", "cpp", "objc", "objcpp"]
 		},
 		"cmake": {
 			"command": "cmake-language-server",

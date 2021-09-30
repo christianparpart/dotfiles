@@ -36,7 +36,7 @@ setopt HIST_BEEP
 unsetopt share_history
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/trapni/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 #export MANPAGER="nvim +Man!"
 
@@ -280,7 +280,7 @@ bindkey \^U backward-kill-line
 export QT_QPA_PLATFORM="xcb"
 
 # use `bindkey -e` to switch back to Emacs-mode
-source $HOME/.cargo/env
+test -f $HOME/.cargo/env && source $HOME/.cargo/env
 
 # Enforce applying the KDE configured theme of KDE applications.
 export XDG_CURRENT_DESKTOP=KDE
@@ -302,11 +302,13 @@ try_source ~/.p10k.zsh
 try_source ~/.fzf-contour.zsh
 #try_source ~/projects/contour/contour-integration.zsh
 
-CONTOUR_BIN=$(which contour)
-T=$PATH
-unset PATH
-eval "$(${CONTOUR_BIN} generate integration shell zsh to -)"
-export PATH=$T
-unset T
+if which contour &>/dev/null; then
+	CONTOUR_BIN=$(which contour)
+	T=$PATH
+	unset PATH
+	eval "$(${CONTOUR_BIN} generate integration shell zsh to -)"
+	export PATH=$T
+	unset T
+fi
 
 ulimit -c unlimited

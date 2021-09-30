@@ -160,7 +160,9 @@ nmap <silent> <leader>fg :Rg<cr>
 nmap <silent> <leader>fm :Marks<cr>
 nmap <silent> <leader>fl :BLines<cr>
 nmap <silent> <leader>fc :BCommits<cr>
-nmap <silent> <C-Space> :Commands<cr>
+"nmap <silent> <C-Space> :Commands<cr>
+nmap <silent> <C-M> :Commands<cr>
+nmap <silent> <leader>cc :Commands<cr>
 " }}}
 
 let g:indentLine_char_list = ['│', '│', '│', '│']
