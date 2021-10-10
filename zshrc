@@ -12,11 +12,11 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-if [[ "$TERMINAL_NAME" = "contour" ]]; then
-	export TERM="contour-latest"
-else
-	export TERM="xterm-256color"
-fi
+# if [[ "$TERMINAL_NAME" = "contour" ]]; then
+# 	export TERM="contour-latest"
+# else
+# 	export TERM="xterm-256color"
+# fi
 
 HISTFILE=~/.histfile
 HISTSIZE=100000
@@ -223,8 +223,7 @@ extend_search_path CMAKE_LIBRARY_PATH "${LIBDIRS[@]}"
 #export CMAKE_LIBRARY_PATH=/home/trapni/usr/opt/boost/lib
 
 # {{{ bin PATH directories
-BINDIRS=( ${HOME}/bin
-          ${HOME}/go/bin
+BINDIRS=( ${HOME}/go/bin
           ${HOME}/usr/bin
           ${HOME}/usr/sbin
 		  /snap/bin
@@ -234,11 +233,8 @@ BINDIRS=( ${HOME}/bin
 		  $(find /opt -name bin -print 2>/dev/null)
 		  #$(find /usr/lib -maxdepth 1 -name bin -print)
           /usr/local/opt/llvm/bin
-          ${GOPATH}/bin )
-
-if [[ -d /usr/lib/dart/bin ]]; then
-      export PATH="/usr/lib/dart/bin${PATH:+:}${PATH}"
-fi
+		  /usr/lib/dart/bin
+		  ${GOPATH}/bin )
 
 for bindir in ${BINDIRS[*]}; do
   if [[ -d "${bindir}" ]]; then
@@ -250,6 +246,10 @@ for bindir in ${BINDIRS[*]}; do
     fi
   fi
 done
+
+# force ~/bin to be first
+test -d "${HOME}/bin" && export PATH="${HOME}/bin:${PATH}"
+
 # }}}
 # {{{ key chain (SSH, GnuPG)
 #if [[ -z "${SUDO_USER}" && -z "${SSH_AUTH_SOCK}" ]]; then
