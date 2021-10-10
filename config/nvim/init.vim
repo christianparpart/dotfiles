@@ -194,10 +194,18 @@ nmap <C-K> :bd<enter>
 nnoremap <leader>fo :call CurtineIncSw()<CR>
 
 " moving around buffers via Alt modifier
-nmap <A-h> :wincmd h<enter>
-nmap <A-j> :wincmd j<enter>
-nmap <A-k> :wincmd k<enter>
-nmap <A-l> :wincmd l<enter>
+nmap <A-h> :wincmd h<CR>
+nmap ˙     :wincmd h<CR>
+
+nmap <A-j> :wincmd j<CR>
+nmap ∆     :wincmd j<CR>
+
+nmap <A-k> :wincmd k<CR>
+nmap ˚     :wincmd k<CR>
+
+nmap <A-l> :wincmd l<CR>
+nmap ¬     :wincmd l<CR>
+
 
 " {{{ Telescope
 " Find files using Telescope command-line sugar.
