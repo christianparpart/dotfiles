@@ -1,6 +1,8 @@
 set nocompatible
 " vim:et:ts=4:sw=4
 
+let g:lsp_cxx_hl_use_text_props = 1
+
 call plug#begin('~/.vim/plugged') " {{{ 
 
 Plug 'morhetz/gruvbox'                      " colorschemes
@@ -17,6 +19,7 @@ Plug 'editorconfig/editorconfig-vim'                    " auto-load .editorconfi
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
+Plug 'jackguo380/vim-lsp-cxx-highlight'                 " LSP based semantic syntax highlighting for C++
 Plug 'puremourning/vimspector'                          " advanced debugging
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -228,7 +231,7 @@ if has('nvim')
       ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
       highlight = {
         enable = true,              -- false will disable the whole extension
-        disable = { "c", "rust" },  -- list of language that will be disabled
+        disable = { "c", "cpp", "rust" },  -- list of language that will be disabled
       },
     }
 EOF
@@ -263,6 +266,7 @@ set updatetime=50 " wanna be awesome (use 300 or 750 if the CPU won't make it, b
 let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-flutter',
+  \ 'coc-clangd',
   \ 'coc-pairs',
   \ 'coc-python',
   \ 'coc-snippets',

@@ -4,6 +4,13 @@
 	"diagnostic.warningSign": "⚠️",
 	"diagnostic.infoSign": "ℹ️",
 	"diagnostic.hintSign": "💡",
+	"suggest.enablePreview": true,
+	"coc.preferences.colorSupport": true,
+	"clangd.fallbackFlags": [ "-std=c++17" ],
+	"clangd.semanticHighlighting": true,
+	"clangd.checkUpdates": true,
+	"clangd.serverCompletionRanking": true,
+	"coc.preferences.semanticTokensHighlights": false,
 	"languageserver": {
 		"asm": {
 			"command": "asm-lsp",
@@ -11,16 +18,6 @@
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json"],
 			"filetypes": ["asm", "nasm", "S"]
-		},
-		"clangd": {
-			"command": "/usr/local/opt/llvm/bin/clangd",
-			"args": [
-				"--background-index",
-				"--clang-tidy"
-			],
-			"trace.server": "verbose",
-			"rootPatterns": ["compile_commands.json"],
-			"filetypes": ["c", "cpp", "objc", "objcpp"]
 		},
 		"solidity": {
 			"host": "127.0.0.1",
@@ -47,5 +44,6 @@
 				"buildDirectory": "build"
 			}
 		}
-    }
+    },
+    "clangd.path": "~/.config/coc/extensions/coc-clangd-data/install/12.0.1/clangd_12.0.1/bin/clangd"
 }
