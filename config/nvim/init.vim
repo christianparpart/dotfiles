@@ -360,10 +360,12 @@ nmap <silent> <Leader>qp :cp<CR>
 " }}}
 
 augroup mygroup
-  autocmd BufNewFile,BufRead *.terminfo set syntax=terminfo
+    au!
+    autocmd BufNewFile,BufRead *.terminfo set syntax=terminfo
+    autocmd BufNewFile,BufRead *.sol set filetype=solidity
 
-  nnoremap <leader>hi :%!xxd<CR>
-  nnoremap <leader>ho :%!xxd -r<CR>
+    nnoremap <leader>hi :%!xxd<CR>
+    nnoremap <leader>ho :%!xxd -r<CR>
 augroup end
 
 "set bg=light
