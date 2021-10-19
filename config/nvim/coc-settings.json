@@ -30,7 +30,6 @@
 			"settings": { // Solidity Standard-JSON's input settings.
 				"remappings": [],
 				"evmVersion": "berlin",
-				"": ""
 			},
 			"trace.server": "verbose",
 			"rootPatterns": ["compile_commands.json", ".git/"],
