@@ -25,6 +25,7 @@
 	br = branch
 	di = diff
 	dis = diff --staged
+	fp = push -f --force-with-lease
 
 	cat = !"cat"
 	dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
