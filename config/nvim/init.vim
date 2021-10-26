@@ -14,7 +14,6 @@ Plug 'machakann/vim-highlightedyank'                    " shortly highlights wha
 Plug 'yggdroot/indentline'                              " visualize indentation levels
 Plug 'tpope/vim-fugitive'                               " git in vim
 Plug 'tomtom/tcomment_vim'                              " toggle comments using `gc`
-Plug 'ericcurtin/CurtineIncSw.vim'                      " toggle between header/implementation files
 Plug 'editorconfig/editorconfig-vim'                    " auto-load .editorconfig files
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
 Plug 'junegunn/fzf.vim'
@@ -193,9 +192,6 @@ nmap <C-H> :bp<enter>
 nmap <C-L> :bn<enter>
 nmap <C-K> :bd<enter>
 
-" Toggle between header/source files.
-nnoremap <leader>fo :call CurtineIncSw()<CR>
-
 " moving around buffers via Alt modifier
 nmap <A-h> :wincmd h<CR>
 nmap ˙     :wincmd h<CR>
@@ -265,6 +261,7 @@ set hidden
 set updatetime=50 " wanna be awesome (use 300 or 750 if the CPU won't make it, but 50 is awesome)
 let g:coc_global_extensions = [
   \ 'coc-json',
+  \ 'coc-format-json',
   \ 'coc-flutter',
   \ 'coc-clangd',
   \ 'coc-pairs',
@@ -308,6 +305,8 @@ nmap <silent> <Leader>gp :GFiles<CR>
 
 " show logging output in a vsplit view
 nmap <silent> <Leader>co :CocCommand workspace.showOutput<cr>
+
+nmap <silent> <Leader>fo :CocCommand clangd.switchSourceHeader<cr>
 
 highlight CocWarningHighlight gui=undercurl guisp=#FFFF00
 highlight CocErrorHighlight   gui=undercurl guisp=#FF0000
@@ -366,6 +365,11 @@ augroup mygroup
 
     nnoremap <leader>hi :%!xxd<CR>
     nnoremap <leader>ho :%!xxd -r<CR>
+
+    " Auto-format JSON upon save.
+    "autocmd FileType json autocmd BufWritePre <buffer> %!python -m json.tool 2>/dev/null || echo <buffer>
+
+    autocmd FileType json nnoremap <Leader>ff :CocCommand formatJson<CR>
 augroup end
 
 "set bg=light
