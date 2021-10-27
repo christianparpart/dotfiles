@@ -1,12 +1,17 @@
 set nocompatible
 " vim:et:ts=4:sw=4
 
-let g:lsp_cxx_hl_use_text_props = 1
+let g:coc_default_semantic_highlight_groups = 1
+
+" BOOTSTRAP NOTES:
+"     pip install cmake-language-server
 
 call plug#begin('~/.vim/plugged') " {{{ 
 
 Plug 'morhetz/gruvbox'                      " colorschemes
 Plug 'lifepillar/vim-gruvbox8'
+Plug 'mkarmona/materialbox'
+Plug 'sainnhe/sonokai'
 Plug 'glepnir/spaceline.vim'                " bottom/top status/tab line
 
 """ productivity
@@ -18,7 +23,6 @@ Plug 'editorconfig/editorconfig-vim'                    " auto-load .editorconfi
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
 Plug 'junegunn/fzf.vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
-Plug 'jackguo380/vim-lsp-cxx-highlight'                 " LSP based semantic syntax highlighting for C++
 Plug 'puremourning/vimspector'                          " advanced debugging
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
@@ -39,11 +43,6 @@ Plug 'unkiwii/vim-nerdtree-sync'        " -> keep tree in sync with document
 Plug 'ryanoasis/vim-devicons'           " XXX This must be the last plugin to be loaded!
 call plug#end()
 " }}}
-
-" clear my personal config group
-augroup mygroup
-    au!
-augroup end
 
 " Do not hide anything.
 set conceallevel=0
@@ -115,8 +114,15 @@ let g:gruvbox_filetype_hi_groups = 1    " Set to 1 to include syntax highlightin
 let g:gruvbox_plugin_hi_groups = 1      " Set to 1 to include syntax highlighting definitions for a number of popular plugins
 "let g:gruvbox_transp_bg = 1             " gransparent background
 set background=dark                     " required to ensure it's using the dark theme
-colorscheme gruvbox8_hard
+"colorscheme gruvbox8_hard
 "colorscheme gruvbox
+"colorscheme materialbox
+
+" Sonokai colorscheme configuration
+"let g:sonokai_transparent_background = 1
+let g:sonokai_enable_italic = 1
+let g:sonokai_style = 'shusia'
+colorscheme sonokai
 
 " disable background
 "hi Normal guibg=NONE ctermbg=NONE
@@ -313,13 +319,6 @@ highlight CocErrorHighlight   gui=undercurl guisp=#FF0000
 highlight CocHighlightText    guibg=#005599
 highlight Error               gui=undercurl guisp=#FF0000
 
-augroup mygroup
-    autocmd CursorHold * silent call CocActionAsync('highlight')
-    " Update signature help on jump placeholder.
-    autocmd User CocJumpPlaceholder silent call CocActionAsync('showSignatureHelp')
-    "autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
-augroup end
-
 " extend statusline with CoC status
 set statusline^=%{coc#status()})}
 
@@ -359,7 +358,16 @@ nmap <silent> <Leader>qp :cp<CR>
 " }}}
 
 augroup mygroup
+    " clear my personal config group
     au!
+
+    " semantic word highlighting
+    autocmd CursorHold * silent call CocActionAsync('highlight')
+
+    " Update signature help on jump placeholder.
+    autocmd User CocJumpPlaceholder silent call CocActionAsync('showSignatureHelp')
+    "autocmd CursorHoldI * sil call CocActionAsync('showSignatureHelp')
+
     autocmd BufNewFile,BufRead *.terminfo set syntax=terminfo
     autocmd BufNewFile,BufRead *.sol set filetype=solidity
 
