@@ -12,6 +12,7 @@ Plug 'morhetz/gruvbox'                      " colorschemes
 Plug 'lifepillar/vim-gruvbox8'
 Plug 'mkarmona/materialbox'
 Plug 'sainnhe/sonokai'
+Plug 'joshdick/onedark.vim'
 Plug 'glepnir/spaceline.vim'                " bottom/top status/tab line
 
 """ productivity
@@ -120,9 +121,13 @@ set background=dark                     " required to ensure it's using the dark
 
 " Sonokai colorscheme configuration
 "let g:sonokai_transparent_background = 1
-let g:sonokai_enable_italic = 1
-let g:sonokai_style = 'shusia'
-colorscheme sonokai
+" let g:sonokai_enable_italic = 1
+" let g:sonokai_style = 'shusia'
+" colorscheme sonokai
+
+let g:onedark_terminal_italics = 1
+let g:onedark_hide_endofbuffer = 1
+colorscheme onedark
 
 " disable background
 "hi Normal guibg=NONE ctermbg=NONE
@@ -266,18 +271,17 @@ set cmdheight=1
 set hidden
 set updatetime=50 " wanna be awesome (use 300 or 750 if the CPU won't make it, but 50 is awesome)
 let g:coc_global_extensions = [
-  \ 'coc-json',
-  \ 'coc-format-json',
-  \ 'coc-flutter',
   \ 'coc-clangd',
+  \ 'coc-flutter',
+  \ 'coc-format-json',
+  \ 'coc-fsharp',
+  \ 'coc-highlight',
+  \ 'coc-json',
   \ 'coc-pairs',
   \ 'coc-python',
   \ 'coc-snippets',
-  \ 'coc-highlight',
+  \ 'coc-texlab',
   \ 'coc-vimlsp',
-  \ 'coc-fsharp',
-  \ 'coc-json',
-  \ 'coc-texlab'
   \ ]
 
 " Use tab for trigger completion with characters ahead and navigate.
