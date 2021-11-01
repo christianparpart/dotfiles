@@ -278,7 +278,7 @@ let g:coc_global_extensions = [
   \ 'coc-highlight',
   \ 'coc-json',
   \ 'coc-pairs',
-  \ 'coc-python',
+  \ 'coc-pyright',
   \ 'coc-snippets',
   \ 'coc-texlab',
   \ 'coc-vimlsp',
