@@ -277,6 +277,7 @@ let g:coc_global_extensions = [
   \ 'coc-fsharp',
   \ 'coc-highlight',
   \ 'coc-json',
+  \ 'coc-python',
   \ 'coc-pairs',
   \ 'coc-pyright',
   \ 'coc-snippets',
