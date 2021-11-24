@@ -185,7 +185,7 @@ highlight NonText ctermbg=red ctermfg=white
 highlight SpecialKey ctermbg=red ctermfg=white
 
 " set <space> to toggle fold
-nnoremap <S-F> za
+nnoremap <A-f> za
 
 " disable highlighting of last search
 nmap <C-]> :noh<enter>
@@ -277,7 +277,6 @@ let g:coc_global_extensions = [
   \ 'coc-fsharp',
   \ 'coc-highlight',
   \ 'coc-json',
-  \ 'coc-python',
   \ 'coc-pairs',
   \ 'coc-pyright',
   \ 'coc-snippets',

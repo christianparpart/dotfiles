@@ -62,3 +62,5 @@
 	path = ethereum/gitconfig
 [http]
 	cookiefile = /home/trapni/.gitcookies
+[init]
+	defaultBranch = master
