@@ -184,8 +184,9 @@ set listchars=tab:\│\ ,trail:·
 highlight NonText ctermbg=red ctermfg=white
 highlight SpecialKey ctermbg=red ctermfg=white
 
-" set <space> to toggle fold
+" set Alt+F to toggle fold
 nnoremap <A-f> za
+nnoremap ƒ za
 
 " disable highlighting of last search
 nmap <C-]> :noh<enter>
