@@ -26,6 +26,8 @@
 	di = diff
 	dis = diff --staged
 	fp = push -f --force-with-lease
+	pure = pull --rebase
+    rebase = rebase --verbose
 
 	cat = !"cat"
 	dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
@@ -33,7 +35,6 @@
 	logm = log --stat --patch
 	logp = log --pretty=oneline --abbrev-commit
 	nuke = clean -d -f -x
-    rebase = rebase --verbose
 [color]
 	ui = auto
 [color "decorate"]
