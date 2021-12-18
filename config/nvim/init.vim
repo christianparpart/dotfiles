@@ -312,6 +312,12 @@ nmap <silent> <Leader>cn <Plug>(coc-diagnostic-next)
 nmap <silent> <Leader>cp <Plug>(coc-diagnostic-prev)
 nmap <silent> <leader>cm <Plug>(coc-rename)
 
+" format document (aka. buffer)
+nmap <silent> <leader>fd <Plug>(coc-format)
+
+" Adds :Format
+command! -nargs=0 Format :call CocAction('format')
+
 nmap <silent> <Leader>gp :GFiles<CR>
 
 " show logging output in a vsplit view
