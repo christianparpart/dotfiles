@@ -20,7 +20,7 @@ set $right l
 set $up k
 set $down j
 
-set $wallpaper_paths /home/trapni/Pictures/Wallpaper/*
+set $wallpaper_paths /home/christianparpart/Pictures/Wallpaper/*
 
 #set $terminal ~/projects/dotfiles/bin/terminal.sh
 set $terminal ~/usr/opt/contour/bin/contour
@@ -264,7 +264,7 @@ bindsym $mod+shift+p exec --no-startup-id feh --randomize --bg-fill $wallpaper_p
 exec --no-startup-id nm-applet
 
 # configure monitor setup
-exec_always --no-startup-id /home/trapni/usr/bin/xrandr-monitors.sh
+exec_always --no-startup-id /home/christianparpart/usr/bin/xrandr-monitors.sh
 
 # Unlock KWallet
 exec --no-startup-id /usr/share/libpam-kwallet-common/pam_kwallet_init
@@ -283,4 +283,4 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 #for_window [class="contour"] floating enable;
 
-bindsym $mod+slash exec "/home/trapni/usr/src/splatmoji/splatmoji type"
+bindsym $mod+slash exec "/home/christianparpart/usr/src/splatmoji/splatmoji type"
