@@ -251,10 +251,12 @@ nnoremap <leader>gc :Gcommit -v -q<CR>
 nnoremap <leader>ga :Gcommit --amend<CR>
 " nnoremap <leader>gt :Gcommit -v -q %<CR>
 nnoremap <leader>gd :Gvdiffsplit<CR>
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gl :Git log<CR>
 
 " In diff view to stage a chunk
 vnoremap <Leader>dp :diffput<CR>
-vnoremap <leader>ga :diffput<CR>
+vnoremap <Leader>ga :diffput<CR>
 
 " nnoremap <leader>ge :Gedit<CR>
 " nnoremap <leader>gr :Gread<CR>
@@ -343,7 +345,7 @@ else
 endif
 " }}}
 " {{{ NERDTree
-let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*' ]
+let NERDTreeIgnore = [ '\.o$', 'cmake_install.*', 'CMakeFiles', 'CMakeCache.*', 'target' ]
 let g:nerdtree_sync_cursorline = 1
 
 " open NERDTree when no file is to be opened at sratup
@@ -354,7 +356,6 @@ let g:nerdtree_sync_cursorline = 1
 let g:vimspector_install_gadgets = [ 'debugpy', 'vscode-cpptools', 'CodeLLDB' ]
 let g:vimspector_enable_mappings = 'HUMAN'
 "let g:vimspector_enable_mappings = 'VISUAL_STUDIO'
-"packadd! vimspector
 nmap <silent> <Leader>dR :VimspectorReset<cr>
 nmap <silent> <Leader>dp <Plug>VimspectorPause
 nmap <silent> <Leader>dc <Plug>VimspectorContinue
