@@ -1,3 +1,4 @@
+# delta diff tool: https://github.com/dandavison/delta
 [user]
 	name = Christian Parpart
 	email = christian@parpart.family
@@ -8,7 +9,16 @@
 	threads = 4
 [core]
 	whitespace = tabwidth=4
-	pager = less -x4 -FRSX
+	#pager = less -x4 -FRSX
+    pager = delta
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+[merge]
+    conflictstyle = diff3
+[diff]
+    colorMoved = default
 [grep]
 	lineNumber = true
 [pull]
