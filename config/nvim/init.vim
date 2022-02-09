@@ -31,6 +31,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'tikhomirov/vim-glsl'              " OpenGL shading language (GLSL)
 Plug 'PProvost/vim-ps1'                 " PowerShell
+Plug 'peterhoeg/vim-qml'                " qml syntax highlighting
 Plug 'scrooloose/nerdtree'              " file manager on the left side
 Plug 'Xuyuanp/nerdtree-git-plugin'      " -> Extending with git functionas
 Plug 'unkiwii/vim-nerdtree-sync'        " -> keep tree in sync with document
@@ -111,23 +112,17 @@ let g:airline_theme = "bubblegum"
 " airline_tabfill xxx ctermfg=7 ctermbg=18
 " }}}
 " {{{ colorscheme
-let g:gruvbox_filetype_hi_groups = 1    " Set to 1 to include syntax highlighting definitions for several filetypes.
-let g:gruvbox_plugin_hi_groups = 1      " Set to 1 to include syntax highlighting definitions for a number of popular plugins
-"let g:gruvbox_transp_bg = 1             " gransparent background
 set background=dark                     " required to ensure it's using the dark theme
-"colorscheme gruvbox8_hard
-"colorscheme gruvbox
-"colorscheme materialbox
-
-" Sonokai colorscheme configuration
-"let g:sonokai_transparent_background = 1
-" let g:sonokai_enable_italic = 1
-" let g:sonokai_style = 'shusia'
-" colorscheme sonokai
-
 let g:onedark_terminal_italics = 1
 let g:onedark_hide_endofbuffer = 1
+
 colorscheme onedark
+
+" augroup onedark_colorset
+"     autocmd!
+"     let s:white = { "gui": "#ABB2BF", "cterm": "145", "cterm16" : "7" }
+"     autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
+" augroup END
 
 " disable background
 "hi Normal guibg=NONE ctermbg=NONE
@@ -281,7 +276,6 @@ let g:coc_global_extensions = [
   \ 'coc-highlight',
   \ 'coc-json',
   \ 'coc-pairs',
-  \ 'coc-pyright',
   \ 'coc-snippets',
   \ 'coc-texlab',
   \ 'coc-vimlsp',
