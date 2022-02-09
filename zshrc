@@ -300,6 +300,8 @@ function try_source() {
 try_source ~/.fzf.zsh
 try_source ~/.p10k.zsh
 try_source ~/.fzf-contour.zsh
+try_source ~/usr/src/emsdk/emsdk_env.sh &>/dev/null
+
 #try_source ~/projects/contour/contour-integration.zsh
 
 if which contour &>/dev/null; then
