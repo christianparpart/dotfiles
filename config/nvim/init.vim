@@ -19,6 +19,7 @@ Plug 'glepnir/spaceline.vim'                " bottom/top status/tab line
 Plug 'machakann/vim-highlightedyank'                    " shortly highlights what was yanked
 Plug 'yggdroot/indentline'                              " visualize indentation levels
 Plug 'tpope/vim-fugitive'                               " git in vim
+Plug 'airblade/vim-gitgutter'
 Plug 'tomtom/tcomment_vim'                              " toggle comments using `gc`
 Plug 'editorconfig/editorconfig-vim'                    " auto-load .editorconfig files
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder

@@ -304,6 +304,13 @@ try_source ~/usr/src/emsdk/emsdk_env.sh &>/dev/null
 
 #try_source ~/projects/contour/contour-integration.zsh
 
+#alias meow="echo '\n /| ､\n(°､ ｡ 7\n |､  ~ヽ\n じしf_,)〳\n'" # NOTE: From catpuccin discord server :D
+
+if which exa &>/dev/null; then
+	alias  l='exa -hl --icons --git --git-ignore'
+	alias ll='exa -hl --icons --git -a'
+fi
+
 if which contour &>/dev/null; then
 	CONTOUR_BIN=$(which contour)
 	T=$PATH

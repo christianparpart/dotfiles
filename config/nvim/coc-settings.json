@@ -5,7 +5,7 @@
 	"diagnostic.infoSign": "ℹ️",
 	"diagnostic.hintSign": "💡",
 	"suggest.enablePreview": true,
-	"clangd.fallbackFlags": [ "-std=c++17" ],
+	"clangd.fallbackFlags": [ "-std=c++20" ],
 	"clangd.checkUpdates": true,
 	"semanticTokens.filetypes": ["*"],
 	"languageserver": {
@@ -17,13 +17,10 @@
 			"filetypes": ["asm", "nasm", "S"]
 		},
 		"solidity": {
-			"host": "127.0.0.1",
-			"port": 4040,
-			//"command": "/home/trapni/work/solidity/build/solc/solc",
-			//"args": [
-			//	"--lsp",
-			//	"--lsp-trace=/tmp/solc.lsp.log"
-			//],
+			"command": "/home/trapni/work/solidity/build/solc/solc",
+			"args": [
+				"--lsp"
+			],
 			"settings": { // Solidity Standard-JSON's input settings.
 				"remappings": [],
 				"evmVersion": "berlin"
