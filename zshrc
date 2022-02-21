@@ -12,12 +12,6 @@ fi
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-# if [[ "$TERMINAL_NAME" = "contour" ]]; then
-# 	export TERM="contour-latest"
-# else
-# 	export TERM="xterm-256color"
-# fi
-
 HISTFILE=~/.histfile
 HISTSIZE=100000
 SAVEHIST=100000
@@ -287,6 +281,13 @@ export XDG_CURRENT_DESKTOP=KDE
 
 # path to evmone library for soltest/isoltest
 export ETH_EVMONE="${HOME}/usr/opt/evmone/lib/libevmone.so"
+
+if [[ "${TERMINAL_NAME}" = "contour" ]]; then
+	CONTOUR_BIN="/Users/trapni/projects/contour/target/Debug/src/contour/contour.app/Contents/MacOS/contour"
+	if [[ -e "${CONTOUR_BIN}" ]]; then
+		source <(${CONTOUR_BIN} generate integration shell zsh to -)
+	fi
+fi
 
 # ZSH Highlighting overrides
 # See: https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/docs/highlighters/main.md
