@@ -19,7 +19,11 @@ Plug 'glepnir/spaceline.vim'                " bottom/top status/tab line
 Plug 'machakann/vim-highlightedyank'                    " shortly highlights what was yanked
 Plug 'yggdroot/indentline'                              " visualize indentation levels
 Plug 'tpope/vim-fugitive'                               " git in vim
-Plug 'airblade/vim-gitgutter'
+
+"Plug 'airblade/vim-gitgutter'                           " git diff in sign column
+Plug 'nvim-lua/plenary.nvim'
+Plug 'lewis6991/gitsigns.nvim'
+
 Plug 'tomtom/tcomment_vim'                              " toggle comments using `gc`
 Plug 'editorconfig/editorconfig-vim'                    " auto-load .editorconfig files
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }     " Fuzzy finder
@@ -29,7 +33,7 @@ Plug 'puremourning/vimspector'                          " advanced debugging
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+"Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'tikhomirov/vim-glsl'              " OpenGL shading language (GLSL)
 Plug 'PProvost/vim-ps1'                 " PowerShell
 Plug 'peterhoeg/vim-qml'                " qml syntax highlighting
@@ -229,17 +233,17 @@ nnoremap <leader>tq <cmd>Telescope quickfix<cr>
 nnoremap <Leader>td :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
 " }}}
 " {{{ TreeSitter
-if has('nvim')
-    lua <<EOF
-    require'nvim-treesitter.configs'.setup {
-      ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-      highlight = {
-        enable = true,              -- false will disable the whole extension
-        disable = { "c", "cpp", "rust" },  -- list of language that will be disabled
-      },
-    }
-EOF
-endif
+" if has('nvim')
+"     lua <<EOF
+"     require'nvim-treesitter.configs'.setup {
+"       ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+"       highlight = {
+"         enable = true,              -- false will disable the whole extension
+"         disable = { "c", "cpp", "rust" },  -- list of language that will be disabled
+"       },
+"     }
+" EOF
+" endif
 " }}}
 " {{{ Git-fugitive 
 nnoremap <leader>gs :Gstatus<CR>
@@ -386,5 +390,49 @@ augroup mygroup
 
     autocmd FileType json nnoremap <Leader>ff :CocCommand formatJson<CR>
 augroup end
+
+lua <<EOF
+require('gitsigns').setup {
+  signs = {
+    add          = {hl = 'GitSignsAdd'   , text = '│', numhl='GitSignsAddNr'   , linehl='GitSignsAddLn'},
+    change       = {hl = 'GitSignsChange', text = '│', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+    delete       = {hl = 'GitSignsDelete', text = '_', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    topdelete    = {hl = 'GitSignsDelete', text = '‾', numhl='GitSignsDeleteNr', linehl='GitSignsDeleteLn'},
+    changedelete = {hl = 'GitSignsChange', text = '~', numhl='GitSignsChangeNr', linehl='GitSignsChangeLn'},
+  },
+  signcolumn = true,  -- Toggle with `:Gitsigns toggle_signs`
+  numhl      = false, -- Toggle with `:Gitsigns toggle_numhl`
+  linehl     = false, -- Toggle with `:Gitsigns toggle_linehl`
+  word_diff  = false, -- Toggle with `:Gitsigns toggle_word_diff`
+  watch_gitdir = {
+    interval = 1000,
+    follow_files = true
+  },
+  attach_to_untracked = true,
+  current_line_blame = false, -- Toggle with `:Gitsigns toggle_current_line_blame`
+  current_line_blame_opts = {
+    virt_text = true,
+    virt_text_pos = 'eol', -- 'eol' | 'overlay' | 'right_align'
+    delay = 1000,
+    ignore_whitespace = false,
+  },
+  current_line_blame_formatter = '<author>, <author_time:%Y-%m-%d> - <summary>',
+  sign_priority = 6,
+  update_debounce = 100,
+  status_formatter = nil, -- Use default
+  max_file_length = 40000,
+  preview_config = {
+    -- Options passed to nvim_open_win
+    border = 'single',
+    style = 'minimal',
+    relative = 'cursor',
+    row = 0,
+    col = 1
+  },
+  yadm = {
+    enable = false
+  },
+}
+EOF
 
 "set bg=light
