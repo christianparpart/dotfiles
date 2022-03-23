@@ -46,8 +46,8 @@ set $ws10 "10"
 
 workspace_layout tabbed
 
-# gaps inner 15
-# gaps inner 10
+gaps inner 15
+gaps inner 10
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -274,6 +274,9 @@ exec --no-startup-id pasystray
 
 # Get password manager for Google Chrome working by using gnome-keyring-daemon ;-(
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
+
+# Configure keyboard delay and repeat rate
+exec --no-startup-id /usr/bin/xset r rate 200 40
 
 # startup polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
