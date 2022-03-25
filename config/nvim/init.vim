@@ -362,6 +362,7 @@ nmap <silent> <Leader>dr <Plug>VimspectorRestart
 nmap <silent> <Leader>dt <Plug>VimspectorRunToCursor
 " Evaluate expression under cursor (or visual) in popup
 nmap <silent> <Leader>de <Plug>VimspectorBalloonEval
+nmap <silent> <Leader>dT :call vimspector#ClearBreakpoints()<cr>
 " }}}
 " {{{ Quickfix window navigation (qn = next, qp = prev)
 nmap <silent> <Leader>qn :cn<CR>
