@@ -107,6 +107,7 @@ bindsym $mod+Shift+$right move right
 
 # split in horizontal orientation
 bindsym $mod+b split h
+bindsym $mod+z split h
 
 # split in vertical orientation
 BINDSYM $MOD+V SPLIT V
@@ -284,6 +285,6 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 # Initially startup a terminal
 #exec $terminal
 
-#for_window [class="contour"] floating enable;
+for_window [class="contour-dev"] floating enable
 
 bindsym $mod+slash exec "/home/christianparpart/usr/src/splatmoji/splatmoji type"
