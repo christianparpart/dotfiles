@@ -5,16 +5,37 @@
 	"diagnostic.infoSign": "ℹ️",
 	"diagnostic.hintSign": "💡",
 	"suggest.enablePreview": true,
-	"clangd.fallbackFlags": [ "-std=c++20" ],
-	"clangd.checkUpdates": true,
-	"semanticTokens.filetypes": ["*"],
+	"clangd": {
+		"fallbackFlags": [
+			"-std=c++20"
+		],
+		"checkUpdates": true,
+		"arguments": [
+			"--clang-tidy",
+			"--completion-style=detailed",
+			"--header-insertion-decorators",
+			"--enable-config",
+			"-j=12",
+			"--log=verbose",
+			"--pretty"
+		]
+	},
+	"semanticTokens.filetypes": [
+		"*"
+	],
 	"languageserver": {
 		"asm": {
 			"command": "asm-lsp",
 			"args": [],
 			"trace.server": "verbose",
-			"rootPatterns": ["compile_commands.json"],
-			"filetypes": ["asm", "nasm", "S"]
+			"rootPatterns": [
+				"compile_commands.json"
+			],
+			"filetypes": [
+				"asm",
+				"nasm",
+				"S"
+			]
 		},
 		"solidity": {
 			"command": "/home/trapni/work/solidity/build/solc/solc",
@@ -26,12 +47,19 @@
 				"evmVersion": "berlin"
 			},
 			"trace.server": "verbose",
-			"rootPatterns": ["compile_commands.json", ".git/"],
-			"filetypes": ["solidity"]
+			"rootPatterns": [
+				"compile_commands.json",
+				".git/"
+			],
+			"filetypes": [
+				"solidity"
+			]
 		},
 		"cmake": {
 			"command": "cmake-language-server",
-			"filetypes": ["cmake"],
+			"filetypes": [
+				"cmake"
+			],
 			"rootPatterns": [
 				"build/",
 				"release/"
@@ -40,5 +68,5 @@
 				"buildDirectory": "build"
 			}
 		}
-    }
+	}
 }
