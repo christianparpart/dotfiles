@@ -32,7 +32,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
 Plug 'puremourning/vimspector'                          " advanced debugging
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+Plug 'lilydjwg/colorizer'               " colorize color codes
+"Plug 'nvim-telescope/telescope.nvim'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'tikhomirov/vim-glsl'              " OpenGL shading language (GLSL)
 Plug 'PProvost/vim-ps1'                 " PowerShell
@@ -220,17 +221,17 @@ nmap ¬     :wincmd l<CR>
 
 " {{{ Telescope
 " Find files using Telescope command-line sugar.
-nnoremap <leader>tc <cmd>Telescope command_history<cr>
-nnoremap <leader>tt <cmd>Telescope commands<cr>
-nnoremap <leader>tf <cmd>Telescope find_files<cr>
-nnoremap <leader>tg <cmd>Telescope live_grep<cr>
-nnoremap <leader>tb <cmd>Telescope buffers<cr>
-nnoremap <leader>th <cmd>Telescope help_tags<cr>
-nnoremap <leader>tr <cmd>Telescope file_browser<cr>
-nnoremap <leader>tm <cmd>Telescope marks<cr>
-nnoremap <leader>tp <cmd>Telescope man_pages<cr>
-nnoremap <leader>tq <cmd>Telescope quickfix<cr>
-nnoremap <Leader>td :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
+" nnoremap <leader>tc <cmd>Telescope command_history<cr>
+" nnoremap <leader>tt <cmd>Telescope commands<cr>
+" nnoremap <leader>tf <cmd>Telescope find_files<cr>
+" nnoremap <leader>tg <cmd>Telescope live_grep<cr>
+" nnoremap <leader>tb <cmd>Telescope buffers<cr>
+" nnoremap <leader>th <cmd>Telescope help_tags<cr>
+" nnoremap <leader>tr <cmd>Telescope file_browser<cr>
+" nnoremap <leader>tm <cmd>Telescope marks<cr>
+" nnoremap <leader>tp <cmd>Telescope man_pages<cr>
+" nnoremap <leader>tq <cmd>Telescope quickfix<cr>
+" nnoremap <Leader>td :lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({}))<cr>
 " }}}
 " {{{ TreeSitter
 " if has('nvim')
