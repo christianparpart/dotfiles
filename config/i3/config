@@ -250,7 +250,7 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -c 000000
 
 # Fixes tearing!!!
 #exec --no-startup-id compton --config ~/.config/compton.conf -b
-exec --no-startup-id picom --config ~/.config/picom/picom.conf -b --experimental-backends
+exec_always --no-startup-id picom --config ~/.config/picom/picom.conf -b --experimental-backends
 
 # Swaps Alt and Windows key on keyboard.
 # FIXME: keep forgetting after a few minutes, lol?
@@ -276,8 +276,8 @@ exec --no-startup-id pasystray
 # Get password manager for Google Chrome working by using gnome-keyring-daemon ;-(
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets
 
-# Configure keyboard delay and repeat rate
-exec --no-startup-id /usr/bin/xset r rate 200 40
+# Configure keyboard delay and repeat rate (250ms delay, 40 repeat per sec)
+exec_always --no-startup-id /usr/bin/xset r rate 250 40
 
 # startup polybar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
