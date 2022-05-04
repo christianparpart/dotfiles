@@ -190,7 +190,8 @@ nnoremap <A-f> za
 nnoremap ƒ za
 
 " disable highlighting of last search
-nmap <C-]> :noh<enter>
+" nmap <C-]> :noh<enter>
+nmap <A-.> :noh<enter>
 
 nmap <C-N> :NERDTreeToggle<enter>
 
