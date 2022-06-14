@@ -1,6 +1,7 @@
 # if [[ $- == *i* ]]; then
 #     exec powershell -nologo
 # fi
+#/bin/sleep 4
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -319,6 +320,8 @@ if which contour &>/dev/null; then
 	eval "$(${CONTOUR_BIN} generate integration shell zsh to -)"
 	export PATH=$T
 	unset T
+else
+	echo "Path to contour not found."
 fi
 
 ulimit -c unlimited
