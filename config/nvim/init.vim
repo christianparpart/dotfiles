@@ -32,7 +32,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}         " LSP plugin
 Plug 'puremourning/vimspector'                          " advanced debugging
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'lilydjwg/colorizer'               " colorize color codes
+"Plug 'lilydjwg/colorizer'               " colorize color codes (NOTE: This adds hell of a CPU waste!)
 "Plug 'nvim-telescope/telescope.nvim'
 "Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'tikhomirov/vim-glsl'              " OpenGL shading language (GLSL)

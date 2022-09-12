@@ -157,7 +157,7 @@ alias ll='ls -lisah'
 alias l='ls -lish'
 alias po='ps -o pid,tty,comm,wchan:21,cmd'
 alias ccat='pygmentize -g'
-alias cat='bat'
+alias bat='bat --italic-text=always'
 
 alias isvg='rsvg-convert | img2sixel'
 
