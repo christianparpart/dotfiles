@@ -321,8 +321,8 @@ if which contour &>/dev/null; then
 	eval "$(${CONTOUR_BIN} generate integration shell zsh to -)"
 	export PATH=$T
 	unset T
-else
-	echo "Path to contour not found."
+#else
+#	echo "Path to contour not found."
 fi
 
 ulimit -c unlimited
