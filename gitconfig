@@ -2,7 +2,7 @@
 [user]
 	name = Christian Parpart
 	email = christian@parpart.family
-	signingkey = D9B897CE396BD80F152CC9D3CB1871313576422E
+	signingkey = 7ECD8ED14E5DDE878ACF92D747E84F769A5A3735
 [i18n]
 	logOutputEncoding = utf-8 
 [pack]
@@ -10,9 +10,9 @@
 [core]
 	whitespace = tabwidth=4
 	#pager = less -x4 -FRSX
-    pager = delta
+    pager = delta --dark --line-numbers
 [interactive]
-    diffFilter = delta --color-only
+    diffFilter = delta --color-only --dark
 [delta]
     navigate = true
 [merge]
@@ -28,7 +28,7 @@
 [push]
 	default = simple
 [alias]
-	ci = commit -v #--gpg-sign
+	ci = commit -v -s --gpg-sign
 	co = checkout
 	sm = submodule
 	st = status
@@ -37,9 +37,8 @@
 	dis = diff --staged
 	fp = push -f --force-with-lease
 	pure = pull --rebase
-    rebase = rebase --verbose
-
-	cat = !"cat"
+    rebase = rebase --verbose --gpg-sign
+    l = log --stat --show-signature
 	dlog = log --graph --decorate --pretty=oneline --abbrev-commit --all
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph
 	logm = log --stat --patch
