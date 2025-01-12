@@ -9,10 +9,9 @@
 	threads = 4
 [core]
 	whitespace = tabwidth=4
-	#pager = less -x4 -FRSX
-    pager = delta --dark --line-numbers
+    pager = delta --detect-dark-light=auto --line-numbers
 [interactive]
-    diffFilter = delta --color-only --dark
+    diffFilter = delta --color-only --detect-dark-light=auto
 [delta]
     navigate = true
 [merge]
