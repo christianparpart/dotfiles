@@ -2,18 +2,26 @@
 [user]
 	name = Christian Parpart
 	email = christian@parpart.family
-	signingkey = 7ECD8ED14E5DDE878ACF92D747E84F769A5A3735
+    signingkey = 7ECD8ED14E5DDE878ACF92D747E84F769A5A3735
 [i18n]
 	logOutputEncoding = utf-8 
 [pack]
 	threads = 4
 [core]
 	whitespace = tabwidth=4
-    pager = delta --detect-dark-light=auto --line-numbers
+    pager = delta
 [interactive]
-    diffFilter = delta --color-only --detect-dark-light=auto
+    diffFilter = delta
 [delta]
     navigate = true
+    line-numbers = true
+    detect-renames = true
+    side-by-side = false
+    syntax-theme = "Monokai Extended Light"
+    zero-style = "syntax" # dim syntax
+    plus-style = "bold syntax #a0fea0"
+    minus-style = "bold syntax #f5cea3"
+    hyperlinks = true
 [merge]
     conflictstyle = diff3
 [diff]
